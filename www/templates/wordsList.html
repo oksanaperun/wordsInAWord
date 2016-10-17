@@ -1,0 +1,10 @@
+<ion-view view-title="СЛОВА">
+  <ion-content>
+    <ion-list>
+      <ion-item ng-repeat="word in wordsList" href="#/app/wordslist/{{word.id}}">
+        {{word.name}}
+      </ion-item>
+    </ion-list>
+    <button>Action {{tryCopyDB}}</button>
+  </ion-content>
+</ion-view>

@@ -1,0 +1,34 @@
+<ion-view view-title="СКЛАДІТЬ НОВІ СЛОВА">
+
+	<ion-header-bar class="header">
+    <div class="row word-name-buttons-block">
+    		<div ng-repeat="letter in word.name track by $index">
+        		<button id="wordNameButton_{{$index}}" class="word-name-button" ng-click="addSelectedLetter(letter); disableWordNameButton($index)">{{letter}}</button>
+    		</div>
+		</div>
+    <div class="row composed-word-controls">
+      <button class="clear-composed-word" ng-click="clearComposedWord()">X</button>
+      <input class="composed-word" ng-model="composedWord">
+      <button class="remove-letter-in-composed-word" ng-click="removeLastLetter()">--</button>
+    </div>
+    <div class="row opened-words-description">
+      <p>Ви склали {{getOpenWordsCount()}} з {{word.composingWords.length}} слів</p>
+	     <!-- відмінювання слів + коли складені всі слова або жодного -->
+    </div>
+  </ion-header-bar>
+
+  <ion-content class="content has-header has-footer">
+    <!-- контроли для сортування списку по довжині слова або алфавіту -->
+  		<ion-list class="composing-words-list">
+      		<ion-item ng-repeat="composingWord in word.composingWords track by $index"
+           class="composing-word">
+        	{{composingWord.isOpened ? composingWord.name : displayNotOpenedWord(composingWord.name.length)}}
+      		</ion-item>
+    	</ion-list>
+  	</ion-content>
+
+  <ion-footer-bar class="footer">
+  		<!-- <button ng-click="selectWords()">Select words</button> -->
+	</ion-footer-bar>
+
+</ion-view>

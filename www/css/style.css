@@ -1,0 +1,59 @@
+.header {
+	margin-top: 40px;
+	max-height: 210px;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+}
+
+.content {
+	margin-top: 200px;
+}
+
+.footer {
+
+}
+
+.word-name-buttons-block {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+}
+
+.word-name-button {
+	width: 50px;
+	height: 50px;
+	margin-right: 10px;
+	margin-bottom: 10px;
+}
+
+.composed-word-controls {
+	display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+}
+
+.composed-word, .clear-composed-word, .remove-letter-in-composed-word {
+	height: 40px;
+	margin-right: 10px;
+	margin-bottom: 10px;
+}
+
+.clear-composed-word, .remove-letter-in-composed-word {
+	width: 40px;
+}
+
+.opened-words-description {
+	display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+}
+
+.composing-words-list .list {
+	display: flex;
+	flex-flow: row wrap;
+}
+
+.composing-word {
+	flex: 1 0 30%;
+}
