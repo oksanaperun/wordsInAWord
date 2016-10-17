@@ -38,7 +38,7 @@ angular.module('wordInAWord.controllers', [])
         console.log(res);
 
         $scope.word = {name: res.rows.item(0).name};
-
+        
         getComposingWords();
         }, function(err) {
          console.error(err);
@@ -69,32 +69,66 @@ angular.module('wordInAWord.controllers', [])
     });
   }
 
+  function getAllWordNameButtons() {
+    return document.getElementsByClassName('word-name-button');
+  }
+
   $scope.disableWordNameButton = function(index) {
-    var clickedButton = document.getElementById('wordNameButton_' + index);
-    console.log('change button');
+    var buttons = getAllWordNameButtons(),
+      clickedButton = buttons[index];
+    console.log('disable button');
     clickedButton.setAttribute('disabled', 'disabled');
-    clickedButton.style.backgroundColor = 'lightgreen';
+    clickedButton.classList.remove('word-name-button-default');
+    clickedButton.classList.add('word-name-button-disabled');
+  }
+
+  function enableWordNameButton(letter) {
+    var buttons = getAllWordNameButtons();
+
+    for (var i = buttons.length - 1; i >= 0; i--) {
+      if (buttons[i].disabled && buttons[i].innerHTML == letter) {
+        enableButton(buttons[i]);
+        break;
+      }
+    }
+  }
+
+  function enableButton(button) {
+    console.log('enable button');
+    button.removeAttribute('disabled');
+    button.classList.remove('word-name-button-disabled');
+    button.classList.add('word-name-button-default');
+  }
+
+  $scope.enableAllWordNameButtons = function() {
+    var buttons = document.getElementsByClassName('word-name-button');
+
+    for (var i = buttons.length - 1; i >= 0; i--) {
+      if (buttons[i].disabled) {
+        enableButton(buttons[i]);
+      }
+    }
   }
 
   $scope.addSelectedLetter = function(letter) {
-    if ($scope.composedWord == undefined) $scope.composedWord = '';
+    if (!$scope.composedWord) $scope.composedWord = '';
 
     $scope.composedWord += letter;
   }
 
   $scope.removeLastLetter = function() {
-    if ($scope.composedWord != undefined)
+    if ($scope.composedWord) {
+      enableWordNameButton($scope.composedWord.charAt($scope.composedWord.length - 1));
       $scope.composedWord = $scope.composedWord.slice(0, -1);
-    // enable button and change color
+    }
   }
 
   $scope.clearComposedWord = function() {
     $scope.composedWord = '';
-    // enable all buttons and change their color
   }
 
   $scope.$watch('composedWord', function (newValue, oldValue) {
-    if (newValue != undefined && newValue != '' && newValue.length > 1) 
+    if (newValue && newValue != '' && newValue.length > 1) 
       checkComposedWord(newValue);
   });
 
@@ -106,6 +140,7 @@ angular.module('wordInAWord.controllers', [])
       console.log('Valid word');
       if ($scope.word.composingWords[index].isOpened == 0) {
         $scope.clearComposedWord();
+        $scope.enableAllWordNameButtons();
         console.log('Open word');
         openComposedWord($scope.word.composingWords[index].id, index);
       } else {
@@ -131,10 +166,10 @@ angular.module('wordInAWord.controllers', [])
   }
 
   $scope.displayNotOpenedWord = function(wordLength) {
-    var s = '';
+    var s = '-';
 
-    for (var i = 0; i < wordLength; i++)
-      s += '-';
+    for (var i = 0; i < wordLength - 1; i++)
+      s += ' -';
 
     return s;
   }
@@ -142,7 +177,7 @@ angular.module('wordInAWord.controllers', [])
   $scope.getOpenWordsCount = function() {
     var count = 0;
 
-    if ($scope.word != undefined && $scope.word.composingWords != undefined) {
+    if ($scope.word && $scope.word.composingWords) {
       for (var i = 0; i < $scope.word.composingWords.length; i++) {
         if ($scope.word.composingWords[i].isOpened == 1)
           count +=1;

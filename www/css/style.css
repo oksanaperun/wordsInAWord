@@ -27,6 +27,14 @@
 	margin-bottom: 10px;
 }
 
+.word-name-button-default {
+	background-color: rgb(221, 221, 221);
+}
+
+.word-name-button-disabled {
+	background-color: lightgreen;
+}
+
 .composed-word-controls {
 	display: flex;
     flex-flow: row wrap;
