@@ -1,10 +1,27 @@
 <ion-view view-title="СПИСОК СЛІВ">
   <ion-content>
+
+    <p>Відкрито {{getOpenedCategoriesCount()}} з {{categories.length}} категорій слів</p>
+
     <ion-list>
-      <ion-item ng-repeat="word in wordsList" href="#/app/wordslist/{{word.id}}">
-        {{word.name}}
-      </ion-item>
-    </ion-list>
-    <button>Action {{tryCopyDB}}</button>
+        <div ng-repeat="category in categoriesToDisplay">
+          <ion-item class="item-stable"
+                    ng-click="toggleCategory(category)"
+                    ng-class="{active: isCategoryShown(category)}">
+            <i class="icon" ng-class="isCategoryShown(category) ? 'ion-minus' : 'ion-plus'"></i>
+            &nbsp;
+            {{category.name}}
+          </ion-item>
+          <ion-item class="item-accordion category-word"
+                    ng-repeat="word in category.wordsList"
+                    ng-show="isCategoryShown(category)"
+                    href="#/app/wordslist/{{word.id}}">
+            {{word.name}}
+            <p>{{word.openedComposingWords}} з {{word.totalComposingWords}}</p>
+          </ion-item>
+        </div>
+      </ion-list>
+
+    <button ng-click="editData()">Action {{tryCopyDB}}</button>
   </ion-content>
 </ion-view>

@@ -63,5 +63,37 @@
 }
 
 .composing-word {
-	flex: 1 0 30%;
+	flex: 0 0 33.33%;
+    left: 2.5px;
+}
+
+.category-word {
+	transition: all ease-in 0.5s;
+
+}
+
+.category-word.ng-hide {
+  	opacity: 0;
+}
+
+.add-coins, .already-opened-word {
+	position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: all linear 0.5s;
+}
+
+.add-coins.ng-hide, .already-opened-word.ng-hide {
+  opacity: 0;
+}
+
+.add-coins {
+	z-index: 1;
+	color: green;
+}
+
+.already-opened-word {
+	z-index: 2;
+	color: #ffc900;
 }

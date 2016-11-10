@@ -1,4 +1,4 @@
-angular.module('wordInAWord')
+angular.module('wordInAWord.controllers', [])
 
 .controller('AppCtrl', function($scope, $ionicModal, $timeout) {
 
