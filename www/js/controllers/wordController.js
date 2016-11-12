@@ -139,6 +139,7 @@ angular.module('wordInAWord')
         console.log('Open word');
         openComposedWord($scope.word.composingWords[index].id, index);
         setCoins($scope.coinsCount + $scope.earnedCoins);
+        Coins.setCount($scope.coinsCount + $scope.earnedCoins);
       } else {
         console.log('Already opened!');
         $scope.alreadyOpenedWord = $scope.word.composingWords[index].name;

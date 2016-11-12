@@ -76,7 +76,7 @@
   	opacity: 0;
 }
 
-.add-coins, .already-opened-word {
+.add-coins, .already-opened-word, .not-enough-coins {
 	position: absolute;
     top: 50%;
     left: 50%;
@@ -84,7 +84,7 @@
     transition: all linear 0.5s;
 }
 
-.add-coins.ng-hide, .already-opened-word.ng-hide {
+.add-coins.ng-hide, .already-opened-word.ng-hide, .not-enough-coins.ng-hide {
   opacity: 0;
 }
 
@@ -96,4 +96,9 @@
 .already-opened-word {
 	z-index: 2;
 	color: #ffc900;
+}
+
+.not-enough-coins{
+	z-index: 3;
+	color: red;
 }

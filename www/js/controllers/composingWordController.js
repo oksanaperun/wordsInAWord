@@ -64,7 +64,10 @@ angular.module('wordInAWord')
       }, function(err) {
          console.error(err);
       });
-    } else console.log('Not enough coins');
+    } else {
+      $scope.isNotEnoughCoins= true;
+      hideNotEnoughCoinsMessage();
+    }
   }
 
   function isEnoughCoinsForPrompt() {
@@ -81,6 +84,21 @@ angular.module('wordInAWord')
       }, function(err) {
          console.error(err);
       });
-    } else console.log('Not enough coins');
+    } else {
+      $scope.isNotEnoughCoins= true;
+      hideNotEnoughCoinsMessage();
+    }
+  }
+
+  function hideNotEnoughCoinsMessage() {
+     $timeout(function () { $scope.isNotEnoughCoins = false; }, 1000);
+  }
+
+  $scope.$on('$ionicView.enter', function() {
+     updateCoinsCount();
+  })
+
+  function updateCoinsCount() {
+    $scope.coinsCount = Coins.getCount();  
   }
 });

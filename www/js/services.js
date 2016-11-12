@@ -118,7 +118,7 @@ angular.module('wordInAWord.services', [])
       //var query = "update composing_words set description = 'test description'"
       //var query = "create table user_settings(coins integer not null)"
       //var query = "insert into user_settings(coins) values (0)"
-      //var query = "update user_settings set coins = 200"
+      //var query = "update user_settings set coins = 100"
       //var query = "update composing_words set isOpened = 0 where wordId = 1";
       //var query = "drop table composing_words"
       console.log('updating data');
