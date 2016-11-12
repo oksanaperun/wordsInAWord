@@ -29,8 +29,9 @@
   <ion-content class="content has-header has-footer">
     <!-- контроли для сортування списку по довжині слова або алфавіту -->
   		<ion-list class="composing-words-list">
-      		<ion-item ng-repeat="composingWord in word.composingWords track by $index"
-                    class="composing-word">
+      		<ion-item class="composing-word"
+                    href="#/app/wordslist/{{word.id}}/{{composingWord.id}}"
+                    ng-repeat="composingWord in word.composingWords track by $index">
         	 {{composingWord.isOpened ? composingWord.name : displayNotOpenedWord(composingWord.name.length)}}
       		</ion-item>
     	</ion-list>

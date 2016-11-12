@@ -59,17 +59,27 @@ angular.module('wordInAWord', ['ionic', 'wordInAWord.controllers', 'wordInAWord.
           controller: 'WordsListCtrl'
         }
       }
-    })
+  })
 
-  .state('app.single', {
-    url: '/wordslist/:wordId',
-    views: {
-      'menuContent': {
-        templateUrl: 'templates/word.html',
-        controller: 'WordCtrl'
+    .state('app.word', {
+      url: '/wordslist/:wordId',
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/word.html',
+          controller: 'WordCtrl'
+        }
       }
-    }
-  });
+  })
+
+    .state('app.composingWord', {
+      url: '/wordslist/:wordId/:composingWordId',
+      views: {
+        'menuContent': {
+         templateUrl: 'templates/composingWord.html',
+          controller: 'ComposingWordCtrl'
+        }
+      }
+  })
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/app/wordslist');
 });

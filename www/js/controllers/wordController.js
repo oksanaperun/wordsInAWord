@@ -1,6 +1,6 @@
 angular.module('wordInAWord')
 
-.controller('WordCtrl', function($ionicPlatform, $scope, $stateParams,  $timeout, WordDatabase, OpenedComposingWordsCount) {
+.controller('WordCtrl', function($ionicPlatform, $scope, $stateParams,  $timeout, WordDatabase, OpenedComposingWordsCount, Coins) {
   $ionicPlatform.ready(function () {
     getWordData();
     getCoins();
@@ -47,6 +47,7 @@ angular.module('wordInAWord')
       //console.log(res);
 
       $scope.coinsCount = res.rows.item(0).coins;
+      Coins.setCount($scope.coinsCount);
       }, function(err) {
         console.error(err);
     }); 
@@ -164,7 +165,7 @@ angular.module('wordInAWord')
   }
 
   function openComposedWord(id, index) {
-    WordDatabase.updateComposingWords(id).then(function(res) {
+    WordDatabase.openComposingWordById(id).then(function(res) {
         $scope.word.composingWords[index].isOpened = 1;
         OpenedComposingWordsCount.setCount($scope.word.id, $scope.word.categoryId, $scope.getOpenWordsCount());
         }, function(err) {
@@ -192,5 +193,13 @@ angular.module('wordInAWord')
     }
 
     return count;
+  }
+
+  $scope.$on('$ionicView.enter', function() {
+     updateCoinsCount();
+  })
+
+  function updateCoinsCount() {
+    $scope.coinsCount = Coins.getCount();  
   }
 });
