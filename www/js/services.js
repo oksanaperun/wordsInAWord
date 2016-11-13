@@ -64,6 +64,11 @@ angular.module('wordInAWord.services', [])
       console.log('select categories');
       return $cordovaSQLite.execute($rootScope.db, query);
     },
+    openCategoryById: function(id) {
+      var query = "UPDATE categories SET isOpened = 1 WHERE id=?";
+      console.log('open category');
+      return $cordovaSQLite.execute($rootScope.db, query, [id]);
+    },
   	selectWords: function() {
     	var query = "SELECT W.id, W.name, W.categoryId, " +
       "(SELECT COUNT(id) FROM composing_words WHERE wordId = W.id) totalComposingWords, " +
@@ -119,7 +124,8 @@ angular.module('wordInAWord.services', [])
       //var query = "create table user_settings(coins integer not null)"
       //var query = "insert into user_settings(coins) values (0)"
       //var query = "update user_settings set coins = 100"
-      //var query = "update composing_words set isOpened = 0 where wordId = 1";
+      //var query = "update composing_words set isOpened = 0, isDescriptionOpened = 0 where wordId = 1";
+      //var query = "update categories set isOpened = 0 where id = 3"
       //var query = "drop table composing_words"
       console.log('updating data');
       return $cordovaSQLite.execute($rootScope.db, query);   

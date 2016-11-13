@@ -8,9 +8,11 @@
           <ion-item class="item-stable"
                     ng-click="toggleCategory(category)"
                     ng-class="{active: isCategoryShown(category)}">
-            <i class="icon" ng-class="isCategoryShown(category) ? 'ion-minus' : 'ion-plus'"></i>
+            <i class="icon" ng-class="isCategoryShown(category) ? 'ion-minus-round' : 'ion-plus-round'" ng-show="category.isOpened"></i>
+            <i class="icon ion-android-lock" ng-show="!category.isOpened"></i>
             &nbsp;
             {{category.name}}
+            <p ng-show="!category.isOpened">Складіть ще {{remainingComposingWordsCountToOpenCategory}} слів</p>
           </ion-item>
           <ion-item class="item-accordion category-word"
                     href="#/app/wordslist/{{word.id}}"
