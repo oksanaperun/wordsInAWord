@@ -134,7 +134,7 @@ angular.module('wordInAWord')
   }
 
   function openCategoryIfNeeded() {
-      if ($scope.remainingComposingWordsCountToOpenCategory == 0) {
+      if ($scope.remainingComposingWordsCountToOpenCategory <= 0) {
         openCategoryByIdAndLoadDataAgain($scope.closedCategoryId);
     } 
   }
