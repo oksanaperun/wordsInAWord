@@ -1,17 +1,18 @@
 <ion-view view-title="СПИСОК СЛІВ">
   <ion-content>
-
+    
     <p>Відкрито {{getOpenedCategoriesCount()}} з {{categories.length}} категорій слів</p>
 
     <ion-list>
         <div ng-repeat="category in categoriesToDisplay">
-          <ion-item class="item-stable"
+          <ion-item class="item-stable category"
                     ng-click="toggleCategory(category)"
                     ng-class="{active: isCategoryShown(category)}">
             <i class="icon" ng-class="isCategoryShown(category) ? 'ion-minus-round' : 'ion-plus-round'" ng-show="category.isOpened"></i>
             <i class="icon ion-android-lock" ng-show="!category.isOpened"></i>
             &nbsp;
             {{category.name}}
+            <img class="category-icon" ng-src="img/categories/{{category.id}}.jpg">
             <p ng-show="!category.isOpened">Складіть ще {{remainingComposingWordsCountToOpenCategory}} слів</p>
           </ion-item>
           <ion-item class="item-accordion category-word"

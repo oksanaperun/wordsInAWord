@@ -57,10 +57,11 @@ angular.module('wordInAWord')
   }
 
   $scope.$on('$ionicView.enter', function() {
-     updateOpenedComposingWordsCount();
-     setComposingWordsCount();
-     openCategoryIfNeeded();
-  })
+    console.log('$ionicView.enter');
+    updateOpenedComposingWordsCount();
+    setComposingWordsCount();
+    openCategoryIfNeeded();
+  });
 
   function updateOpenedComposingWordsCount() {
     var updatedCount = OpenedComposingWordsCount.getCount();

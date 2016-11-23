@@ -1,3 +1,7 @@
+.back-button > .back-text > .default-title {
+    display:none;
+}
+
 .header {
 	margin-top: 40px;
 	max-height: 210px;
@@ -20,11 +24,14 @@
     justify-content: center;
 }
 
-.word-name-button {
+button.word-name-button {
 	width: 50px;
 	height: 50px;
 	margin-right: 10px;
 	margin-bottom: 10px;
+	font-size: xx-large;
+	padding-bottom: 15px;
+	border-radius: 10px;
 }
 
 .word-name-button-default {
@@ -38,17 +45,40 @@
 .composed-word-controls {
 	display: flex;
     flex-flow: row wrap;
-    justify-content: center;
+    justify-content: space-around;
+    max-width: 400px;
+    padding: 0px 0px;
 }
 
 .composed-word, .clear-composed-word, .remove-letter-in-composed-word {
 	height: 40px;
-	margin-right: 10px;
 	margin-bottom: 10px;
+}
+
+.composed-word {
+	border-radius: 10px;
+	font-size: large;
+	text-align: center;
 }
 
 .clear-composed-word, .remove-letter-in-composed-word {
 	width: 40px;
+	background-color: transparent;
+	border-radius: 50px;
+}
+
+button.clear-composed-word {
+	border-color: red;
+    color: darkred;
+}
+
+button.remove-letter-in-composed-word {
+	margin-right: 0px;
+	padding-top: 3px;
+    padding-right: 3px;
+    padding-left: 0px;
+    border-color: green;
+    color: darkgreen;	
 }
 
 .opened-words-description {
@@ -60,11 +90,21 @@
 .composing-words-list .list {
 	display: flex;
 	flex-flow: row wrap;
+	background-color: lavender;
 }
 
 .composing-word {
 	flex: 0 0 33.33%;
     left: 2.5px;
+    background-color: transparent;
+    border: none;  
+}
+
+.composing-word .item-content {
+	padding: 15px;
+	background-color: transparent;
+	font-family: Verdana;
+    font-weight: bold;
 }
 
 .category-word {
@@ -101,4 +141,13 @@
 .not-enough-coins{
 	z-index: 3;
 	color: red;
+}
+
+.category {
+	font-size: xx-large;
+}
+
+.category-icon {
+	width: 50px;
+    float: right;
 }

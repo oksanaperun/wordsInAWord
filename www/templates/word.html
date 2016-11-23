@@ -13,12 +13,12 @@
     <div class="row composed-word-controls">
       <button class="clear-composed-word" 
               ng-click="clearComposedWord(); enableAllWordNameButtons()">
-        X
+        <i class="icon ion-android-delete"></i>
       </button>
-      <input class="composed-word" ng-model="composedWord">
+      <input class="composed-word" ng-model="composedWord" disabled="disabled">
       <button class="remove-letter-in-composed-word" 
               ng-click="removeLastLetter()">
-        --
+        <i class="icon ion-backspace"></i>
       </button>
     </div>
     <div class="row opened-words-description">
