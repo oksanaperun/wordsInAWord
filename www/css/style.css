@@ -100,6 +100,10 @@ button.remove-letter-in-composed-word {
     border: none;  
 }
 
+.composing-word a.activated {
+	background-color: transparent !important;
+}
+
 .composing-word .item-content {
 	padding: 15px;
 	background-color: transparent;
