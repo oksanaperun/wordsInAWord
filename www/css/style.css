@@ -107,8 +107,6 @@ button.remove-letter-in-composed-word {
 .composing-word .item-content {
 	padding: 15px;
 	background-color: transparent;
-	font-family: Verdana;
-    font-weight: bold;
 }
 
 .category-word {
@@ -154,4 +152,21 @@ button.remove-letter-in-composed-word {
 .category-icon {
 	width: 50px;
     float: right;
+}
+
+.coins-image {
+	width: 35px;
+}
+
+button.coins-button {
+	background-color: transparent;
+	border: none;
+	font-size: medium;
+	padding: 0px 0px;
+}
+
+button.help-button {
+	background-color: transparent;
+	border-radius: 50px;
+	border-color: brown;
 }
