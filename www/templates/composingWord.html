@@ -1,5 +1,5 @@
 <ion-view view-title="СЛОВО">
-<div class="not-enough-coins" ng-show="isNotEnoughCoins">Недостатньо монет</div>
+<div class="not-enough-coins" ng-if="isNotEnoughCoins">Недостатньо монет</div>
     <ion-content class="has-footer">
         <h1>{{composingWord.isOpened ? composingWord.name : displayNotOpenedComposingWord()}}</h1>
         <button ng-show="!composingWord.isOpened"

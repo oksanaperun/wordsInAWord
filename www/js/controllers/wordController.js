@@ -1,9 +1,18 @@
 angular.module('wordInAWord')
 
-.controller('WordCtrl', function($ionicPlatform, $scope, $stateParams,  $timeout, WordDatabase, OpenedComposingWordsCount, Coins) {
+.controller('WordCtrl', function($ionicPlatform, $scope, $stateParams,  $timeout, $window, WordDatabase, OpenedComposingWordsCount, Coins) {
   $ionicPlatform.ready(function () {
     getWordData();
     getCoins();
+
+    var supportsOrientationChange = 'onorientationchange' in window,
+      orientationEvent = supportsOrientationChange ? 'orientationchange' : 'resize';
+
+    window.addEventListener(orientationEvent, function() {
+      var scrollBlock = document.getElementsByTagName('ion-scroll')[0];
+
+      scrollBlock.style.height = $scope.getComposingWordsHeight() + 'px';
+    }, false);
   });
 
   function getWordData() {
@@ -202,5 +211,24 @@ angular.module('wordInAWord')
 
   function updateCoinsCount() {
     $scope.coinsCount = Coins.getCount();  
+  }
+
+  $scope.getComposingWordsHeight = function() {
+    if ($scope.word && $scope.word.composingWords) {
+      var lettersCount = $scope.word.name.length,
+          letterWidth = 60,
+          composedWordControlsHeight = 50,
+          composedWordCountHeight = 30,
+          menuHeight = 45,
+          footerHeight = 45,
+          viewHeight = $window.innerHeight,
+          viewWidth = $window.innerWidth,
+          lettersCountInARow = Math.floor(viewWidth / letterWidth),
+          lettersFullRowCount = Math.floor(lettersCount / lettersCountInARow),
+          isAdditionalLettersRow = lettersCount % lettersCountInARow > 0 ? 1 : 0,
+          lettersBlockHeight = (lettersFullRowCount + isAdditionalLettersRow) * letterWidth;
+
+      return viewHeight - menuHeight - lettersBlockHeight - composedWordControlsHeight - composedWordCountHeight - footerHeight;
+    }
   }
 });

@@ -1,15 +1,16 @@
 <ion-view view-title="СКЛАДІТЬ СЛОВА">
-<div class="add-coins" ng-show="isCoinsEarned">+{{earnedCoins}} монет</div>
-<div class="already-opened-word" ng-show="isAlreadyOpenedWord">"{{alreadyOpenedWord}}" вже складено</div>
-	<ion-header-bar class="header">
+  <div class="add-coins" ng-if="isCoinsEarned">+{{earnedCoins}} монет</div>
+  <div class="already-opened-word" ng-if="isAlreadyOpenedWord">"{{alreadyOpenedWord}}" вже складено</div>
+
+  <div class="header">
     <div class="row word-name-buttons-block">
-    		<div ng-repeat="letter in word.name track by $index">
-        		<button class="word-name-button word-name-button-default" 
-                    ng-click="addSelectedLetter(letter); disableWordNameButton($index)">
-              {{letter}}
-            </button>
-    		</div>
-		</div>
+      <div ng-repeat="letter in word.name track by $index">
+          <button class="word-name-button word-name-button-default" 
+                  ng-click="addSelectedLetter(letter); disableWordNameButton($index)">
+            {{letter}}
+          </button>
+      </div>
+    </div>
     <div class="row composed-word-controls">
       <button class="clear-composed-word" 
               ng-click="clearComposedWord(); enableAllWordNameButtons()">
@@ -21,21 +22,21 @@
         <i class="icon ion-backspace"></i>
       </button>
     </div>
-    <div class="row opened-words-description">
+        <div class="row opened-words-description">
       <p>Складено {{getOpenWordsCount()}} з {{word.composingWords.length}} слів</p>
     </div>
-  </ion-header-bar>
+  </div>
 
-  <ion-content class="content has-header has-footer">
-    <!-- контроли для сортування списку по довжині слова або алфавіту -->
-  		<ion-list class="composing-words-list">
-      		<ion-item class="composing-word"
-                    href="#/app/wordslist/{{word.id}}/{{composingWord.id}}"
-                    ng-repeat="composingWord in word.composingWords track by $index">
-        	 {{composingWord.isOpened ? composingWord.name : displayNotOpenedWord(composingWord.name.length)}}
-      		</ion-item>
-    	</ion-list>
-  	</ion-content>
+  <ion-scroll direction="y" style="height: {{getComposingWordsHeight()}}px">
+    <ion-list class="composing-words-list">
+        <ion-item class="composing-word"
+                  href="#/app/wordslist/{{word.id}}/{{composingWord.id}}"
+                  ng-repeat="composingWord in word.composingWords track by $index">
+           {{composingWord.isOpened ? composingWord.name : displayNotOpenedWord(composingWord.name.length)}}
+        </ion-item>
+    </ion-list>
+
+  </ion-scroll>
 
   <ion-footer-bar class="footer">
     <div class="buttons">
