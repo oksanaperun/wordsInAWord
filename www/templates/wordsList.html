@@ -1,9 +1,10 @@
 <ion-view view-title="СПИСОК СЛІВ">
-  <ion-content>
+  <ion-content class="categories-list has-footer">
     
     <p>Відкрито {{getOpenedCategoriesCount()}} з {{categories.length}} категорій слів</p>
 
     <ion-list>
+    <div class="border-decoration"></div>
         <div ng-repeat="category in categoriesToDisplay">
           <ion-item class="item-stable category"
                     ng-click="toggleCategory(category)"
@@ -15,16 +16,27 @@
             <img class="category-icon" ng-src="img/categories/{{category.id}}.jpg">
             <p ng-show="!category.isOpened">Складіть ще {{remainingComposingWordsCountToOpenCategory}} слів</p>
           </ion-item>
+          <div class="border-decoration"></div>
           <ion-item class="item-accordion category-word"
                     href="#/app/wordslist/{{word.id}}"
                     ng-repeat="word in category.wordsList"
-                    ng-show="isCategoryShown(category)"  >
+                    ng-show="isCategoryShown(category)">
             {{word.name}}
             <p>{{word.openedComposingWords}} з {{word.totalComposingWords}}</p>
           </ion-item>
+          <div class="border-decoration"></div>
         </div>
       </ion-list>
 
     <button ng-click="editData()">Action {{tryCopyDB}}</button>
   </ion-content>
+
+  <ion-footer-bar class="footer">
+    <div class="buttons">
+      <button class="help-button"><i class="icon ion-help"></i></button>
+    </div>
+    <h1 class="title"></h1>
+    <div class="buttons">
+    </div>
+  </ion-footer-bar>
 </ion-view>

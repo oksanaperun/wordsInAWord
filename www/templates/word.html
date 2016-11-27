@@ -22,12 +22,13 @@
         <i class="icon ion-backspace"></i>
       </button>
     </div>
-        <div class="row opened-words-description">
+    <div class="row opened-words-description">
       <p>Складено {{getOpenWordsCount()}} з {{word.composingWords.length}} слів</p>
     </div>
   </div>
 
-  <ion-scroll direction="y" style="height: {{getComposingWordsHeight()}}px">
+  <ion-scroll class="composing-words" direction="y" style="height: {{getComposingWordsHeight()}}px">
+    <div class="border-decoration"></div>
     <ion-list class="composing-words-list">
         <ion-item class="composing-word"
                   href="#/app/wordslist/{{word.id}}/{{composingWord.id}}"
@@ -35,7 +36,7 @@
            {{composingWord.isOpened ? composingWord.name : displayNotOpenedWord(composingWord.name.length)}}
         </ion-item>
     </ion-list>
-
+    <div class="border-decoration"></div>
   </ion-scroll>
 
   <ion-footer-bar class="footer">

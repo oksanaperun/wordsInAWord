@@ -2,21 +2,101 @@
     display:none;
 }
 
+.bar.bar-header .button, .bar.bar-header .title {
+	color: white;
+}
+
+.bar.bar-header {
+	background-image: url('../img/secondary_texture.jpg');
+    background-size: 100% auto;
+    border-bottom: 1px solid black;
+}
+
+.main-content {
+	background-image: url('../img/main_texture.jpg');
+	background-position: center top;
+    background-size: 100% auto;
+}
+
 .header {
-	margin-top: 45px;
+	margin-top: 44px;
     display: flex;
     flex-flow: row wrap;
     justify-content: center;
+    background-image: url('../img/main_texture.jpg');
+	background-position: center top;
+    background-size: 100% auto;
 }
 
 .footer {
+	background-image: url('../img/secondary_texture.jpg');
+    background-size: 100% auto;
+    border-top: 1px solid black;
+}
 
+.categories-list {
+	background-color: #DFCC90;
+}
+
+.categories-list p {
+	color: #290D02;
+	margin-bottom: 0px;
+	margin-left: 10px;
+}
+
+.category {
+	font-size: xx-large;
+}
+
+.category-icon {
+	width: 50px;
+    float: right;
+}
+
+.category.item-stable {
+    background-image: url('../img/main_texture.jpg');
+    background-size: 100% auto;
+    background-position: center;
+    color: black;
+    text-shadow: 2px 2px green;
+}
+
+.category .category-icon {
+	border: 1px solid black;
+}
+
+.category p {
+	color: white;
+	text-shadow: 2px 2px olive;
+}
+
+.category-word {
+	transition: all ease-in 0.5s;
+	border-color: black;
+}
+
+.category-word.ng-hide {
+  	opacity: 0;
+}
+
+.category-word .item-content {
+    text-align: center;
+    padding: 10px;
+    background-image: url('../img/secondary_texture.jpg');
+	background-size: 100% auto;
+	color: white;
+	font-size: 22px;
+}
+
+.category-word p {
+	color: black;
 }
 
 .word-name-buttons-block {
     display: flex;
     flex-flow: row wrap;
     justify-content: center;
+    margin-top: 5px;
 }
 
 button.word-name-button {
@@ -27,7 +107,11 @@ button.word-name-button {
 	font-size: 42px;
 	padding-bottom: 15px;
 	border-radius: 10px;
+	border-color: #A08030;
 	line-height: 0.1em;
+	background-image: url('../img/letter_decoration.jpg');
+	background-position: center top;
+    background-size: 100% auto;
 }
 
 .word-name-button-default {
@@ -35,7 +119,7 @@ button.word-name-button {
 }
 
 .word-name-button-disabled {
-	background-color: lightgreen;
+	opacity: .5;
 }
 
 .composed-word-controls {
@@ -51,16 +135,20 @@ button.word-name-button {
 	margin-bottom: 10px;
 }
 
-.composed-word {
+input.composed-word {
 	border-radius: 10px;
 	font-size: large;
 	text-align: center;
+	color: black !important;
+	border-color: #A08030;
+    background-color: #DFCC90;
 }
 
 .clear-composed-word, .remove-letter-in-composed-word {
 	width: 40px;
-	background-color: transparent;
+	background-color: white;
 	border-radius: 50px;
+	font-size: 24px;
 }
 
 button.clear-composed-word {
@@ -70,7 +158,7 @@ button.clear-composed-word {
 
 button.remove-letter-in-composed-word {
 	margin-right: 0px;
-	padding-top: 3px;
+/*	padding-top: 3px;*/
     padding-right: 3px;
     padding-left: 0px;
     border-color: green;
@@ -84,17 +172,33 @@ button.remove-letter-in-composed-word {
     padding: 0px;
 }
 
+.opened-words-description p {
+	padding-top: 5px;
+	margin: 0px;
+	color: #2C6302;
+    text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
+    font-size: 16px;
+}
+
+.composing-words {
+	background-image: url('../img/main_texture.jpg');
+	background-position: center top;
+    background-size: 100% auto;
+}
+
 .composing-words-list .list {
 	display: flex;
 	flex-flow: row wrap;
-	background-color: lavender;
+	background-color: #DFCC90;	
 }
 
 .composing-word {
 	flex: 0 0 33.33%;
     left: 2.5px;
     background-color: transparent;
-    border: none;  
+    border: none;
+    font-size: 18px;
+    color: #290D02;
 }
 
 .composing-word a.activated {
@@ -102,17 +206,8 @@ button.remove-letter-in-composed-word {
 }
 
 .composing-word .item-content {
-	padding: 15px;
+	padding: 10px;
 	background-color: transparent;
-}
-
-.category-word {
-	transition: all ease-in 0.5s;
-
-}
-
-.category-word.ng-hide {
-  	opacity: 0;
 }
 
 .add-coins, .already-opened-word, .not-enough-coins {
@@ -142,15 +237,6 @@ button.remove-letter-in-composed-word {
 	color: red;
 }
 
-.category {
-	font-size: xx-large;
-}
-
-.category-icon {
-	width: 50px;
-    float: right;
-}
-
 .coins-image {
 	width: 35px;
 }
@@ -160,10 +246,57 @@ button.coins-button {
 	border: none;
 	font-size: medium;
 	padding: 0px 0px;
+	color: white;
 }
 
 button.help-button {
-	background-color: transparent;
+	background-color: white;
 	border-radius: 50px;
 	border-color: brown;
+}
+
+.border-decoration {
+	height: 20px;
+	background-image: url('../img/border_decoration.jpg');
+}
+
+.composing-word-info {
+	background-color: #DFCC90;
+	background-image: url('../img/picture_background.jpg');
+	background-size: 100% auto;
+}
+
+.composing-word-info h1, .composing-word-info button, .composing-word-info p {
+	margin-left: 10px;
+}
+
+.composing-word-info h1 {
+	margin-top: 0px;
+	color: #290D02;
+}
+
+.composing-word-info button {
+	border-radius: 10px;
+    border-color: #A08030;
+    font-size: 18px; 
+    margin-left: 10px;
+    color: #290D02;
+}
+
+.composing-word-info p {	
+	color: #1a3300;
+	text-shadow: 2px 2px olive;
+}
+
+p.composing-word-description {
+	font-size: 16px;
+	color: white;
+}
+
+.prompt-button {
+	background-color: #B3A654;
+}
+
+.open-word-button {
+	background-color: #DFCC90;
 }
