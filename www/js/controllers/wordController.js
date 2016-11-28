@@ -218,7 +218,7 @@ angular.module('wordInAWord')
       var lettersCount = $scope.word.name.length,
           letterWidth = 60,
           composedWordControlsHeight = 50,
-          composedWordCountHeight = 25,
+          composedWordCountHeight = 45,
           menuHeight = 45,
           footerHeight = 45,
           viewHeight = $window.innerHeight,
