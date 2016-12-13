@@ -13,6 +13,7 @@
 
 .main-menu .item-content, .categories-list  {
 	background: linear-gradient(#ede5bb, #DFCC90, #8ea054);
+	color: #7d450d;
 }
 
 .category.item-stable::before, .header::before, .main-content::before {
@@ -43,13 +44,13 @@
 	border: 1px solid black;
 }
 
-.category p {
-    color: #59ae3d;
-    text-shadow: -1px 0px black, 0px 1px black, 1px 0px #59ae3d, 0px -1px #59ae3d;
+.category p, .opened-words-description p {
+	color: #2C6302;
+    text-shadow: -1px 0 #73c35d, 0 1px #cfdc80, 1px 0 #cfdc80, 0 -1px #cfdc80;
 }
 
 .category p span {
-	color: #7d450d;
+	color: red;
 }
 
 .category-word {
@@ -84,10 +85,10 @@ input.composed-word {
 	background-color: white;
 }
 
-.opened-words-description p {
+/*.opened-words-description p {
 	color: #2C6302;
     text-shadow: -1px 0 #73c35d, 0 1px #cfdc80, 1px 0 #cfdc80, 0 -1px #cfdc80;
-}
+}*/
 
 .composing-words {
 	background-color: #DFCC90;	
@@ -95,7 +96,7 @@ input.composed-word {
 }
 
 .composing-word {
-	color: #d2803e;
+	color: #ba7640;
     text-shadow: -1px 0 #996735, 0 1px #7d450d, 1px 0 #7d450d, 0 -1px #7d450d;
 }
 

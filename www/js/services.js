@@ -4,7 +4,7 @@ angular.module('wordInAWord.services', [])
   var coinsCount = 0;
 
   return {
-      getCount: function () {
+      getCount: function() {
         return coinsCount;
       },
       setCount: function(value) {
@@ -19,7 +19,7 @@ angular.module('wordInAWord.services', [])
         categoryId = 0;
 
     return {
-      getCount: function () {
+      getCount: function() {
         return {
           wordId: wordId,
           categoryId: categoryId,
@@ -32,6 +32,19 @@ angular.module('wordInAWord.services', [])
         count = value;        
       }
     };
+})
+
+.factory('OpenedWord', function() {
+  var openedWordId = 0;
+
+  return {
+      getOpenedWordId: function() {
+        return openedWordId;
+      },
+      setOpenedWordId: function(value) {
+        openedWordId = value;        
+      }
+  };
 })
 
 .factory('WordDatabase', function($cordovaSQLite, $rootScope) {

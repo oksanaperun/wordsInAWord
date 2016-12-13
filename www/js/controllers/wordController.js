@@ -1,6 +1,6 @@
 angular.module('wordInAWord')
 
-.controller('WordCtrl', function($ionicPlatform, $scope, $stateParams,  $timeout, $window, $cordovaNativeAudio, WordDatabase, OpenedComposingWordsCount, Coins) {
+.controller('WordCtrl', function($ionicPlatform, $scope, $stateParams,  $timeout, $window, $cordovaNativeAudio, WordDatabase, OpenedComposingWordsCount, Coins, OpenedWord) {
   $ionicPlatform.ready(function () {
     getWordData();
     getCoins();
@@ -14,9 +14,10 @@ angular.module('wordInAWord')
       scrollBlock.style.height = $scope.getComposingWordsHeight() + 'px';
     }, false);
 
-  if (window.cordova) {
-    $cordovaNativeAudio.preloadSimple('coins', 'sounds/coins.wav');
-  }
+    if (window.cordova) {
+      $cordovaNativeAudio.preloadSimple('coins', 'sounds/coins.wav');
+      $cordovaNativeAudio.preloadSimple('invalid', 'sounds/invalid.mp3');
+    }
   });
 
   function getWordData() {
@@ -155,6 +156,9 @@ angular.module('wordInAWord')
         setCoins($scope.coinsCount + $scope.earnedCoins);
         Coins.setCount($scope.coinsCount + $scope.earnedCoins);
       } else {
+          if (window.cordova) {
+            playSound('invalid');
+          }
         console.log('Already opened!');
         $scope.alreadyOpenedWord = $scope.word.composingWords[index].name;
         $scope.isAlreadyOpenedWord = true;
@@ -190,8 +194,8 @@ angular.module('wordInAWord')
 
   function playSound(sound) {
         $cordovaNativeAudio.play(sound);
-    };
-
+  }
+  
   $scope.displayNotOpenedWord = function(wordLength) {
     var s = '-';
 
@@ -216,10 +220,22 @@ angular.module('wordInAWord')
 
   $scope.$on('$ionicView.enter', function() {
      updateCoinsCount();
+     updateComposingWords();
   })
 
   function updateCoinsCount() {
     $scope.coinsCount = Coins.getCount();  
+  }
+
+  function updateComposingWords() {
+    var openedWordId = OpenedWord.getOpenedWordId();
+
+    for (var i = 0; i < $scope.word.composingWords.length; i++) {
+      if ($scope.word.composingWords[i].id == openedWordId) {
+        $scope.word.composingWords[i].isOpened = 1;
+        OpenedComposingWordsCount.setCount($scope.word.id, $scope.word.categoryId, $scope.getOpenWordsCount());
+      }
+    } 
   }
 
   $scope.getComposingWordsHeight = function() {

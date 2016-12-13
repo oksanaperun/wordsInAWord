@@ -1,12 +1,16 @@
 angular.module('wordInAWord')
 
-.controller('ComposingWordCtrl', function($ionicPlatform, $scope, $stateParams,  $timeout, WordDatabase, Coins) {
+.controller('ComposingWordCtrl', function($ionicPlatform, $scope, $stateParams,  $timeout, $cordovaNativeAudio, WordDatabase, Coins, OpenedWord) {
   $ionicPlatform.ready(function () {
     $scope.promptPrice = 15;
     $scope.letterPrice = 10;
 
     getComposingWordData();
     getCoins();
+
+     if (window.cordova) {
+      $cordovaNativeAudio.preloadSimple('error', 'sounds/error.wav');
+    }
   });
 
   function getComposingWordData() {
@@ -61,10 +65,14 @@ angular.module('wordInAWord')
         $scope.composingWord.isDescriptionOpened = true;
         Coins.setCount($scope.coinsCount - $scope.composingWordPrice);
         setCoins($scope.coinsCount - $scope.composingWordPrice);
+        OpenedWord.setOpenedWordId($scope.composingWord.id);
       }, function(err) {
          console.error(err);
       });
     } else {
+        if (window.cordova) {
+          playSound('error');
+        }
       $scope.isNotEnoughCoins= true;
       hideNotEnoughCoinsMessage();
     }
@@ -85,9 +93,16 @@ angular.module('wordInAWord')
          console.error(err);
       });
     } else {
+        if (window.cordova) {
+          playSound('error');
+        }
       $scope.isNotEnoughCoins= true;
       hideNotEnoughCoinsMessage();
     }
+  }
+
+  function playSound(sound) {
+    $cordovaNativeAudio.play(sound);
   }
 
   function hideNotEnoughCoinsMessage() {
