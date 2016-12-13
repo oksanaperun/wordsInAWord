@@ -1,6 +1,6 @@
 <ion-view view-title="СЛОВА ЗА КАТЕГОРІЯМИ">
   <ion-content class="categories-list has-footer">
-    
+    <div class="border-decoration"></div>
     <p>Відкрито {{getOpenedCategoriesCount()}} з {{categories.length}} категорій слів</p>
 
     <ion-list>
@@ -32,11 +32,14 @@
   </ion-content>
 
   <ion-footer-bar class="footer">
-    <div class="buttons">
-      <button class="help-button"><i class="icon ion-help"></i></button>
-    </div>
-    <h1 class="title"></h1>
-    <div class="buttons">
+    <div class="border-decoration"></div>
+    <div class="footer-controls">
+      <div class="buttons">
+        <button class="help-button"><i class="icon ion-help"></i></button>
+      </div>
+      <h1 class="title"></h1>
+      <div class="buttons">
+      </div>
     </div>
   </ion-footer-bar>
 </ion-view>

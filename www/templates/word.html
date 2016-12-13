@@ -1,8 +1,9 @@
 <ion-view view-title="СКЛАДІТЬ СЛОВА">
-  <div class="add-coins" ng-if="isCoinsEarned">+{{earnedCoins}} монет</div>
+  <div class="add-coins" ng-if="isCoinsEarned"><span>+{{earnedCoins}}</span> <img class="coins-image" src="img/gold_coins.png"></div>
   <div class="already-opened-word" ng-if="isAlreadyOpenedWord">"{{alreadyOpenedWord}}" вже складено</div>
 
   <div class="header">
+    <div class="border-decoration"></div>
     <div class="row word-name-buttons-block">
       <div ng-repeat="letter in word.name track by $index">
           <button class="word-name-button word-name-button-default" 
@@ -36,17 +37,19 @@
            {{composingWord.isOpened ? composingWord.name : displayNotOpenedWord(composingWord.name.length)}}
         </ion-item>
     </ion-list>
-    <div class="border-decoration"></div>
   </ion-scroll>
 
   <ion-footer-bar class="footer">
-    <div class="buttons">
-      <button class="help-button"><i class="icon ion-help"></i></button>
-    </div>
-    <h1 class="title"></h1>
-    <div class="buttons">
-      <button class="coins-button">{{coinsCount}}</button>
-      <img class="coins-image" src="img/gold_coins.png">
+    <div class="border-decoration"></div>
+    <div class="footer-controls">
+      <div class="buttons">
+        <button class="help-button"><i class="icon ion-help"></i></button>
+      </div>
+      <h1 class="title"></h1>
+      <div class="buttons">
+        <button class="coins-button">{{coinsCount}}</button>
+        <img class="coins-image" src="img/gold_coins.png">
+      </div>
     </div>
 	</ion-footer-bar>
 

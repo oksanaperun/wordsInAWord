@@ -1,6 +1,6 @@
 angular.module('wordInAWord')
 
-.controller('WordCtrl', function($ionicPlatform, $scope, $stateParams,  $timeout, $window, WordDatabase, OpenedComposingWordsCount, Coins) {
+.controller('WordCtrl', function($ionicPlatform, $scope, $stateParams,  $timeout, $window, $cordovaNativeAudio, WordDatabase, OpenedComposingWordsCount, Coins) {
   $ionicPlatform.ready(function () {
     getWordData();
     getCoins();
@@ -13,6 +13,10 @@ angular.module('wordInAWord')
 
       scrollBlock.style.height = $scope.getComposingWordsHeight() + 'px';
     }, false);
+
+  if (window.cordova) {
+    $cordovaNativeAudio.preloadSimple('coins', 'sounds/coins.wav');
+  }
   });
 
   function getWordData() {
@@ -79,7 +83,6 @@ angular.module('wordInAWord')
       clickedButton = buttons[index];
     console.log('disable button');
     clickedButton.setAttribute('disabled', 'disabled');
-    clickedButton.classList.remove('word-name-button-default');
     clickedButton.classList.add('word-name-button-disabled');
   }
 
@@ -98,7 +101,6 @@ angular.module('wordInAWord')
     console.log('enable button');
     button.removeAttribute('disabled');
     button.classList.remove('word-name-button-disabled');
-    button.classList.add('word-name-button-default');
   }
 
   $scope.enableAllWordNameButtons = function() {
@@ -140,6 +142,9 @@ angular.module('wordInAWord')
     if (index > -1) {
       console.log('Valid word');
       if ($scope.word.composingWords[index].isOpened == 0) {
+          if (window.cordova) {
+            playSound('coins');
+          }
         $scope.earnedCoins = $scope.word.composingWords[index].name.length;
         $scope.isCoinsEarned = true;
         hideEarnedCoinsMessage();
@@ -183,6 +188,10 @@ angular.module('wordInAWord')
     });
   }
 
+  function playSound(sound) {
+        $cordovaNativeAudio.play(sound);
+    };
+
   $scope.displayNotOpenedWord = function(wordLength) {
     var s = '-';
 
@@ -216,11 +225,11 @@ angular.module('wordInAWord')
   $scope.getComposingWordsHeight = function() {
     if ($scope.word && $scope.word.composingWords) {
       var lettersCount = $scope.word.name.length,
-          letterWidth = 60,
+          letterWidth = 75,
           composedWordControlsHeight = 50,
           composedWordCountHeight = 45,
-          menuHeight = 45,
-          footerHeight = 45,
+          menuHeight = 45 + 20, // border decoration under menu has height 20
+          footerHeight = 65,
           viewHeight = $window.innerHeight,
           viewWidth = $window.innerWidth,
           lettersCountInARow = Math.floor(viewWidth / letterWidth),

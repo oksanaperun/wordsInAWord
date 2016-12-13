@@ -38,12 +38,6 @@ angular.module('wordInAWord.services', [])
 
   return {
     initDatabase: function() {
-/*    window.plugins.sqlDB.remove('wordsInAWord.db', 0, function() {
-      $rootScope.tryCopyDB = 'DB removed'
-    }, function(error) {
-      $rootScope.tryCopyDB = 'Failed to remove DB: ' + error.code;
-    });*/
-
     console.log('Connecting to DB');
     if (window.cordova) {
 /*      window.plugins.sqlDB.copy('wordsInAWord.db', 0, function() {
@@ -51,10 +45,11 @@ angular.module('wordInAWord.services', [])
         $rootScope.db = window.sqlitePlugin.openDatabase({name: 'wordsInAWord.db', location: 1});
         }, function(error) {
           $rootScope.tryCopyDB = 'Failed to copy DB: ' + error.code;
-          //$rootScope.db = $cordovaSQLite.openDB('wordsInAWord.db');
       }); */
 
-      $rootScope.db = window.sqlitePlugin.openDatabase({name: 'wordsInAWord.db', location: 1});
+      $rootScope.db = window.sqlitePlugin.openDatabase({name: "wordsInAWord.db", location: 'default', createFromLocation: 1});
+
+      //$rootScope.db = window.sqlitePlugin.openDatabase({name: 'wordsInAWord.db', location: 1});
     } else {
         $rootScope.db = window.openDatabase('wordsInAWord.db', '1', 'words db', 256 * 256 * 100); // browser
     }

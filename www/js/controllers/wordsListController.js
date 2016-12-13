@@ -1,10 +1,31 @@
 angular.module('wordInAWord')
 
 .controller('WordsListCtrl', function($ionicPlatform, $scope, WordDatabase, OpenedComposingWordsCount) {
-  $ionicPlatform.ready(function () {  
-    getCategories();
-    getWordsList();
-  });
+  if (window.cordova) {
+    document.addEventListener('deviceready', function() {
+      switchStyle();
+      getCategories();
+      getWordsList();
+    });
+  } else {
+      $ionicPlatform.ready(function () {
+      switchStyle();
+      getCategories();
+      getWordsList();
+    });
+  }
+
+  function switchStyle() {
+    var styleElements = document.getElementsByTagName('link');
+
+    for (var i = 0; i < styleElements.length; i++) {
+      if (styleElements[i].title == 'theme') {
+          console.log('Change theme');
+          styleElements[i].href = 'css/vintage.css';
+      }
+    }
+
+  }
 
   function getCategories() {
     WordDatabase.selectCategories().then(function(res) {

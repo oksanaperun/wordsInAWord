@@ -1,5 +1,6 @@
 <ion-view view-title="СЛОВО">
 <div class="not-enough-coins" ng-if="isNotEnoughCoins">Недостатньо монет</div>
+
     <ion-content class="has-footer main-content">
         <div class="composing-word-info">
             <div class="border-decoration"></div>
@@ -22,13 +23,16 @@
     </ion-content>
 
     <ion-footer-bar class="footer">
-        <div class="buttons">
-            <button class="help-button"><i class="icon ion-help"></i></button>
-        </div>
-        <h1 class="title"></h1>
-        <div class="buttons">
-            <button class="coins-button">{{coinsCount}}</button>
-            <img class="coins-image" src="img/gold_coins.png">
+        <div class="border-decoration"></div>
+        <div class="footer-controls">
+            <div class="buttons">
+                <button class="help-button"><i class="icon ion-help"></i></button>
+            </div>
+            <h1 class="title"></h1>
+            <div class="buttons">
+                <button class="coins-button">{{coinsCount}}</button>
+                <img class="coins-image" src="img/gold_coins.png">
+            </div>
         </div>
     </ion-footer-bar>
 </ion-view>
