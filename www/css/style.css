@@ -42,10 +42,13 @@
 	color: #290D02;
 	margin-bottom: 0px;
 	margin-left: 10px;
+	text-align: center;
 }
 
 .category {
-	font-size: xx-large;
+	color: black;
+	font-size: 40px;
+	text-shadow: -1px 0px #264A16, 0px 1px #264A16, 1px 0px #264A16, 0px -1px #264A16;
 }
 
 .category-icon {
@@ -58,7 +61,6 @@
     background-size: 100% auto;
     background-position: center;
     color: black;
-    text-shadow: 2px 2px green;
 }
 
 .category .category-icon {
@@ -66,8 +68,16 @@
 }
 
 .category p {
-	color: white;
-	text-shadow: 2px 2px olive;
+    color: white;
+    text-shadow: -1px 0px #264A16, 0px 1px #264A16, 1px 0px #264A16, 0px -1px #264A16;
+    font-size: 13px;
+    margin-left: 0px;
+    margin-top: 10px;
+}
+
+.category p span {
+	color: black;
+	font-size: 16px;
 }
 
 .category-word {
@@ -90,6 +100,7 @@
 
 .category-word p {
 	color: black;
+	font-size: 16px;
 }
 
 .word-name-buttons-block {
@@ -105,7 +116,7 @@ button.word-name-button {
 	margin-right: 10px;
 	margin-bottom: 10px;
 	font-size: 42px;
-	padding-bottom: 15px;
+/*	padding-bottom: 15px;*/
 	border-radius: 10px;
 	border-color: #A08030;
 	line-height: 0.1em;
@@ -256,6 +267,7 @@ button.help-button {
 }
 
 .border-decoration {
+	width: 100%;
 	height: 20px;
 	background-image: url('../img/border_decoration.jpg');
 }

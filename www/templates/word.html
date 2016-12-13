@@ -25,10 +25,10 @@
     <div class="row opened-words-description">
       <p>Складено {{getOpenWordsCount()}} з {{word.composingWords.length}} слів</p>
     </div>
+    <div class="border-decoration"></div>
   </div>
 
   <ion-scroll class="composing-words" direction="y" style="height: {{getComposingWordsHeight()}}px">
-    <div class="border-decoration"></div>
     <ion-list class="composing-words-list">
         <ion-item class="composing-word"
                   href="#/app/wordslist/{{word.id}}/{{composingWord.id}}"

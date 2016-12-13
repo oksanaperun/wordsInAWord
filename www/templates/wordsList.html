@@ -1,4 +1,4 @@
-<ion-view view-title="СПИСОК СЛІВ">
+<ion-view view-title="СЛОВА ЗА КАТЕГОРІЯМИ">
   <ion-content class="categories-list has-footer">
     
     <p>Відкрито {{getOpenedCategoriesCount()}} з {{categories.length}} категорій слів</p>
@@ -14,7 +14,7 @@
             &nbsp;
             {{category.name}}
             <img class="category-icon" ng-src="img/categories/{{category.id}}.jpg">
-            <p ng-show="!category.isOpened">Складіть ще {{remainingComposingWordsCountToOpenCategory}} слів</p>
+            <p ng-show="!category.isOpened">Складіть ще <span>{{remainingComposingWordsCountToOpenCategory}}</span> слів, щоб відкрити категорію</p>
           </ion-item>
           <div class="border-decoration"></div>
           <ion-item class="item-accordion category-word"
