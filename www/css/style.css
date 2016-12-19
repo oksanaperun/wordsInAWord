@@ -1,3 +1,15 @@
+@font-face {
+    font-family: 'Ubuntu';
+    src: url('../fonts/Ubuntu-Regular.ttf') format('truetype');
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: 'Andika';
+    src: url('../fonts/Andika-R.ttf') format('truetype');
+    font-weight: normal;
+}
+
 .back-button > .back-text > .default-title, .back-button > .back-text > .previous-title {
     display:none;
 }
@@ -32,6 +44,11 @@
 
 .main-menu .item-content {
 	font-size: 18px;
+	font-family: 'Andika';
+}
+
+.categories-list {
+	font-family: 'Andika';
 }
 
 .categories-list p {
@@ -42,7 +59,7 @@
 }
 
 .category {
-	font-size: 40px;
+	font-size: 34px;
 }
 
 .category-icon {
@@ -55,7 +72,7 @@
 }
 
 .category p {
-    font-size: 14px;
+    font-size: 13px;
     margin-left: 0px;
     margin-top: 10px;
 }
@@ -96,10 +113,11 @@ button.word-name-button {
 	height: 65px;
 	margin-right: 10px;
 	margin-bottom: 10px;
-	font-size: 45px;
+	font-size: 50px;
 	padding-bottom: 15px;
 	border-radius: 10px;
 	line-height: 0.1em;
+	font-family: Andika;
 }
 
 .word-name-button-disabled {
@@ -121,8 +139,10 @@ button.word-name-button {
 
 input.composed-word {
 	border-radius: 10px;
-	font-size: large;
+	font-size: 28px;
 	text-align: center;
+	max-width: 190px;
+	font-family: Andika;
 }
 
 .clear-composed-word, .remove-letter-in-composed-word, button.help-button {
@@ -162,14 +182,15 @@ button.remove-letter-in-composed-word {
 	display: flex;
 	flex-flow: row wrap;
 	justify-content: center;
+	font-family: Andika;
 }
 
 .composing-word {
-	flex: 0 0 30%;
-    left: 5%;
+	flex: 0 0 33%;
     background-color: transparent;
     border: none;
-    font-size: 18px;
+    font-size: 16px;
+    text-align: center;
 }
 
 .composing-word a.activated {
@@ -178,6 +199,7 @@ button.remove-letter-in-composed-word {
 
 .composing-word .item-content {
 	padding: 5px;
+	padding-right: 0px;
 	background-color: transparent;
 }
 
@@ -230,10 +252,12 @@ button.coins-button {
 	font-size: medium;
 	padding: 0px 0px;
 	vertical-align: top;
+	font-family: Andika;
 }
 
 button.help-button {
 	border-color: brown;
+	font-family: Andika;
 }
 
 .border-decoration {
@@ -243,6 +267,7 @@ button.help-button {
 
 .composing-word-info h1, .composing-word-info button, .composing-word-info p {
 	margin-left: 10px;
+	font-family: Andika;
 }
 
 .composing-word-info h1 {
@@ -258,4 +283,68 @@ button.help-button {
 
 p.composing-word-description {
 	font-size: 16px;
+}
+
+@media (min-width: 320px){
+	.category {
+	font-size: 27px;
+	}
+
+	.category-icon {
+	width: 45px;
+	}
+
+	.category p {
+	font-size: 13px;
+	}
+
+  	.composing-word {
+    font-size: 18px;
+  	}
+}
+
+@media (min-width: 360px){
+	.category {
+	font-size: 31px;
+	}
+
+	.category-icon {
+	width: 50px;
+	}
+
+	.category p {
+	font-size: 14px;
+	}
+}
+
+@media (min-width: 375px){
+	.category {
+	font-size: 32px;
+	}
+
+	.category-icon {
+	width: 55px;
+	}
+
+	.category p {
+	font-size: 16px;
+	}
+
+  	.composing-word {
+    font-size: 20px;
+  	}
+}
+
+@media (min-width: 400px){
+    .category {
+	font-size: 34px;
+	}
+
+	.category-icon {
+	width: 57px;
+	}
+
+  .composing-word {
+    font-size: 24px;
+  }
 }
