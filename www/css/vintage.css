@@ -11,23 +11,42 @@
 	background-size: 100% auto;
 }
 
-.main-menu .item-content, .categories-list  {
-	background: linear-gradient(rgba(142, 160, 84, 0.7), #DFCC90, rgba(142, 160, 84, 0.7));
-	color: #7d450d;
+.main-menu .item {
+    border-color: #254e1c;
+    color: #254e1c;
 }
 
-.category.item-stable::before, .header::before, .main-content::before {
+.main-menu .item-content::before, .category.item-stable::before, .header::before, .main-content::before {
 	content: "";
 	position: absolute;
 	height: 100%;
 	width: 100%;
 	top: 0;
     left: 0;
+    z-index: -1;
+}
+
+.main-menu .item-content::before {
+	background-image: url('../img/vintage/secondary_texture.jpg');
+	background-position: center top;
+    background-size: 100% auto;
+	opacity: 0.5;
+}
+
+.category.item-stable::before, .header::before, .main-content::before {
 	background: url('../img/vintage/main_texture.jpg');
 	background-position: center top;
     background-size: 100% auto;
     opacity: 0.7;
-    z-index: -1;
+}
+
+.main-menu .item-content {
+	background-color: rgba(17, 171, 17, 0.7);
+}
+
+.categories-list  {
+	background: linear-gradient(rgba(142, 160, 84, 0.7), #DFCC90, rgba(142, 160, 84, 0.7));
+	color: #7d450d;
 }
 
 .categories-list p {
@@ -41,7 +60,7 @@
 }
 
 .category .category-icon {
-	border: 1px solid black;
+	border: 1px solid #7d450d;
 }
 
 .category p, .opened-words-description p {
@@ -54,7 +73,7 @@
 }
 
 .category-word {
-	border-color: black;
+	border-color: #adc5aa;
 }
 
 .category-word .item-content {
@@ -81,41 +100,30 @@ input.composed-word {
     background-color: #DFCC90;
 }
 
-.clear-composed-word, .remove-letter-in-composed-word, button.help-button {
-	background-color: white;
+.clear-composed-word, .remove-letter-in-composed-word {
+	background-color: #fcf9ed;
 }
 
-/*.opened-words-description p {
-	color: #2C6302;
-    text-shadow: -1px 0 #73c35d, 0 1px #cfdc80, 1px 0 #cfdc80, 0 -1px #cfdc80;
-}*/
+button.help-button {
+	background-color: #93b981;
+}
 
 .composing-words {
 	background: linear-gradient(rgba(142, 160, 84, 0.7), #DFCC90, rgba(142, 160, 84, 0.7));
 }
 
 .composing-word {
-	color: #ffffff;
-}
-
-.add-coins, .already-opened-word, .not-enough-coins {
-    font-size: 28px;
-    text-align: center;
-}
-
-.add-coins span {
 	color: cornsilk;
-    text-shadow: 1px 1px olive;
 }
 
-.already-opened-word {
+.add-coins span, .add-coins .opened-word {
+	color: #7d450d;
+    text-shadow: 1px 1px #d0a159;
+}
+
+.already-opened-word, .not-enough-coins {
     color: orangered;
-    text-shadow: 1px 1px gold;
-}
-
-.not-enough-coins {
-	color: red;
-    text-shadow: 1px 1px goldenrod;
+    text-shadow: 1px 1px #7d450d;
 }
 
 button.coins-button {

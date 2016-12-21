@@ -1,11 +1,11 @@
 <ion-view view-title="СКЛАДІТЬ СЛОВА">
-  <div class="add-coins" ng-if="isCoinsEarned"><span>+{{earnedCoins}}</span> <img class="coins-image" src="img/gold_coins.png"></div>
-  <div class="already-opened-word" ng-if="isAlreadyOpenedWord">"{{alreadyOpenedWord}}" вже складено</div>
+  <div class="add-coins" ng-if="isCoinsEarned"><span>+{{earnedCoins}}</span> <img class="coins-image" src="img/gold_coins.png"><div class="opened-word">«{{openedWord}}»</div></div>
+  <div class="already-opened-word" ng-if="isAlreadyOpenedWord">«{{alreadyOpenedWord}}»<div>вже складено</div></div>
 
   <div class="header">
     <div class="border-decoration"></div>
     <div class="row word-name-buttons-block">
-      <div ng-repeat="letter in word.name track by $index">
+      <div ng-repeat="letter in word.name track by $index" ng-if="letter!='-'">
           <button class="word-name-button word-name-button-default" 
                   ng-click="addSelectedLetter(letter); disableWordNameButton($index)">
             {{letter}}

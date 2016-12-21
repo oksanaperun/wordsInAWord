@@ -5,15 +5,6 @@ angular.module('wordInAWord')
     getWordData();
     getCoins();
 
-    var supportsOrientationChange = 'onorientationchange' in window,
-      orientationEvent = supportsOrientationChange ? 'orientationchange' : 'resize';
-
-    window.addEventListener(orientationEvent, function() {
-      var scrollBlock = document.getElementsByTagName('ion-scroll')[0];
-
-      scrollBlock.style.height = $scope.getComposingWordsHeight() + 'px';
-    }, false);
-
     if (window.cordova) {
       $cordovaNativeAudio.preloadSimple('coins', 'sounds/coins.wav');
       $cordovaNativeAudio.preloadSimple('invalid', 'sounds/invalid.mp3');
@@ -146,7 +137,8 @@ angular.module('wordInAWord')
           if (window.cordova) {
             playSound('coins');
           }
-        $scope.earnedCoins = $scope.word.composingWords[index].name.length;
+        $scope.openedWord = $scope.word.composingWords[index].name;
+        $scope.earnedCoins = $scope.openedWord.length;
         $scope.isCoinsEarned = true;
         $scope.isAlreadyOpenedWord = false;
         hideEarnedCoinsMessage();
@@ -232,12 +224,14 @@ angular.module('wordInAWord')
   function updateComposingWords() {
     var openedWordId = OpenedWord.getOpenedWordId();
 
-    for (var i = 0; i < $scope.word.composingWords.length; i++) {
-      if ($scope.word.composingWords[i].id == openedWordId) {
-        $scope.word.composingWords[i].isOpened = 1;
-        OpenedComposingWordsCount.setCount($scope.word.id, $scope.word.categoryId, $scope.getOpenWordsCount());
-      }
-    } 
+    if ($scope.word && $scope.word.composingWords) {
+      for (var i = 0; i < $scope.word.composingWords.length; i++) {
+        if ($scope.word.composingWords[i].id == openedWordId) {
+          $scope.word.composingWords[i].isOpened = 1;
+          OpenedComposingWordsCount.setCount($scope.word.id, $scope.word.categoryId, $scope.getOpenWordsCount());
+        }
+      } 
+    }
   }
 
   $scope.getComposingWordsHeight = function() {

@@ -43,7 +43,9 @@
 }
 
 .main-menu .item-content {
-	font-size: 18px;
+	font-size: 20px;
+	padding: 15px;
+	font-weight: bold;
 	font-family: 'Andika';
 }
 
@@ -139,7 +141,7 @@ button.word-name-button {
 
 input.composed-word {
 	border-radius: 10px;
-	font-size: 28px;
+	font-size: 24px;
 	text-align: center;
 	max-width: 190px;
 	font-family: Andika;
@@ -191,6 +193,7 @@ button.remove-letter-in-composed-word {
     border: none;
     font-size: 16px;
     text-align: center;
+    line-height: 1.4em;
 }
 
 .composing-word a.activated {
@@ -205,25 +208,21 @@ button.remove-letter-in-composed-word {
 
 .add-coins, .already-opened-word, .not-enough-coins {
 	position: absolute;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    transition: all linear 0.5s;
+    font-size: 28px;
+    text-align: center;
+    width: 100%;
 }
 
 .add-coins, .already-opened-word {
-    top: 60%;
+    top: 60%; 
 }
 
 .not-enough-coins {
-    top: 50%;
+    top: 45%;
 }
 
 .add-coins span {
 	vertical-align: text-top;
-}
-
-.not-enough-coins {
-	top: 25%;
 }
 
 .add-coins.ng-hide, .already-opened-word.ng-hide, .not-enough-coins.ng-hide {
@@ -283,9 +282,10 @@ button.help-button {
 
 p.composing-word-description {
 	font-size: 16px;
+	white-space: pre-line;
 }
 
-@media (min-width: 320px){
+@media (min-width: 320px) {
 	.category {
 	font-size: 27px;
 	}
@@ -298,12 +298,16 @@ p.composing-word-description {
 	font-size: 13px;
 	}
 
-  	.composing-word {
+  	.composing-word, .opened-words-description p, .composing-word-info p, .composing-word-info button   {
     font-size: 18px;
   	}
 }
 
-@media (min-width: 360px){
+@media (min-width: 360px) {
+	.main-menu .item-content {
+	font-size: 20px;
+	}
+
 	.category {
 	font-size: 31px;
 	}
@@ -315,9 +319,17 @@ p.composing-word-description {
 	.category p {
 	font-size: 14px;
 	}
+
+	.composing-word {
+    font-size: 20px;
+  	}
+
+  	.opened-words-description p {
+    font-size: 17px;
+	}
 }
 
-@media (min-width: 375px){
+@media (min-width: 375px) {
 	.category {
 	font-size: 32px;
 	}
@@ -329,13 +341,9 @@ p.composing-word-description {
 	.category p {
 	font-size: 16px;
 	}
-
-  	.composing-word {
-    font-size: 20px;
-  	}
 }
 
-@media (min-width: 400px){
+@media (min-width: 400px) {
     .category {
 	font-size: 34px;
 	}
@@ -344,7 +352,51 @@ p.composing-word-description {
 	width: 57px;
 	}
 
-  .composing-word {
+   .composing-word {
     font-size: 24px;
-  }
+   }
+
+    .opened-words-description p, .composing-word-info p {
+    font-size: 18px;
+	}
+
+	.composing-word-info p.composing-word-description, .composing-word-info button {
+    font-size: 22px; 
+	}
+}
+
+@media (min-width: 430px) {
+    .category {
+	font-size: 37px;
+	}
+
+	.category-icon {
+	width: 60px;
+	}
+
+	.category p {
+	font-size: 18px;
+	}
+
+  	.composing-word {
+    font-size: 26px;
+  	}
+
+  	.opened-words-description p {
+    font-size: 19px;
+	}
+}
+
+.add-coins, .already-opened-word, .not-enough-coins {
+	-webkit-animation: moveDown linear 0.5;
+	animation: moveDown linear 0.5;
+    -webkit-animation-duration: 3s; 
+    animation-duration: 3s;
+}
+
+@-webkit-keyframes moveDown {
+    0% { -webkit-transform: translate3d(0, 20%, 0); opacity: 1; }
+    50% { -webkit-transform: translate3d(0, 50%, 0); opacity: 0.8; }
+    80% { -webkit-transform: translate3d(0, 80%, 0); opacity: 0.5; } 
+    100% { -webkit-transform: translate3d(0, 100%, 0); opacity: 0;} 
 }

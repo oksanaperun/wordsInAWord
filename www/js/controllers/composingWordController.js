@@ -53,6 +53,14 @@ angular.module('wordInAWord')
       }
   }
 
+  $scope.displayDescription = function() {
+    if ($scope.composingWord && $scope.composingWord.isDescriptionOpened) {
+      var description = $scope.composingWord.description.replace(/ ([2-9]). /g, '<br>$1. ');
+
+      return description;
+    } else return '';
+  }
+
   function isEnoughCoinsForOpeningWord() {
     if ($scope.coinsCount >= $scope.composingWordPrice) return true
     else return false;

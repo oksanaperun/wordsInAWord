@@ -82,4 +82,10 @@ angular.module('wordInAWord', ['ionic', 'wordInAWord.controllers', 'wordInAWord.
   })
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/app/wordslist');
+})
+
+.filter('unsafe', function($sce) {
+    return function(val) {
+        return $sce.trustAsHtml(val);
+    };
 });
