@@ -54,7 +54,7 @@ angular.module('wordInAWord')
   }
 
   $scope.displayDescription = function() {
-    if ($scope.composingWord && $scope.composingWord.isDescriptionOpened) {
+    if ($scope.composingWord && $scope.composingWord.isDescriptionOpened && $scope.composingWord.description) {
       var description = $scope.composingWord.description.replace(/ ([2-9]). /g, '<br>$1. ');
 
       return description;

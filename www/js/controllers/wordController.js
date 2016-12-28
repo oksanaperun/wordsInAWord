@@ -140,7 +140,6 @@ angular.module('wordInAWord')
         $scope.openedWord = $scope.word.composingWords[index].name;
         $scope.earnedCoins = $scope.openedWord.length;
         $scope.isCoinsEarned = true;
-        $scope.isAlreadyOpenedWord = false;
         hideEarnedCoinsMessage();
         $scope.clearComposedWord();
         $scope.enableAllWordNameButtons();
@@ -155,7 +154,6 @@ angular.module('wordInAWord')
         console.log('Already opened!');
         $scope.alreadyOpenedWord = $scope.word.composingWords[index].name;
         $scope.isAlreadyOpenedWord = true;
-        $scope.isCoinsEarned = false;
         hideAlreadyOpenedWordMessage();
       }
     }

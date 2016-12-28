@@ -104,10 +104,6 @@ input.composed-word {
 	background-color: #fcf9ed;
 }
 
-button.help-button {
-	background-color: #93b981;
-}
-
 .composing-words {
 	background: linear-gradient(rgba(142, 160, 84, 0.7), #DFCC90, rgba(142, 160, 84, 0.7));
 }
