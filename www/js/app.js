@@ -42,11 +42,21 @@ angular.module('wordInAWord', ['ionic', 'wordInAWord.controllers', 'wordInAWord.
       }
   })
 
+    .state('app.settings', {
+      url: '/settings',
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/settings.html'
+        }
+      }
+  })
+
     .state('app.achievements', {
     url: '/achievements',
     views: {
       'menuContent': {
-        templateUrl: 'templates/achievements.html'
+        templateUrl: 'templates/achievements.html',
+        controller: 'AchievementsCtrl'
       }
     }
   })

@@ -1,23 +1,24 @@
 angular.module('wordInAWord')
 
-.controller('WordCtrl', function($ionicPlatform, $scope, $stateParams,  $timeout, $window, $cordovaNativeAudio, WordDatabase, OpenedComposingWordsCount, Coins, OpenedWord) {
+.controller('WordCtrl', function($ionicPlatform, $scope, $rootScope, $stateParams,  $timeout, $window, $cordovaNativeAudio, WordDatabase, Utilities, AchievementsUtils) {
   $ionicPlatform.ready(function () {
     getWordData();
-    getCoins();
+    if (!$rootScope.achievements[6].isEarned) {
+      manageUniqueOpenedComposingWords();
+    }
 
     if (window.cordova) {
-      $cordovaNativeAudio.preloadSimple('coins', 'sounds/coins.wav');
-      $cordovaNativeAudio.preloadSimple('invalid', 'sounds/invalid.mp3');
+      $cordovaNativeAudio.preloadSimple('success', 'sounds/success.mp3');
+      $cordovaNativeAudio.preloadSimple('cancel', 'sounds/cancel.wav');
+      $cordovaNativeAudio.preloadSimple('bonus', 'sounds/bonus.wav');
     }
   });
 
   function getWordData() {
     WordDatabase.selectWordDataById($stateParams.wordId).then(function(res) {
-        //console.log(res);
-
         $scope.word = res.rows.item(0);
-        
         getComposingWords();
+        getCategoryInfo();
         }, function(err) {
          console.error(err);
       });
@@ -25,12 +26,17 @@ angular.module('wordInAWord')
 
   function getComposingWords() {
     WordDatabase.selectComposingWords($stateParams.wordId).then(function(res) {
-        //console.log(res);
-
         $scope.word.composingWords = [];
+        $rootScope.word = {};
+        $rootScope.word.totalComposingWordsCount = res.rows.length;
+        $rootScope.word.openedComposingWordsCount = 0;
 
-        for (var i = 0; i < res.rows.length; i++)
+        for (var i = 0; i < res.rows.length; i++) {
           $scope.word.composingWords.push(res.rows.item(i));
+          if ($scope.word.composingWords[i].isOpened) {
+            $rootScope.word.openedComposingWordsCount ++;
+          }
+        }
 
         sortArrayByNameLength($scope.word.composingWords, 'asc');
         }, function(err) {
@@ -47,23 +53,24 @@ angular.module('wordInAWord')
     });
   }
 
-  function getCoins() {
-    WordDatabase.selectCoins().then(function(res) {
-      //console.log(res);
-
-      $scope.coinsCount = res.rows.item(0).coins;
-      Coins.setCount($scope.coinsCount);
+  function getCategoryInfo() {
+    WordDatabase.selectCategoryInfoById($scope.word.categoryId).then(function(res) {
+        $rootScope.categoryInfo = res.rows.item(0);
       }, function(err) {
-        console.error(err);
-    }); 
+         console.error(err);
+    });
   }
 
-  function setCoins(value) {
-    WordDatabase.updateCoins(value).then(function(res) {
-      $scope.coinsCount = value;
+  function manageUniqueOpenedComposingWords() {
+    WordDatabase.selectUniqueOpenedComposingWordsCount().then(function(res) {
+        $scope.uniqueOpenedComposingWords = res.rows.item(0);
+
+        if ($scope.uniqueOpenedComposingWords.count == 500) {
+            AchievementsUtils.manageAchievementByIndex(6);
+        }
       }, function(err) {
-        console.error(err);
-    }); 
+         console.error(err);
+    });
   }
 
   function getAllWordNameButtons() {
@@ -73,7 +80,7 @@ angular.module('wordInAWord')
   $scope.disableWordNameButton = function(index) {
     var buttons = getAllWordNameButtons(),
       clickedButton = buttons[index];
-    console.log('disable button');
+
     clickedButton.setAttribute('disabled', 'disabled');
     clickedButton.classList.add('word-name-button-disabled');
   }
@@ -90,7 +97,6 @@ angular.module('wordInAWord')
   }
 
   function enableButton(button) {
-    console.log('enable button');
     button.removeAttribute('disabled');
     button.classList.remove('word-name-button-disabled');
   }
@@ -123,38 +129,33 @@ angular.module('wordInAWord')
   }
 
   $scope.$watch('composedWord', function (newValue, oldValue) {
-    if (newValue && newValue != '' && newValue.length > 1) 
+    if ($rootScope.achievements && $rootScope.achievements[0] && !$rootScope.achievements[0].isEarned && newValue && newValue.length == 1) {
+      $scope.startComposeWordTime = new Date().getTime();
+    }
+
+    if (newValue && newValue.length > 1) {
       checkComposedWord(newValue);
+    }
   });
 
  function checkComposedWord(composedWord) {
-    console.log('Check composed word');
     var index = getComposedWordIndex(composedWord);
     
     if (index > -1) {
-      console.log('Valid word');
       if ($scope.word.composingWords[index].isOpened == 0) {
-          if (window.cordova) {
-            playSound('coins');
-          }
         $scope.openedWord = $scope.word.composingWords[index].name;
-        $scope.earnedCoins = $scope.openedWord.length;
-        $scope.isCoinsEarned = true;
-        hideEarnedCoinsMessage();
-        $scope.clearComposedWord();
-        $scope.enableAllWordNameButtons();
-        console.log('Open word');
+        $rootScope.word.openedComposingWordsCount ++;
+        $rootScope.categoryInfo.openedComposingWordsCount ++;
+
+        if ($scope.startComposeWordTime) {
+            manageComposeWordTime();
+        }
+        manageAchievements();
+        manageCoins();
+        makeDefaultHeaderControls();
         openComposedWord($scope.word.composingWords[index].id, index);
-        setCoins($scope.coinsCount + $scope.earnedCoins);
-        Coins.setCount($scope.coinsCount + $scope.earnedCoins);
       } else {
-          if (window.cordova) {
-            playSound('invalid');
-          }
-        console.log('Already opened!');
-        $scope.alreadyOpenedWord = $scope.word.composingWords[index].name;
-        $scope.isAlreadyOpenedWord = true;
-        hideAlreadyOpenedWordMessage();
+        manageAlreadyOpenedWord(index);
       }
     }
   }
@@ -167,25 +168,74 @@ angular.module('wordInAWord')
     return -1;
   }
 
+  function manageComposeWordTime() {
+    $scope.endComposeWordTime = new Date().getTime();
+
+    if ($scope.endComposeWordTime - $scope.startComposeWordTime < 1000) {
+      $scope.startComposeWordTime = null;
+      AchievementsUtils.manageAchievementByIndex(0);
+    }
+  }
+
+  function manageAchievements() {
+    if (!$rootScope.achievements[1].isEarned && $scope.openedWord.length == 9) {
+      AchievementsUtils.manageAchievementByIndex(1);
+    }
+
+    if (!$rootScope.achievements[2].isEarned && $rootScope.word.totalComposingWordsCount == $rootScope.word.openedComposingWordsCount) {
+      AchievementsUtils.manageAchievementByIndex(2);
+    }
+
+    if (!$rootScope.achievements[5].isEarned && $rootScope.categoryInfo.totalComposingWordsCount == $rootScope.categoryInfo.openedComposingWordsCount) {
+      AchievementsUtils.manageAchievementByIndex(5);
+    }
+  }
+
+  function manageCoins() {
+      if (window.cordova) {
+          Utilities.playSound('success');
+      }
+     $scope.earnedCoins = $scope.openedWord.length;
+     $scope.isCoinsEarned = true;
+      hideEarnedCoinsMessage();
+
+      Utilities.addToCoins($scope.earnedCoins);
+  }
+
   function hideEarnedCoinsMessage() {
      $timeout(function () { $scope.isCoinsEarned = false; }, 1000);
   }
 
-  function hideAlreadyOpenedWordMessage() {
-     $timeout(function () { $scope.isAlreadyOpenedWord  = false; }, 1000);
+  function makeDefaultHeaderControls() {
+      $scope.clearComposedWord();
+      $scope.enableAllWordNameButtons();
   }
 
   function openComposedWord(id, index) {
-    WordDatabase.openComposingWordById(id).then(function(res) {
+    WordDatabase.openComposingWordById(id, 1).then(function(res) {
         $scope.word.composingWords[index].isOpened = 1;
-        OpenedComposingWordsCount.setCount($scope.word.id, $scope.word.categoryId, $scope.getOpenWordsCount());
-        }, function(err) {
+        $rootScope.allOpenedWordsCount ++;
+        Utilities.setOpenedComposingWordsCount($scope.word.id, $scope.word.categoryId, $scope.getOpenWordsCount());
+        
+        if (!$rootScope.achievements[6].isEarned) {
+          manageUniqueOpenedComposingWords();
+        }
+      }, function(err) {
          console.error(err);
     });
   }
 
-  function playSound(sound) {
-        $cordovaNativeAudio.play(sound);
+  function manageAlreadyOpenedWord(index) {
+     if (window.cordova) {
+            Utilities.playSound('cancel');
+      }
+      $scope.alreadyOpenedWord = $scope.word.composingWords[index].name;
+      $scope.isAlreadyOpenedWord = true;
+      hideAlreadyOpenedWordMessage();
+  }
+
+  function hideAlreadyOpenedWordMessage() {
+     $timeout(function () { $scope.isAlreadyOpenedWord  = false; }, 1000);
   }
   
   $scope.displayNotOpenedWord = function(wordLength) {
@@ -211,22 +261,17 @@ angular.module('wordInAWord')
   }
 
   $scope.$on('$ionicView.enter', function() {
-     updateCoinsCount();
      updateComposingWords();
   })
 
-  function updateCoinsCount() {
-    $scope.coinsCount = Coins.getCount();  
-  }
-
   function updateComposingWords() {
-    var openedWordId = OpenedWord.getOpenedWordId();
+    var openedWordId = Utilities.getOpenedWordId();
 
     if ($scope.word && $scope.word.composingWords) {
       for (var i = 0; i < $scope.word.composingWords.length; i++) {
         if ($scope.word.composingWords[i].id == openedWordId) {
           $scope.word.composingWords[i].isOpened = 1;
-          OpenedComposingWordsCount.setCount($scope.word.id, $scope.word.categoryId, $scope.getOpenWordsCount());
+          Utilities.setOpenedComposingWordsCount($scope.word.id, $scope.word.categoryId, $scope.getOpenWordsCount());
         }
       } 
     }
@@ -235,9 +280,9 @@ angular.module('wordInAWord')
   $scope.getComposingWordsHeight = function() {
     if ($scope.word && $scope.word.composingWords) {
       var lettersCount = $scope.word.name.length,
-          letterWidth = 75,
+          letterWidth = 68,
           composedWordControlsHeight = 50,
-          composedWordCountHeight = 45,
+          composedWordCountHeight = 40,
           menuHeight = 45 + 20, // border decoration under menu has height 20
           footerHeight = 65,
           viewHeight = $window.innerHeight,

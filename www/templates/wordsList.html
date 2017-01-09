@@ -1,20 +1,21 @@
 <ion-view view-title="СЛОВА ЗА КАТЕГОРІЯМИ">
   <ion-content class="categories-list has-footer">
     <div class="border-decoration"></div>
-    <p>Відкрито {{getOpenedCategoriesCount()}} з {{categories.length}} категорій слів</p>
+    <p><i class="icon ion-stats-bars"></i> Відкритих категорій: {{openedCategoriesCount}}; всього: {{categories.length}}</p>
 
     <ion-list>
     <div class="border-decoration"></div>
         <div ng-repeat="category in categoriesToDisplay">
-          <ion-item class="item-stable category"
+          <ion-item class="item-stable category item-thumbnail-right"
                     ng-click="toggleCategory(category)"
                     ng-class="{active: isCategoryShown(category)}">
+            <img class="category-icon" ng-src="img/categories/{{category.id}}.jpg">
+            <h1>
             <i class="icon" ng-class="isCategoryShown(category) ? 'ion-minus-round' : 'ion-plus-round'" ng-show="category.isOpened"></i>
             <i class="icon ion-android-lock" ng-show="!category.isOpened"></i>
-            &nbsp;
-            {{category.name}}
-            <img class="category-icon" ng-src="img/categories/{{category.id}}.jpg">
-            <p ng-show="!category.isOpened">Складіть ще <span>{{remainingComposingWordsCountToOpenCategory}}</span> слів, щоб відкрити категорію</p>
+            {{category.isOpened ? category.name : '? ? ? ? ?'}}
+            </h1>
+            <p ng-show="!category.isOpened">Складіть ще <span>{{remainingComposingWordsCountToOpenCategory}}</span> {{getWordsCountTextByRemainingCount()}}, щоб відкрити категорію</p>
           </ion-item>
           <div class="border-decoration"></div>
           <ion-item class="item-accordion category-word"
@@ -28,6 +29,7 @@
         </div>
       </ion-list>
 
+    <button ng-click="showAlert()">showAlert</button>
     <button ng-click="editData()">Action {{tryCopyDB}}</button>
   </ion-content>
 
@@ -38,6 +40,8 @@
       </div>
       <h1 class="title"></h1>
       <div class="buttons">
+        <button class="coins-button">{{coinsCount}}</button>
+        <img class="coins-image" src="img/gold_coins.png">
       </div>
     </div>
   </ion-footer-bar>

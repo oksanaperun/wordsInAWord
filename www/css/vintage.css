@@ -1,22 +1,28 @@
-.bar.bar-header .button, .bar.bar-header .title {
+.bar-stable.bar-header .button, .bar-stable.bar-header .title {
 	color: white;
 }
 
-.bar.bar-header {
+.bar-stable.bar-header {
     border-bottom: 1px solid black;
 }
 
-.main-menu, .bar.bar-header, .footer {
+.main-menu, .bar-stable.bar-header, .footer {
 	background-image: url('../img/vintage/secondary_texture.jpg');
 	background-size: 100% auto;
 }
 
 .main-menu .item {
-    border-color: #254e1c;
-    color: #254e1c;
+    border-color: black;
+    color: black;
 }
 
-.main-menu .item-content::before, .category.item-stable::before, .header::before, .main-content::before {
+.main-menu .item-content, .category.item-stable, .main-content, .achievements .item, .settings {
+	background: url('../img/vintage/main_texture.jpg');
+	background-position: center top;
+    background-size: 100% auto;
+}
+
+.word-header::before {
 	content: "";
 	position: absolute;
 	height: 100%;
@@ -24,43 +30,43 @@
 	top: 0;
     left: 0;
     z-index: -1;
-}
-
-.main-menu .item-content::before {
-	background-image: url('../img/vintage/secondary_texture.jpg');
+    background: url('../img/vintage/main_texture.jpg');
 	background-position: center top;
     background-size: 100% auto;
-	opacity: 0.5;
 }
 
-.category.item-stable::before, .header::before, .main-content::before {
-	background: url('../img/vintage/main_texture.jpg');
-	background-position: center top;
-    background-size: 100% auto;
-    opacity: 0.7;
+.game-info, .composing-word-info {
+    background: url('../img/vintage/decoration.jpg');
+	background-position: center top;  
 }
 
-.main-menu .item-content {
-	background-color: rgba(17, 171, 17, 0.7);
+.game-info{
+    background-size: auto 100%;
+}
+
+.composing-word-info {
+	background-size: 100% auto;
+}
+
+.border-decoration {
+	background-image: url('../img/vintage/border_decoration.jpg');
 }
 
 .categories-list  {
-	background: linear-gradient(rgba(142, 160, 84, 0.7), #DFCC90, rgba(142, 160, 84, 0.7));
-	color: #7d450d;
+	background: linear-gradient(rgb(255, 253, 212), #fffee0, rgb(255, 253, 212));
 }
 
 .categories-list p {
-	color: #2a5c1e;
+	color: black;
 }
 
 .category.item-stable {
-    background-position: center;
-    color: #7d450d;
-    text-shadow: -1px 0 black, 0 1px black, 1px 0 #7d450d, 0 -1px #7d450d;
+    color: black;
+    font-weight: bold;
 }
 
 .category .category-icon {
-	border: 1px solid #7d450d;
+	border: 2px solid black;
 }
 
 .category p, .opened-words-description p {
@@ -73,7 +79,7 @@
 }
 
 .category-word {
-	border-color: #adc5aa;
+	border-color: black;
 }
 
 .category-word .item-content {
@@ -84,20 +90,21 @@
 
 .category-word p {
 	color: black;
+	font-weight: bold;
 }
 
 button.word-name-button {
-	border-color: #A08030;
+	border-color: black;
 	background-image: url('../img/vintage/letter_decoration.jpg');
 	background-position: center top;
     background-size: 100% auto;
-    color: #7d450d;
+    color: black;
 }
 
 input.composed-word {
-	color: #7d450d !important;
-	border-color: #A08030;
-    background-color: #DFCC90;
+	color: black !important;
+	border-color: black;
+    background-color: rgba(167, 186, 107, 0.5);
 }
 
 .clear-composed-word, .remove-letter-in-composed-word {
@@ -105,16 +112,16 @@ input.composed-word {
 }
 
 .composing-words {
-	background: linear-gradient(rgba(142, 160, 84, 0.7), #DFCC90, rgba(142, 160, 84, 0.7));
+	background: linear-gradient(rgba(167, 186, 107, 0.5), #faf1c3, rgba(167, 186, 107, 0.5));
 }
 
 .composing-word {
-	color: cornsilk;
+	color: black;
 }
 
 .add-coins span, .add-coins .opened-word {
-	color: #7d450d;
-    text-shadow: 1px 1px #d0a159;
+    color: #0ae10a;
+    text-shadow: 2px 1px #008000;
 }
 
 .already-opened-word, .not-enough-coins {
@@ -126,38 +133,73 @@ button.coins-button {
 	color: white;
 }
 
-.border-decoration {
-	background-image: url('../img/vintage/border_decoration.jpg');
-}
-
-.composing-word-info {
-	background-color: #DFCC90;
-	background-image: url('../img/vintage/picture_background.jpg');
-	background-size: 100% auto;
-}
-
 .composing-word-info h1 {
-	color: #6a3603;
+	color: black;
 }
 
 .composing-word-info button {
-    border-color: #A08030;
-    color: #290D02;
+    border-color: black;
+    color: black;
 }
 
-.composing-word-info p {	
+.game-info p, .composing-word-info p {	
 	color: #1a3300;
-	text-shadow: 1px 1px olive;
-}
-
-p.composing-word-description {
-	color: white;
+	text-shadow: -1px 0 #73c35d, 0 1px #cfdc80, 1px 0 #cfdc80, 0 -1px #cfdc80;
 }
 
 .prompt-button {
-	background-color: #B3A654;
+	background-color: rgba(248, 235, 177, 0.8);
 }
 
 .open-word-button {
+	background-color: rgba(36, 150, 5, 0.54);
+}
+
+.achievements {
 	background-color: #DFCC90;
+
+}
+
+.achievements .item {
+	border-color: black;
+}
+
+.progress {
+    border: 2px solid black;
+}
+
+.progress p {
+    color: #3a7a2a;
+}
+
+.progress-bar {
+	border: 1px solid #3a7a2a;
+	background-color: rgba(132, 210, 103, 0.5);
+}
+
+.progress-indicator {
+	background-color: #3a7a2a
+}
+
+.popup-container .popup {
+	background-color: rgb(255, 254, 224);
+}
+
+.popup-head h3 {
+	color: white;
+}
+
+.popup-head {
+	background-image: url(../img/vintage/secondary_texture.jpg);
+}
+
+.popup-body h4, h5 {
+	color: #ff3300;
+}
+
+.popup button.button-positive, .popup button.button-positive.activated {
+    background-image: url(../img/vintage/main_texture.jpg);
+    background-size: 100% auto;
+    color: black;
+    border-color: black;
 }

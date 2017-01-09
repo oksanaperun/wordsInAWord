@@ -10,6 +10,14 @@
     font-weight: normal;
 }
 
+.main-menu .item-content, .categories-list, .category h1, button.coins-button,
+button.word-name-button, input.composed-word, .composing-words-list .list, 
+.add-coins, .already-opened-word,
+.composing-word-info h1, .composing-word-info button, .composing-word-info p,
+.achievements h2, .achievements h3, .achievements p, .popup-container .popup {
+	font-family: 'Andika';
+}
+
 .back-button > .back-text > .default-title, .back-button > .back-text > .previous-title {
     display:none;
 }
@@ -20,11 +28,15 @@
 	text-align: center;
 }
 
-.header {
+.word-header {
 	margin-top: 44px;
     display: flex;
     flex-flow: row wrap;
     justify-content: center;
+}
+
+.has-footer {
+    bottom: 65px;
 }
 
 .footer {
@@ -46,11 +58,6 @@
 	font-size: 20px;
 	padding: 15px;
 	font-weight: bold;
-	font-family: 'Andika';
-}
-
-.categories-list {
-	font-family: 'Andika';
 }
 
 .categories-list p {
@@ -60,24 +67,33 @@
 	font-size: 16px;
 }
 
-.category {
-	font-size: 34px;
+.item-thumbnail-right {
+	min-height: 67px;
 }
 
 .category-icon {
-	width: 50px;
-	height: 35px;
-    float: right;
+	width: 60px !important;
+	height: 45px !important;
 }
 
 .category.item-stable {
-	padding: 10px;
+	padding: 0px;
+}
+
+.category h1 {
+	min-height: 67px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    padding-left: 8px;
+    font-weight: bold;
+    font-size: 32px;
+    line-height: 1.7em;
 }
 
 .category p {
     font-size: 13px;
     margin-left: 0px;
-    margin-top: 10px;
+    padding-bottom: 5px;
 }
 
 .category p span {
@@ -107,20 +123,19 @@
     display: flex;
     flex-flow: row wrap;
     justify-content: center;
-    margin-top: 5px;
-    margin-left: 10px;
+    margin-top: 2px;
+    margin-left: 8px;
 }
 
 button.word-name-button {
-	width: 65px;
-	height: 65px;
-	margin-right: 10px;
-	margin-bottom: 10px;
+	width: 60px;
+	height: 60px;
+	margin-right: 8px;
+	margin-bottom: 8px;
 	font-size: 50px;
 	padding-bottom: 15px;
 	border-radius: 10px;
 	line-height: 0.1em;
-	font-family: Andika;
 }
 
 .word-name-button-disabled {
@@ -145,7 +160,6 @@ input.composed-word {
 	font-size: 24px;
 	text-align: center;
 	max-width: 190px;
-	font-family: Andika;
 }
 
 .clear-composed-word, .remove-letter-in-composed-word, button.help-button {
@@ -156,16 +170,15 @@ input.composed-word {
 
 button.clear-composed-word {
 	border-color: red;
-    color: darkred;
+    color: #b30000;
 }
 
 button.remove-letter-in-composed-word {
 	margin-right: 0px;
-/*	padding-top: 3px;*/
     padding-right: 3px;
     padding-left: 0px;
-    border-color: green;
-    color: darkgreen;	
+    border-color: #ff6600;
+    color: #ff3300;	
 }
 
 .opened-words-description {
@@ -176,7 +189,6 @@ button.remove-letter-in-composed-word {
 }
 
 .opened-words-description p {
-	padding-top: 5px;
 	margin: 0px;
     font-size: 16px;
 }
@@ -185,7 +197,6 @@ button.remove-letter-in-composed-word {
 	display: flex;
 	flex-flow: row wrap;
 	justify-content: center;
-	font-family: Andika;
 }
 
 .composing-word {
@@ -249,10 +260,10 @@ button.remove-letter-in-composed-word {
 button.coins-button {
 	background-color: transparent;
 	border: none;
-	font-size: medium;
 	padding: 0px 0px;
-	vertical-align: top;
-	font-family: Andika;
+	font-size: medium;
+	font-weight: bold;
+	vertical-align: top;	
 }
 
 .border-decoration {
@@ -262,7 +273,6 @@ button.coins-button {
 
 .composing-word-info h1, .composing-word-info button, .composing-word-info p {
 	margin-left: 10px;
-	font-family: Andika;
 }
 
 .composing-word-info h1 {
@@ -282,70 +292,65 @@ p.composing-word-description {
 }
 
 @media (min-width: 320px) {
-	.category {
-	font-size: 27px;
-	}
-
-	.category-icon {
-	width: 45px;
+	.category h1 {
+		font-size: 27px;
+	    line-height: 60px;
 	}
 
 	.category p {
-	font-size: 13px;
+		font-size: 14px;
 	}
 
-  	.composing-word, .opened-words-description p, .composing-word-info p, .composing-word-info button   {
-    font-size: 18px;
+	.composing-word {
+		font-size: 16px;
+	}
+
+  	.opened-words-description p, .composing-word-info p, .composing-word-info button   {
+    	font-size: 18px;
+  	}
+
+  	.progress p {
+  		font-size: 13px;
   	}
 }
 
 @media (min-width: 360px) {
 	.main-menu .item-content {
-	font-size: 20px;
+		font-size: 22px;
 	}
 
-	.category {
-	font-size: 30px;
-	}
-
-	.category-icon {
-	width: 50px;
+	.category h1 {
+		font-size: 32px;
 	}
 
 	.category p {
-	font-size: 14px;
+		font-size: 16px;
 	}
 
 	.composing-word {
-    font-size: 20px;
+    	font-size: 19px;
   	}
 
   	.opened-words-description p {
-    font-size: 17px;
-	}
-}
-
-@media (min-width: 375px) {
-	.category {
-	font-size: 32px;
+    	font-size: 17px;
 	}
 
-	.category-icon {
-	width: 55px;
-	}
-
-	.category p {
-	font-size: 16px;
-	}
+	.progress p {
+  		font-size: 16px;
+  	}
 }
 
 @media (min-width: 400px) {
-    .category {
-	font-size: 34px;
+    .category h1 {
+	font-size: 36px;
+	}
+
+	.category p {
+	font-size: 18px;
 	}
 
 	.category-icon {
-	width: 57px;
+	width: 70px !important;
 	}
 
    .composing-word {
@@ -362,16 +367,12 @@ p.composing-word-description {
 }
 
 @media (min-width: 430px) {
-    .category {
-	font-size: 37px;
-	}
-
-	.category-icon {
-	width: 60px;
+    .category h1 {
+	font-size: 38px;
 	}
 
 	.category p {
-	font-size: 18px;
+	font-size: 19px;
 	}
 
   	.composing-word {
@@ -409,4 +410,82 @@ p.composing-word-description {
     50% { -webkit-transform: translate3d(0, 50%, 0); opacity: 0.5; }
     80% { -webkit-transform: translate3d(0, 80%, 0); opacity: 0.2; } 
     100% { -webkit-transform: translate3d(0, 100%, 0); opacity: 0;} 
+}
+
+.achievements-header {
+	margin-top: 43px;
+    height: 20px;
+    padding: 0px;
+}
+
+.achievements.has-header {
+	top: 63px;
+}
+
+.achievements h2 {
+	font-weight: bold;
+	font-size: larger;
+}
+
+.achievements h2, .achievements h3 {
+	white-space: pre-wrap;
+}
+
+.achievements h3 {
+	font-size: medium;
+}
+
+.progress {
+    display: flex;
+    justify-content: space-between;
+    border-radius: 15px;
+    padding: 3px;
+}
+
+.progress p {
+    font-weight: bold;
+}
+
+.progress-bar {
+	width: 75%;
+}
+
+.progress-bar, .progress-indicator {
+	border-radius: 10px;
+}
+
+.progress-indicator {
+	height: 20px;
+}
+
+.popup-container .popup {
+	border-radius: 10px;
+	text-align: center;
+}
+
+.popup-head {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.popup-body {
+	background-image: url(../img/fireworks.png);
+	background-size: 100% auto;
+}
+
+.popup-body h5 {
+	font-weight: bold;
+}
+
+.popup-body p, h5 {
+	font-size: 16px;
+}
+
+.popup-buttons {
+	padding-top: 0px;
+}
+
+.popup button.button-positive, .popup button.button-positive.activated {
+	border-radius: 10px;
+    font-weight: bold;
 }

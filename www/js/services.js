@@ -1,49 +1,88 @@
 angular.module('wordInAWord.services', [])
 
-.factory('Coins', function() {
-  var coinsCount = 0;
+.factory('Utilities', function($ionicPopup, $rootScope, $cordovaNativeAudio, WordDatabase) {
+  var openedComposingWordsCount = 0,
+      wordId = 0,
+      categoryId = 0,
+      openedComposingWordId = 0,
+      allOpenedWordsCount = 0;
 
   return {
-      getCount: function() {
-        return coinsCount;
+      addToCoins: function(value) {
+          $rootScope.coinsCount +=value;
+
+          WordDatabase.updateCoins($rootScope.coinsCount).then(function(res) {
+
+            }, function(err) {
+              console.error(err);
+          }); 
       },
-      setCount: function(value) {
-        coinsCount = value;        
+      getOpenedComposingWordsCount: function() {
+        return {
+          wordId: wordId,
+          categoryId: categoryId,
+          count: openedComposingWordsCount
+        };
+      },
+      setOpenedComposingWordsCount: function(id, wordCategoryId, value) {
+        wordId = id;
+        categoryId = wordCategoryId;
+        openedComposingWordsCount = value;        
+      },
+      getOpenedWordId: function() {
+        return openedComposingWordId;
+      },
+      setOpenedWordId: function(value) {
+        openedComposingWordId = value;        
+      },
+      getAchievements: function() {
+        $rootScope.achievements = [];
+
+        WordDatabase.selectAchievements().then(function(res) {
+          for (var i = 0; i < res.rows.length; i++)
+            $rootScope.achievements.push(res.rows.item(i));
+          }, function(err) {
+          console.error(err);
+        });
+      },
+      showAchievementPopupByIndex: function(index) {
+        var popupBody = '<div>' +
+            '<p>Ви здобули винагороду</p>' + 
+            '<h5>' + $rootScope.achievements[index].reward + ' монет</h5>' +
+            '<p>за досягнення</p>' +
+            '<h4>«' + $rootScope.achievements[index].name + '»</h4>' +
+            '</div>',
+            achievementPopup = $ionicPopup.alert({
+           title: 'ДОСЯГНЕННЯ',
+           template: popupBody
+        });
+
+        achievementPopup.then(function(res) {  
+        });
+      },
+      openAchievementByIndex: function(index) {
+        WordDatabase.openAchievementByIndex(index).then(function(res) {
+          $rootScope.achievements[index].isEarned = 1;
+        }, function(err) {
+          console.error(err);
+        }); 
+      },
+      playSound: function(sound) {
+        $cordovaNativeAudio.play(sound);
       }
   };
 })
 
-.factory('OpenedComposingWordsCount', function() {
-    var count = 0,
-        wordId = 0,
-        categoryId = 0;
-
-    return {
-      getCount: function() {
-        return {
-          wordId: wordId,
-          categoryId: categoryId,
-          count: count
-        };
-      },
-      setCount: function(id, wordCategoryId, value) {
-        wordId = id;
-        categoryId = wordCategoryId;
-        count = value;        
-      }
-    };
-})
-
-.factory('OpenedWord', function() {
-  var openedWordId = 0;
-
+.factory('AchievementsUtils', function($rootScope, $window, Utilities) {
   return {
-      getOpenedWordId: function() {
-        return openedWordId;
-      },
-      setOpenedWordId: function(value) {
-        openedWordId = value;        
+    manageAchievementByIndex: function(index) {
+      if (window.cordova) {
+          Utilities.playSound('bonus');
       }
+      Utilities.openAchievementByIndex(index);
+      Utilities.showAchievementPopupByIndex(index);
+      Utilities.addToCoins($rootScope.achievements[index].reward);
+    }
   };
 })
 
@@ -51,26 +90,29 @@ angular.module('wordInAWord.services', [])
 
   return {
     initDatabase: function() {
-    console.log('Connecting to DB');
-    if (window.cordova) {
-/*      window.plugins.sqlDB.copy('wordsInAWord.db', 0, function() {
-        $rootScope.tryCopyDB = 'DB copied';
-        $rootScope.db = window.sqlitePlugin.openDatabase({name: 'wordsInAWord.db', location: 1});
-        }, function(error) {
-          $rootScope.tryCopyDB = 'Failed to copy DB: ' + error.code;
-      }); */
-
-      $rootScope.db = window.sqlitePlugin.openDatabase({name: "wordsInAWord.db", location: 'default', createFromLocation: 1});
-
-      //$rootScope.db = window.sqlitePlugin.openDatabase({name: 'wordsInAWord.db', location: 1});
-    } else {
+      console.log('Connecting to DB');
+      if (window.cordova) {
+        $rootScope.db = window.sqlitePlugin.openDatabase({name: "wordsInAWord.db", location: 'default', createFromLocation: 1});
+      } else {
         $rootScope.db = window.openDatabase('wordsInAWord.db', '1', 'words db', 256 * 256 * 100); // browser
-    }
+      }
     },
     selectCategories: function() {
       var query = "SELECT id, name, isOpened FROM categories";
       console.log('select categories');
       return $cordovaSQLite.execute($rootScope.db, query);
+    },
+    selectCategoryInfoById: function(id) {
+      var query = "SELECT (SELECT COUNT(CW.id) FROM composing_words as CW " +
+      "LEFT JOIN words as W ON CW.wordId = W.id " +
+      "LEFT JOIN categories as C ON W.categoryId = C.id " +
+      "WHERE C.id = ?) totalComposingWordsCount, " +
+      "(SELECT COUNT(case CW.isOpened when 1 then 1 else null end) FROM composing_words as CW " +
+      "LEFT JOIN words as W ON CW.wordId = W.id " +
+      "LEFT JOIN categories as C ON W.categoryId = C.id " +
+      "WHERE C.id = ?) openedComposingWordsCount";
+      console.log('select category info');
+      return $cordovaSQLite.execute($rootScope.db, query, [id, id]);
     },
     openCategoryById: function(id) {
       var query = "UPDATE categories SET isOpened = 1 WHERE id=?";
@@ -95,10 +137,15 @@ angular.module('wordInAWord.services', [])
       console.log('select composing words');
       return $cordovaSQLite.execute($rootScope.db, query, [wordId]);
     },
-    openComposingWordById: function(id) {
-      var query = "UPDATE composing_words SET isOpened = 1, isDescriptionOpened = 1 WHERE id=?";
+    selectUniqueOpenedComposingWordsCount: function() {
+      var query = "SELECT COUNT(DISTINCT name) count FROM composing_words WHERE isComposedByUser = 1";
+      console.log('select unique composing words count opened by user');
+      return $cordovaSQLite.execute($rootScope.db, query);
+    },
+    openComposingWordById: function(id, isComposedByUser) {
+      var query = "UPDATE composing_words SET isOpened = 1, isDescriptionOpened = 1, isComposedByUser =? WHERE id=?";
       console.log('open composing word');
-      return $cordovaSQLite.execute($rootScope.db, query, [id]);
+      return $cordovaSQLite.execute($rootScope.db, query, [isComposedByUser, id]);
     },
     openComposingWordDescriptionById: function(id) {
       var query = "UPDATE composing_words SET isDescriptionOpened = 1 WHERE id=?";
@@ -110,6 +157,13 @@ angular.module('wordInAWord.services', [])
       console.log('select composing word data');
       return $cordovaSQLite.execute($rootScope.db, query, [id]);
     },
+    selectComposingWordsInfo: function() {
+      var query = "SELECT COUNT(id) totalWordsCount, " +
+          "(SELECT COUNT(case isOpened when 1 then 1 else null end)) openedWordsCount "+
+          " FROM composing_words";
+      console.log('select composing words info');
+      return $cordovaSQLite.execute($rootScope.db, query);
+    },
     selectCoins: function() {
       var query = "SELECT coins FROM user_settings";
       console.log('select coins');
@@ -117,12 +171,22 @@ angular.module('wordInAWord.services', [])
     },
     updateCoins: function(value) {
       var query = "UPDATE user_settings SET coins=?";
-      console.log('update coins');
+      console.log('update coins with value ' + value);
       return $cordovaSQLite.execute($rootScope.db, query, [value]);
+    },
+    selectAchievements: function() {
+      var query = "SELECT * FROM achievements";
+      console.log('select achievements');
+      return $cordovaSQLite.execute($rootScope.db, query);
+    },
+    openAchievementByIndex: function(index) {
+      var query = "UPDATE achievements SET isEarned = 1 WHERE id=?";
+      console.log('open achievement');
+      return $cordovaSQLite.execute($rootScope.db, query, [index + 1]);
     },
     editData: function() {
       //var query = "CREATE TABLE categories ( id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE, name TEXT NOT NULL UNIQUE, isOpened INTEGER NOT NULL DEFAULT 0 )"
-      //var query = "CREATE TABLE composing_words ( id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE, name TEXT NOT NULL, description TEXT, isOpened INTEGER NOT NULL DEFAULT 0, isDescriptionOpened INTEGER NOT NULL DEFAULT 0, wordId INTEGER NOT NULL, FOREIGN KEY(wordId) REFERENCES words(id) )"
+      //var query = "CREATE TABLE composing_words ( id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE, name TEXT NOT NULL, description TEXT, isOpened INTEGER NOT NULL DEFAULT 0, isComposedByUser INTEGER NOT NULL DEFAULT 0, isDescriptionOpened INTEGER NOT NULL DEFAULT 0, wordId INTEGER NOT NULL, FOREIGN KEY(wordId) REFERENCES words(id) )"
       //var query = "CREATE TABLE words ( id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE, name TEXT NOT NULL UNIQUE, categoryId INTEGER NOT NULL, FOREIGN KEY(categoryId) REFERENCES categories(id) )"
       //var query = "INSERT INTO categories VALUES (1, 'Україна', 1), (2, 'Дерева',0), (3, 'Архітектура', 0)"
       //var query = "insert into words(name, categoryId) values ('українець', 1), ('чорнозем', 1), ('барвінок', 1), ('вишиванка', 1), ('батьківщина', 1), ('горобина', 2), ('черемха', 2), ('модрина', 2), ('жакаранда', 2), ('евкаліпт', 2)";
@@ -135,10 +199,15 @@ angular.module('wordInAWord.services', [])
       //var query = "update composing_words set description = 'test description'"
       //var query = "create table user_settings(coins integer not null)"
       //var query = "insert into user_settings(coins) values (0)"
-      //var query = "update user_settings set coins = 100"
-      //var query = "update composing_words set isOpened = 0, isDescriptionOpened = 0 where wordId = 1";
+      //var query = "update user_settings set coins = 0"
+      //var query = "update composing_words set isOpened = 0, isDescriptionOpened = 0, isComposedByUser = 0 where wordId = 4";
       //var query = "update categories set isOpened = 0 where id = 2 or id = 3"
-      //var query = "drop table composing_words"
+      //var query = "drop table achievements"
+      //var query = "create table achievements(id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE, name TEXT NOT NULL, description TEXT NOT NULL, isEarned INTEGER NOT NULL DEFAULT 0, reward INTEGER NOT NULL DEFAULT 0)"
+      //var query = "insert into achievements(name, description, reward) values ('Блискавична швидкість', 'Складено слово швидше, ніж за секунду', 100), ('Розумник','Складено найдовше слово (не враховуються відкриті слова за монети)', 200), ('Маестро слова', 'Відкрито всі слова з одного слова, в тому числі за монети', 300)"
+      //var query = "insert into achievements(name, description, reward) values ('Першовідкривач', 'Відкрито першу категорію', 400), ('На півшляху', 'Відкрито половину категорій слів', 700), ('Маестро категорії', 'Відкрито всі слова з однієї категорії, в тому числі за монети', 1000)"
+      //var query = "insert into achievements(name, description, reward) values ('500 слів', 'Складено 500 унікальних слів (не враховуються відкриті слова за монети)', 1000)"
+      //var query = "update achievements set isEarned = 0 where id = 1";
       console.log('updating data');
       return $cordovaSQLite.execute($rootScope.db, query);   
     }
