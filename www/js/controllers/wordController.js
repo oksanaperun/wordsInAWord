@@ -171,7 +171,7 @@ angular.module('wordInAWord')
   function manageComposeWordTime() {
     $scope.endComposeWordTime = new Date().getTime();
 
-    if ($scope.endComposeWordTime - $scope.startComposeWordTime < 1000) {
+    if ($scope.endComposeWordTime - $scope.startComposeWordTime < 500) {
       $scope.startComposeWordTime = null;
       AchievementsUtils.manageAchievementByIndex(0);
     }

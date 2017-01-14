@@ -143,8 +143,9 @@ button.coins-button {
 }
 
 .game-info p, .composing-word-info p {	
-	color: #1a3300;
-	text-shadow: -1px 0 #73c35d, 0 1px #cfdc80, 1px 0 #cfdc80, 0 -1px #cfdc80;
+	color: black;
+/*	text-shadow: -1px 0 #73c35d, 0 1px #cfdc80, 1px 0 #cfdc80, 0 -1px #cfdc80;*/
+    text-shadow: 1px 1px#cfdc80;
 }
 
 .prompt-button {

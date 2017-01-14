@@ -25,6 +25,7 @@
           	<h2><i class="icon ion-checkmark-round" ng-show="achievement.isEarned"> </i>{{achievement.name}}</h2>
           	<h3>{{achievement.description}}</h3>
             <h3>Винагорода: {{achievement.reward}} монет</h3>
+            <h3 ng-show="achievement.id==7 && achievement.isEarned==0">Прогрес: {{uniqueOpenedComposingWords.count}}</h3>
         </div>
       </div>
   	</ion-content>

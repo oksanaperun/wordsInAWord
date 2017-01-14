@@ -205,7 +205,7 @@ button.remove-letter-in-composed-word {
     border: none;
     font-size: 16px;
     text-align: center;
-    line-height: 1.4em;
+    line-height: 1.5em;
 }
 
 .composing-word a.activated {
@@ -273,6 +273,10 @@ button.coins-button {
 
 .composing-word-info h1, .composing-word-info button, .composing-word-info p {
 	margin-left: 10px;
+}
+
+.game-info p, .composing-word-info p {	
+	font-weight: bold;
 }
 
 .composing-word-info h1 {
