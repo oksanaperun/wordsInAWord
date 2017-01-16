@@ -3,7 +3,7 @@
 }
 
 .bar-stable.bar-header {
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid #0b812d;
 }
 
 .main-menu, .bar-stable.bar-header, .footer {
@@ -12,17 +12,24 @@
 }
 
 .main-menu .item {
-    border-color: black;
-    color: black;
+    border-color: #0b812d;
+    background: transparent;
 }
 
-.main-menu .item-content, .category.item-stable, .main-content, .achievements .item, .settings {
+.main-menu .item-content, .main-menu .item-content.activated {
+    background-color: rgba(166, 230, 143, 0.5);
+    color: #111;
+    text-shadow: 1px 1px #0b812d;
+}
+
+.category.item-stable, .achievements {
 	background: url('../img/vintage/main_texture.jpg');
 	background-position: center top;
     background-size: 100% auto;
 }
 
-.word-header::before {
+.game-info::before, .main-content::before, .settings::before, .word-header::before,
+.main-menu .list::before {
 	content: "";
 	position: absolute;
 	height: 100%;
@@ -30,22 +37,24 @@
 	top: 0;
     left: 0;
     z-index: -1;
-    background: url('../img/vintage/main_texture.jpg');
+}
+
+.word-header::before {
+	background: url('../img/vintage/main_texture.jpg');
 	background-position: center top;
     background-size: 100% auto;
 }
 
-.game-info, .composing-word-info {
+.game-info::before, .main-content::before, .settings::before, .main-menu .list::before {
+    opacity: 0.4;
     background: url('../img/vintage/decoration.jpg');
-	background-position: center top;  
+	background-position: center top;
+	background-size: auto 100%;
 }
 
-.game-info{
-    background-size: auto 100%;
-}
-
-.composing-word-info {
+.main-menu .list::before {
 	background-size: 100% auto;
+	opacity: 0.7;
 }
 
 .border-decoration {
@@ -62,11 +71,11 @@
 
 .category.item-stable {
     color: black;
-    font-weight: bold;
+    text-shadow: 1px 1px #13702e;
 }
 
 .category .category-icon {
-	border: 2px solid black;
+	border: 2px solid #13702e;
 }
 
 .category p, .opened-words-description p {
@@ -79,18 +88,20 @@
 }
 
 .category-word {
-	border-color: black;
+	border-color: #13702e;
 }
 
 .category-word .item-content {
     background-image: url('../img/vintage/secondary_texture.jpg');
 	background-size: 100% auto;
 	color: white;
+	text-shadow: 1px 1px #13702e;
 }
 
 .category-word p {
 	color: black;
 	font-weight: bold;
+	text-shadow: 1px 1px #13702e;
 }
 
 button.word-name-button {
@@ -98,7 +109,8 @@ button.word-name-button {
 	background-image: url('../img/vintage/letter_decoration.jpg');
 	background-position: center top;
     background-size: 100% auto;
-    color: black;
+	color: black;
+    text-shadow: -1px 0 #73c35d, 0 1px #cfdc80, 1px 0 #cfdc80, 0 -1px #cfdc80;
 }
 
 input.composed-word {
@@ -119,16 +131,6 @@ input.composed-word {
 	color: black;
 }
 
-.add-coins span, .add-coins .opened-word {
-    color: #0ae10a;
-    text-shadow: 2px 1px #008000;
-}
-
-.already-opened-word, .not-enough-coins {
-    color: orangered;
-    text-shadow: 1px 1px #7d450d;
-}
-
 button.coins-button {
 	color: white;
 }
@@ -144,16 +146,15 @@ button.coins-button {
 
 .game-info p, .composing-word-info p {	
 	color: black;
-/*	text-shadow: -1px 0 #73c35d, 0 1px #cfdc80, 1px 0 #cfdc80, 0 -1px #cfdc80;*/
     text-shadow: 1px 1px#cfdc80;
 }
 
 .prompt-button {
-	background-color: rgba(248, 235, 177, 0.8);
+	background-color: rgba(237, 224, 171, 0.5);
 }
 
 .open-word-button {
-	background-color: rgba(36, 150, 5, 0.54);
+	background-color: rgba(36, 150, 5, 0.5);
 }
 
 .achievements {
@@ -192,6 +193,8 @@ button.coins-button {
 
 .popup-head {
 	background-image: url(../img/vintage/secondary_texture.jpg);
+	background-size: 100% auto;
+    background-position: center top;
 }
 
 .popup-body h4, h5 {
@@ -203,4 +206,27 @@ button.coins-button {
     background-size: 100% auto;
     color: black;
     border-color: black;
+}
+
+.settings span, .settings .radio-icon, .settings h3 {
+    color: #111;
+    text-shadow: 1px 1px #0b812d;
+}
+
+.settings .item {
+	border-color: #3a7a2a;
+}
+
+.sounds-mode, .radio-content .item-content {
+	background-color: rgba(166, 230, 143, 0.5) !important;
+}
+
+.toggle input:checked + .track {
+	border-color: #3a7a2a !important;
+    background-color: #41892f !important;
+}
+
+.toggle .track {
+	background-color: rgba(58, 122, 42, 0.5);
+	border-color: #41892f;
 }

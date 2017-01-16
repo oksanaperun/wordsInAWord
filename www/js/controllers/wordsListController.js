@@ -13,7 +13,7 @@ angular.module('wordInAWord')
   }
 
   function loadAndManageData() {
-    switchStyle();
+    manageSettings();
     getCoins();
     getCategories();
     getWordsList();
@@ -21,16 +21,13 @@ angular.module('wordInAWord')
     openCategoryIfNeeded();
   }
 
-  function switchStyle() {
-    var styleElements = document.getElementsByTagName('link');
-
-    for (var i = 0; i < styleElements.length; i++) {
-      if (styleElements[i].title == 'theme') {
-          console.log('Change theme');
-          styleElements[i].href = 'css/vintage.css';
-      }
-    }
-
+  function manageSettings() {
+    WordDatabase.selectSettings().then(function(res) {
+        $rootScope.settings = res.rows.item(0);
+        Utilities.changeTheme($rootScope.settings.theme);
+      }, function(err) {
+        console.error(err);
+    });
   }
 
   function getCategories() {

@@ -1,10 +1,4 @@
 @font-face {
-    font-family: 'Ubuntu';
-    src: url('../fonts/Ubuntu-Regular.ttf') format('truetype');
-    font-weight: normal;
-}
-
-@font-face {
     font-family: 'Andika';
     src: url('../fonts/Andika-R.ttf') format('truetype');
     font-weight: normal;
@@ -14,7 +8,9 @@
 button.word-name-button, input.composed-word, .composing-words-list .list, 
 .add-coins, .already-opened-word,
 .composing-word-info h1, .composing-word-info button, .composing-word-info p,
-.achievements h2, .achievements h3, .achievements p, .popup-container .popup {
+.achievements h2, .achievements h3, .achievements p, .popup-container .popup,
+.settings span, .settings h3,
+.game-info p {
 	font-family: 'Andika';
 }
 
@@ -78,6 +74,7 @@ button.word-name-button, input.composed-word, .composing-words-list .list,
 
 .category.item-stable {
 	padding: 0px;
+	font-weight: bold;
 }
 
 .category h1 {
@@ -139,7 +136,7 @@ button.word-name-button {
 }
 
 .word-name-button-disabled {
-	opacity: .5;
+	opacity: 0.5;
 }
 
 .composed-word-controls {
@@ -216,6 +213,16 @@ button.remove-letter-in-composed-word {
 	padding: 5px;
 	padding-right: 0px;
 	background-color: transparent;
+}
+
+.add-coins span, .add-coins .opened-word {
+    color: #0ae10a;
+    text-shadow: 2px 1px #008000;
+}
+
+.already-opened-word, .not-enough-coins {
+    color: orangered;
+    text-shadow: 1px 1px #7d450d;
 }
 
 .add-coins, .already-opened-word, .not-enough-coins {
@@ -295,6 +302,10 @@ p.composing-word-description {
 	white-space: pre-line;
 }
 
+.prompt-button, .open-word-button {
+	width: 110px;
+}
+
 @media (min-width: 320px) {
 	.category h1 {
 		font-size: 27px;
@@ -328,7 +339,7 @@ p.composing-word-description {
 	}
 
 	.category p {
-		font-size: 16px;
+		font-size: 15px;
 	}
 
 	.composing-word {
@@ -350,7 +361,7 @@ p.composing-word-description {
 	}
 
 	.category p {
-	font-size: 18px;
+	font-size: 16px;
 	}
 
 	.category-icon {
@@ -376,7 +387,7 @@ p.composing-word-description {
 	}
 
 	.category p {
-	font-size: 19px;
+	font-size: 18px;
 	}
 
   	.composing-word {
@@ -414,6 +425,10 @@ p.composing-word-description {
     50% { -webkit-transform: translate3d(0, 50%, 0); opacity: 0.5; }
     80% { -webkit-transform: translate3d(0, 80%, 0); opacity: 0.2; } 
     100% { -webkit-transform: translate3d(0, 100%, 0); opacity: 0;} 
+}
+
+.achievements .item {
+	background: transparent;
 }
 
 .achievements-header {
@@ -492,4 +507,23 @@ p.composing-word-description {
 .popup button.button-positive, .popup button.button-positive.activated {
 	border-radius: 10px;
     font-weight: bold;
+}
+
+.settings span {
+	font-weight: bold;
+    font-size: large;
+}
+
+.settings h3 {
+	text-align: center;
+    font-weight: bold;
+    font-size: xx-large;
+}
+
+.item-radio {
+	background: transparent;
+}
+
+.toggle input:checked + .track .handle, .toggle-small .toggle-calm input:checked + .track .handle {
+	background-color: #fff;
 }

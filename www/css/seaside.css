@@ -1,0 +1,236 @@
+.bar-stable.bar-header .button, .bar-stable.bar-header .title {
+	color: black;
+}
+
+.bar-stable.bar-header {
+    border-bottom: 1px solid #795104;
+}
+
+.main-menu, .bar-stable.bar-header, .footer {
+	background-image: url('../img/seaside/secondary_texture.jpg');
+	background-size: 100% auto;
+}
+
+.main-menu .item {
+    border-color: #795104;
+    background: transparent;
+}
+
+.achievements {
+	background-color: #74cee8;
+    background-image: url(../img/seaside/main_texture.jpg);
+    background-position: center top;
+    background-size: auto 100%;
+}
+
+.main-menu .item-content, .main-menu .item-content.activated {
+	background-color: rgba(234, 209, 148, 0.5);
+    color: #111;
+    text-shadow: 1px 1px #ab7d58;
+}
+
+.category.item-stable {
+	background: url('../img/seaside/main_texture.jpg');
+	background-position: center top;
+    background-size: 100% auto;
+}
+
+.game-info::before, .main-content::before, .settings::before, .word-header::before,
+.main-menu .list::before {
+	content: "";
+	position: absolute;
+	height: 100%;
+	width: 100%;
+	top: 0;
+    left: 0;
+    z-index: -1;
+}
+
+.word-header {
+	background: url('../img/seaside/main_texture.jpg');
+	background-position: center top;
+    background-size: auto 100%;
+}
+
+.word-header::before, .game-info::before, .main-content::before, .settings::before, .main-menu .list::before {
+    opacity: 0.4;
+    background: url('../img/seaside/decoration.jpg');
+	background-position: center top;
+	background-size: auto 100%;
+}
+
+.main-menu .list::before {
+	background-size: 100% auto;
+	opacity: 0.8;
+}
+
+.border-decoration {
+	background-image: url('../img/seaside/border_decoration.jpg');
+	background-size: auto 100%;
+}
+
+.categories-list  {
+	background: linear-gradient(#b1e3ea, #ddd3b3, #b1e3ea);
+}
+
+.categories-list p {
+	color: black;
+}
+
+.category.item-stable {
+    color: black;
+	text-shadow: 1px 1px #795104;
+}
+
+.category .category-icon {
+	border: 2px solid #795104;
+}
+
+.category p, .opened-words-description p {
+    color: #111;
+    text-shadow: -1px 0 #c07865, 0 1px #c98b36, 1px 0 #c98b36, 0 -1px #c98b36;
+}
+
+.category p span {
+	color: red;
+}
+
+.category-word {
+	border-color: #795104;
+}
+
+.category-word .item-content {
+    background-image: url('../img/seaside/secondary_texture.jpg');
+	background-size: 100% auto;
+	color: white;
+	text-shadow: 1px 1px #795104;
+}
+
+.category-word p {
+	color: black;
+	font-weight: bold;
+}
+
+button.word-name-button {
+	border-color: #cd9f5d;
+	background-image: url('../img/seaside/letter_decoration.jpg');
+	background-position: center top;
+    background-size: auto 100%;
+    color: #111;
+    text-shadow: -1px 0 #c07865, 0 1px #c98b36, 1px 0 #c98b36, 0 -1px #c98b36;
+    background-color: transparent;
+}
+
+input.composed-word {
+	color: black !important;
+	border-color: #b2a485;
+    background-color: rgba(131, 222, 255, 0.5);
+}
+
+.clear-composed-word, .remove-letter-in-composed-word {
+	background-color: #fcf9ed;
+}
+
+.composing-words {
+	background: linear-gradient(rgba(244, 227, 179, 0.5), rgb(244, 232, 199), rgba(229, 217, 182, 0.5));
+}
+
+.composing-word {
+	color: black;
+}
+
+button.coins-button {
+	color: black;
+}
+
+.composing-word-info h1 {
+	color: black;
+}
+
+.composing-word-info button {
+    border-color: black;
+    color: black;
+}
+
+.prompt-button {
+	background-color: rgba(237, 224, 171, 0.5);
+}
+
+.open-word-button {
+	background-color: rgba(179, 89, 208, 0.5);
+}
+
+.achievements .item {
+	border-color: black;
+}
+
+.progress {
+    border: 2px solid black;
+}
+
+.progress p {
+    color: #5a220f;
+}
+
+.progress-bar {
+	border: 1px solid #5a220f;
+	background-color: rgba(234, 209, 148, 0.5);
+}
+
+.progress-indicator {
+	background-color: #5a220f;
+}
+
+.popup-container .popup {
+	background-color: rgb(255, 254, 224);
+}
+
+.popup-head h3 {
+	color: black;
+}
+
+.popup-head {
+	background-image: url(../img/seaside/secondary_texture.jpg);
+	background-size: 100% auto;
+    background-position: center top;
+}
+
+.popup-body h4, h5 {
+	color: #ff3300;
+}
+
+.popup button.button-positive, .popup button.button-positive.activated {
+    color: black;
+    border-color: black;
+    background-color: #8ae5ff;
+}
+
+.game-info p, .composing-word-info p,
+.settings span, .settings .radio-icon {
+    color: #111;
+    text-shadow: 1px 1px #ab7d58;
+}
+
+.settings h3 {
+    color: #111;
+    text-shadow: 1px 1px #ab7d58;
+}
+
+.settings .item {
+	border-color: #5a220f;
+}
+
+.sounds-mode, .radio-content .item-content {
+	background-color: rgba(234, 209, 148, 0.5) !important;
+
+}
+
+.toggle input:checked + .track {
+    border-color: #68312c !important;
+    background-color: #99463c !important;
+}
+
+.toggle .track {
+	background-color: rgba(217, 157, 149, 0.5);
+	border-color: #68312c;
+}

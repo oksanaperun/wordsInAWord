@@ -7,7 +7,7 @@ angular.module('wordInAWord')
 
     getComposingWordData();
 
-     if (window.cordova) {
+     if (window.cordova && $rootScope.settings.sounds) {
       $cordovaNativeAudio.preloadSimple('error', 'sounds/error.wav');
       $cordovaNativeAudio.preloadSimple('bonus', 'sounds/bonus.wav');
     }

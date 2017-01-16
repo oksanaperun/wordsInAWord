@@ -46,7 +46,8 @@ angular.module('wordInAWord', ['ionic', 'wordInAWord.controllers', 'wordInAWord.
       url: '/settings',
       views: {
         'menuContent': {
-          templateUrl: 'templates/settings.html'
+          templateUrl: 'templates/settings.html',
+          controller: 'SettingsCtrl'
         }
       }
   })

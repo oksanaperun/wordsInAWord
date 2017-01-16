@@ -7,7 +7,7 @@ angular.module('wordInAWord')
       manageUniqueOpenedComposingWords();
     }
 
-    if (window.cordova) {
+    if (window.cordova && $rootScope.settings.sounds) {
       $cordovaNativeAudio.preloadSimple('success', 'sounds/success.mp3');
       $cordovaNativeAudio.preloadSimple('cancel', 'sounds/cancel.wav');
       $cordovaNativeAudio.preloadSimple('bonus', 'sounds/bonus.wav');

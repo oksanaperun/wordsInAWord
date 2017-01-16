@@ -25,7 +25,7 @@
             {{word.name}}
             <p>{{word.openedComposingWords}} з {{word.totalComposingWords}}</p>
           </ion-item>
-          <div class="border-decoration"></div>
+          <div class="border-decoration" ng-show="isCategoryShown(category)"></div>
         </div>
       </ion-list>
 

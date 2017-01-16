@@ -68,8 +68,20 @@ angular.module('wordInAWord.services', [])
         }); 
       },
       playSound: function(sound) {
-        $cordovaNativeAudio.play(sound);
+        if ($rootScope.settings && $rootScope.settings.sounds) {
+          $cordovaNativeAudio.play(sound);
+        }
+      },
+      changeTheme: function(theme) {
+        var styleElements = document.getElementsByTagName('link');
+
+        for (var i = 0; i < styleElements.length; i++) {
+          if (styleElements[i].title == 'theme') {
+            console.log('Change theme');
+            styleElements[i].href = 'css/' + theme + '.css';
+          }
       }
+    }
   };
 })
 
@@ -186,6 +198,21 @@ angular.module('wordInAWord.services', [])
       console.log('open achievement');
       return $cordovaSQLite.execute($rootScope.db, query, [index + 1]);
     },
+    selectSettings: function() {
+      var query = "SELECT sounds, theme FROM user_settings";
+      console.log('select user_settings');
+      return $cordovaSQLite.execute($rootScope.db, query);
+    },
+    updateSounds: function(isSoundsOn) {
+      var query = "UPDATE user_settings SET sounds = ?";
+      console.log('update user_settings sounds');
+      return $cordovaSQLite.execute($rootScope.db, query, [isSoundsOn]);
+    },
+    updateTheme: function(theme) {
+      var query = "UPDATE user_settings SET theme = ?";
+      console.log('update user_settings theme');
+      return $cordovaSQLite.execute($rootScope.db, query, [theme]);
+    },
     editData: function() {
       //var query = "CREATE TABLE categories ( id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE, name TEXT NOT NULL UNIQUE, isOpened INTEGER NOT NULL DEFAULT 0 )"
       //var query = "CREATE TABLE composing_words ( id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE, name TEXT NOT NULL, isOpened INTEGER NOT NULL DEFAULT 0, isComposedByUser INTEGER NOT NULL DEFAULT 0, isDescriptionOpened INTEGER NOT NULL DEFAULT 0, wordId INTEGER NOT NULL, FOREIGN KEY(wordId) REFERENCES words(id) )"
@@ -203,12 +230,12 @@ angular.module('wordInAWord.services', [])
       //var query = "insert into words_descriptions (name) values ('акин'), ('вика'), ('вина'), ('вишивка'), ('вишина'), ('вишка'), ('вишник'), ('вшивка'), ('канва')"
       //var query = "insert into words_descriptions (name) values ('абак'), ('абат'), ('акант'), ('акт'), ('ангоб'), ('аргон'), ('багно'), ('багор')"
       //var query = "update words_descriptions set description = 'Одиниця виміру земельної площі в Англії і Північній Америці; дорівнює 4047 м2' where name = 'акр'"
-      //var query = "create table user_settings(coins integer not null)"
-      //var query = "insert into user_settings(coins) values (0)"
+      //var query = "create table user_settings(coins integer not null, sounds integer not null, theme text not null)"
+      //var query = "insert into user_settings(coins, sounds, theme) values (0, 1, 'vintage')"
       //var query = "update user_settings set coins = 0"
       //var query = "update composing_words set isOpened = 0, isDescriptionOpened = 0, isComposedByUser = 0 where id = 4";
       //var query = "update categories set isOpened = 0 where id = 2 or id = 3"
-      //var query = "drop table composing_words"
+      //var query = "drop table user_settings"
       //var query = "create table achievements(id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE, name TEXT NOT NULL, description TEXT NOT NULL, isEarned INTEGER NOT NULL DEFAULT 0, reward INTEGER NOT NULL DEFAULT 0)"
       //var query = "insert into achievements(name, description, reward) values ('Блискавична швидкість', 'Складено слово швидше, ніж за півсекунди', 100), ('Розумник','Складено найдовше слово (не враховуються відкриті слова за монети)', 200), ('Маестро слова', 'Відкрито всі слова з одного слова, в тому числі за монети', 300)"
       //var query = "insert into achievements(name, description, reward) values ('Першовідкривач', 'Відкрито першу категорію', 400), ('На півшляху', 'Відкрито половину категорій слів', 700), ('Маестро категорії', 'Відкрито всі слова з однієї категорії, в тому числі за монети', 1000)"
