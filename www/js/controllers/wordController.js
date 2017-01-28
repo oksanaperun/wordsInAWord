@@ -65,7 +65,7 @@ angular.module('wordInAWord')
     WordDatabase.selectUniqueOpenedComposingWordsCount().then(function(res) {
         $scope.uniqueOpenedComposingWords = res.rows.item(0);
 
-        if ($scope.uniqueOpenedComposingWords.count == 500) {
+        if ($scope.uniqueOpenedComposingWords.count == 700) {
             AchievementsUtils.manageAchievementByIndex(6);
         }
       }, function(err) {
