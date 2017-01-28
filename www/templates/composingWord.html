@@ -10,14 +10,14 @@
                     ng-click="openDescription()">
                 Підказати
             </button>
-            <p ng-show="!composingWord.isDescriptionOpened">Підказка коштує {{promptPrice}} монет</p>
+            <p class="button-info" ng-show="!composingWord.isDescriptionOpened">Підказка коштує {{promptPrice}} монет</p>
             <p class="composing-word-description" ng-bind-html="displayDescription() | unsafe"></p>
             <button class="open-word-button" 
                     ng-show="!composingWord.isOpened"
     		        ng-click="openComposedWord()">
     	       Відкрити
             </button>
-            <p ng-show="!composingWord.isOpened">Відкриття слова коштує {{composingWordPrice}} монет</p>
+            <p class="button-info" ng-show="!composingWord.isOpened">Відкриття слова коштує {{composingWordPrice}} монет</p>
         </div>
     </ion-content>
 

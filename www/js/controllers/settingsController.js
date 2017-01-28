@@ -4,6 +4,8 @@ angular.module('wordInAWord')
   $scope.themes = [{
     code: 'vintage', name: 'Вінтаж'
   }, {
+    code: 'space', name: 'Космос'
+  }, {
     code: 'seaside', name: 'Пляж'
   }];
   $scope.selectedTheme = $rootScope.settings.theme;

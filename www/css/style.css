@@ -24,6 +24,15 @@ button.word-name-button, input.composed-word, .composing-words-list .list,
 	text-align: center;
 }
 
+.loading-container .loading {
+	padding: 0px;
+	padding-top: 50%;
+    border-radius: 0px;
+	width: 100%;
+    height: 100%;
+    font-size: 36px;
+}
+
 .word-header {
 	margin-top: 44px;
     display: flex;
@@ -202,7 +211,7 @@ button.remove-letter-in-composed-word {
     border: none;
     font-size: 16px;
     text-align: center;
-    line-height: 1.5em;
+    line-height: 1.7em;
 }
 
 .composing-word a.activated {
@@ -284,17 +293,23 @@ button.coins-button {
 
 .game-info p, .composing-word-info p {	
 	font-weight: bold;
+	margin-top: 5px;
 }
 
 .composing-word-info h1 {
 	margin-top: 10px;
-	margin-bottom: 20px;
 }
 
 .composing-word-info button {
 	border-radius: 10px;
     font-size: 18px; 
     margin-left: 10px;
+    margin-top: 15px;
+    font-weight: bold;
+}
+
+.button-info {
+	font-size: 16px;
 }
 
 p.composing-word-description {
@@ -320,7 +335,7 @@ p.composing-word-description {
 		font-size: 16px;
 	}
 
-  	.opened-words-description p, .composing-word-info p, .composing-word-info button   {
+  	.opened-words-description p, p.composing-word-description, .composing-word-info button   {
     	font-size: 18px;
   	}
 
@@ -335,7 +350,7 @@ p.composing-word-description {
 	}
 
 	.category h1 {
-		font-size: 32px;
+		font-size: 31px;
 	}
 
 	.category p {
@@ -376,7 +391,7 @@ p.composing-word-description {
     font-size: 18px;
 	}
 
-	.composing-word-info p.composing-word-description, .composing-word-info button {
+	p.composing-word-description, .composing-word-info button {
     font-size: 22px; 
 	}
 }
@@ -485,11 +500,17 @@ p.composing-word-description {
 .popup-head {
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
+    border-bottom: 1px solid black;
 }
 
 .popup-body {
+	padding: 0px;
+}
+
+.popup-body .achievement-popup {
 	background-image: url(../img/fireworks.png);
 	background-size: 100% auto;
+	padding: 10px;
 }
 
 .popup-body h5 {
@@ -504,9 +525,10 @@ p.composing-word-description {
 	padding-top: 0px;
 }
 
-.popup button.button-positive, .popup button.button-positive.activated {
+.popup button.button-default, .popup button.button-positive, .popup button.button-positive.activated {
 	border-radius: 10px;
     font-weight: bold;
+    font-size: 20px
 }
 
 .settings span {

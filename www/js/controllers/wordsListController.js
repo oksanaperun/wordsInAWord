@@ -1,13 +1,23 @@
 angular.module('wordInAWord')
 
-.controller('WordsListCtrl', function($ionicPlatform, $scope, $rootScope, $cordovaNativeAudio, WordDatabase, Utilities, AchievementsUtils) {
+.controller('WordsListCtrl', function($ionicPlatform, $ionicLoading, $scope, $rootScope, $cordovaNativeAudio, WordDatabase, Utilities, AchievementsUtils) {
   if (window.cordova) {
+    $ionicLoading.show({
+      template: 'Зачекайте...',
+      noBackdrop: true,
+      delay: 0
+    });
     document.addEventListener('deviceready', function() {
       loadAndManageData();
       $cordovaNativeAudio.preloadSimple('bonus', 'sounds/bonus.wav');
     });
   } else {
-      $ionicPlatform.ready(function () {
+    $ionicLoading.show({
+        template: 'Зачекайте...',
+        noBackdrop: true,
+        delay: 0
+    });
+    $ionicPlatform.ready(function () {
       loadAndManageData();
     });
   }
@@ -49,6 +59,7 @@ angular.module('wordInAWord')
           $scope.wordsList.push(res.rows.item(i));
 
         getCategoriesToDisplayWithWordsList();
+        $ionicLoading.hide();
       }, function(err) {
         console.error(err);
     });
@@ -216,5 +227,13 @@ angular.module('wordInAWord')
 
   $scope.showAlert = function() {
       Utilities.showAchievementPopupByIndex(0);
+  }
+
+  $scope.showHiddenAchievement = function() {
+      Utilities.showHiddenAchievementPopup('Ви - переможець! Всі можливі слова у грі складено! Дякуємо за Вашу наполегливість! Бажаємо успіхів!');
+  }
+
+  $scope.showConfirm = function() {
+      Utilities.showConfirmExitPopup();
   }
 });

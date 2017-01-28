@@ -46,7 +46,7 @@ angular.module('wordInAWord.services', [])
         });
       },
       showAchievementPopupByIndex: function(index) {
-        var popupBody = '<div>' +
+        var popupBody = '<div class="achievement-popup">' +
             '<p>Ви здобули винагороду</p>' + 
             '<h5>' + $rootScope.achievements[index].reward + ' монет</h5>' +
             '<p>за досягнення</p>' +
@@ -54,6 +54,18 @@ angular.module('wordInAWord.services', [])
             '</div>',
             achievementPopup = $ionicPopup.alert({
            title: 'ДОСЯГНЕННЯ',
+           template: popupBody
+        });
+
+        achievementPopup.then(function(res) {  
+        });
+      },
+      showHiddenAchievementPopup: function(description) {
+        var popupBody = '<div class="achievement-popup">' +
+            '<h3>' + description + '</h3>' +
+            '</div>',
+            achievementPopup = $ionicPopup.alert({
+           title: 'ВІТАННЯ!',
            template: popupBody
         });
 
@@ -80,8 +92,30 @@ angular.module('wordInAWord.services', [])
             console.log('Change theme');
             styleElements[i].href = 'css/' + theme + '.css';
           }
+        }
+      },
+      showConfirmExitPopup: function() {
+        var popupBody = '<div class="confirm-exit-popup">' +
+            '<h4>Ви дійсно бажаєте вийти з гри?</h4>' + 
+            '</div>',
+            confirmLeavePopup = $ionicPopup.confirm({
+              title: 'ВИХІД',
+              template: popupBody,
+              buttons: [
+                { text: 'Ні' },
+                {
+                  text: '<b>Так</b>',
+                  type: 'button-positive',
+                  onTap: function(e) {
+                    console.log('Yes button clicked ' + e);
+                }
+              }
+              ]
+          });
+
+        confirmLeavePopup.then(function(res) {  
+        });
       }
-    }
   };
 })
 

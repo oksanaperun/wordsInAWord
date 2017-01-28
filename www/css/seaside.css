@@ -187,6 +187,7 @@ button.coins-button {
 
 .popup-head h3 {
 	color: black;
+
 }
 
 .popup-head {
@@ -202,7 +203,8 @@ button.coins-button {
 .popup button.button-positive, .popup button.button-positive.activated {
     color: black;
     border-color: black;
-    background-color: #8ae5ff;
+    background-image: url(../img/seaside/secondary_texture.jpg);
+    background-size: 100% auto;
 }
 
 .game-info p, .composing-word-info p,
