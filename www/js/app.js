@@ -6,7 +6,7 @@
 // 'starter.controllers' is found in controllers.js
 angular.module('wordInAWord', ['ionic', 'wordInAWord.controllers', 'wordInAWord.services', 'ngCordova'])
 
-.run(function($ionicPlatform, $cordovaSQLite, $rootScope, WordDatabase) {
+.run(function($ionicPlatform, $ionicHistory, $cordovaSQLite, $rootScope, WordDatabase, Utilities) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -21,6 +21,15 @@ angular.module('wordInAWord', ['ionic', 'wordInAWord.controllers', 'wordInAWord.
 
     WordDatabase.initDatabase();
    });
+
+   $ionicPlatform.registerBackButtonAction(function(e) {
+      if (!$ionicHistory.backView()) {
+        e.preventDefault();
+        Utilities.showConfirmExitPopup();
+      } else {
+        $ionicHistory.goBack();
+      }
+  }, 1000);   
 })
 
 .config(function($stateProvider, $urlRouterProvider) {

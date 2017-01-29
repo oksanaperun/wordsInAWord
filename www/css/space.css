@@ -211,8 +211,10 @@ button.coins-button {
     background-image: url(../img/space/border_decoration.jpg);
     background-size: auto 100%;
     background-position: center;
-    color: black;
-    border-color: black;
+}
+
+.popup button.button-default {
+	background-color: #8aacef;
 }
 
 .settings span, .settings .radio-icon, .settings h3 {

@@ -104,10 +104,10 @@ angular.module('wordInAWord.services', [])
               buttons: [
                 { text: 'Ні' },
                 {
-                  text: '<b>Так</b>',
+                  text: 'Так',
                   type: 'button-positive',
                   onTap: function(e) {
-                    console.log('Yes button clicked ' + e);
+                    ionic.Platform.exitApp();
                 }
               }
               ]

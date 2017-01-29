@@ -10,7 +10,7 @@ button.word-name-button, input.composed-word, .composing-words-list .list,
 .composing-word-info h1, .composing-word-info button, .composing-word-info p,
 .achievements h2, .achievements h3, .achievements p, .popup-container .popup,
 .settings span, .settings h3,
-.game-info p {
+.game-info p, .popup button {
 	font-family: 'Andika';
 }
 
@@ -528,7 +528,13 @@ p.composing-word-description {
 .popup button.button-default, .popup button.button-positive, .popup button.button-positive.activated {
 	border-radius: 10px;
     font-weight: bold;
-    font-size: 20px
+    font-size: 20px;
+    color: black;
+    border-color: black;
+}
+
+.popup-body .confirm-exit-popup h4 {
+	color: black;
 }
 
 .settings span {
