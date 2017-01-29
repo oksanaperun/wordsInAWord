@@ -215,10 +215,17 @@ angular.module('wordInAWord')
     WordDatabase.openComposingWordById(id, 1).then(function(res) {
         $scope.word.composingWords[index].isOpened = 1;
         $rootScope.allOpenedWordsCount ++;
-        Utilities.setOpenedComposingWordsCount($scope.word.id, $scope.word.categoryId, $scope.getOpenWordsCount());
+        Utilities.setOpenedComposingWordsCount($scope.word.id, $scope.word.categoryId, $scope.getOpenedWordsCount());
         
         if (!$rootScope.achievements[6].isEarned) {
           manageUniqueOpenedComposingWords();
+        }
+
+        if ($rootScope.totalComposingWordsCount == $rootScope.allOpenedWordsCount) {
+          if (window.cordova) {
+            Utilities.playSound('bonus');
+          }
+          Utilities.showAllWordsOpenedPopup();
         }
       }, function(err) {
          console.error(err);
@@ -247,7 +254,7 @@ angular.module('wordInAWord')
     return s;
   }
 
-  $scope.getOpenWordsCount = function() {
+  $scope.getOpenedWordsCount = function() {
     var count = 0;
 
     if ($scope.word && $scope.word.composingWords) {
@@ -258,6 +265,16 @@ angular.module('wordInAWord')
     }
 
     return count;
+  }
+
+  $scope.getEndOfOpenedWordsDescription = function() {
+    if ($scope.word && $scope.word.composingWords) {
+      if ($scope.word.composingWords.length.toString().slice(-2) == 11)
+        return 'слів';
+      else if ($scope.word.composingWords.length % 10 == 1)
+        return 'слова';
+      else return 'слів';
+    }
   }
 
   $scope.$on('$ionicView.enter', function() {
@@ -271,7 +288,7 @@ angular.module('wordInAWord')
       for (var i = 0; i < $scope.word.composingWords.length; i++) {
         if ($scope.word.composingWords[i].id == openedWordId) {
           $scope.word.composingWords[i].isOpened = 1;
-          Utilities.setOpenedComposingWordsCount($scope.word.id, $scope.word.categoryId, $scope.getOpenWordsCount());
+          Utilities.setOpenedComposingWordsCount($scope.word.id, $scope.word.categoryId, $scope.getOpenedWordsCount());
         }
       } 
     }

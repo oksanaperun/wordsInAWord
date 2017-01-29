@@ -246,7 +246,7 @@ button.remove-letter-in-composed-word {
 }
 
 .not-enough-coins {
-    top: 45%;
+    top: 50%;
 }
 
 .add-coins span {
@@ -481,7 +481,7 @@ p.composing-word-description {
 }
 
 .progress-bar {
-	width: 75%;
+	width: 72%;
 }
 
 .progress-bar, .progress-indicator {

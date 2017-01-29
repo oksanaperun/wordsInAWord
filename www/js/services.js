@@ -60,9 +60,22 @@ angular.module('wordInAWord.services', [])
         achievementPopup.then(function(res) {  
         });
       },
-      showHiddenAchievementPopup: function(description) {
+      showAllWordsOpenedPopup: function() {
         var popupBody = '<div class="achievement-popup">' +
-            '<h3>' + description + '</h3>' +
+            '<h3>Ви - переможець! Всі можливі слова у грі складено! Дякуємо за Вашу наполегливість! Бажаємо успіхів!</h3>' +
+            '</div>',
+            achievementPopup = $ionicPopup.alert({
+           title: 'ВІТАННЯ!',
+           template: popupBody
+        });
+
+        achievementPopup.then(function(res) {  
+        });
+      },
+      showOpenedCategoryPopup: function(name) {
+        var popupBody = '<div class="achievement-popup">' +
+            '<p>Ви відкрили категорію</p>' +
+            '<h4>«' + name + '»</h4>' +
             '</div>',
             achievementPopup = $ionicPopup.alert({
            title: 'ВІТАННЯ!',

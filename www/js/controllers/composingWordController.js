@@ -10,6 +10,7 @@ angular.module('wordInAWord')
      if (window.cordova && $rootScope.settings.sounds) {
       $cordovaNativeAudio.preloadSimple('error', 'sounds/error.wav');
       $cordovaNativeAudio.preloadSimple('bonus', 'sounds/bonus.wav');
+      $cordovaNativeAudio.preloadSimple('purchase', 'sounds/purchase.wav');
     }
   });
 
@@ -43,6 +44,9 @@ angular.module('wordInAWord')
 
   $scope.openComposedWord = function() {
     if (isEnoughCoinsForOpeningWord()) {
+      if (window.cordova) {
+          Utilities.playSound('purchase');
+      }
       WordDatabase.openComposingWordById($scope.composingWord.id, 0).then(function(res) {
         $scope.composingWord.isOpened = true;
         $scope.composingWord.isDescriptionOpened = true;
@@ -52,6 +56,13 @@ angular.module('wordInAWord')
         manageAchievements();
         Utilities.addToCoins(-$scope.composingWordPrice);
         Utilities.setOpenedWordId($scope.composingWord.id);
+
+        if ($rootScope.totalComposingWordsCount == $rootScope.allOpenedWordsCount) {
+          if (window.cordova) {
+            Utilities.playSound('bonus');
+          }
+          Utilities.showAllWordsOpenedPopup();
+        }
       }, function(err) {
          console.error(err);
       });
@@ -74,13 +85,16 @@ angular.module('wordInAWord')
       AchievementsUtils.manageAchievementByIndex(2);
     }
 
-    if (!$rootScope.achievements[4].isEarned && $rootScope.categoryInfo.totalComposingWordsCount == $rootScope.categoryInfo.openedComposingWordsCount) {
-      AchievementsUtils.manageAchievementByIndex(4);
+    if (!$rootScope.achievements[5].isEarned && $rootScope.categoryInfo.totalComposingWordsCount == $rootScope.categoryInfo.openedComposingWordsCount) {
+      AchievementsUtils.manageAchievementByIndex(5);
     }
   }
 
   $scope.openDescription = function() {
     if (isEnoughCoinsForPrompt()) {
+      if (window.cordova) {
+          Utilities.playSound('purchase');
+      }
       WordDatabase.openComposingWordDescriptionById($scope.composingWord.id).then(function(res) {
         $scope.composingWord.isDescriptionOpened = true;
         Utilities.addToCoins(-$scope.promptPrice);

@@ -28,7 +28,6 @@ angular.module('wordInAWord')
     getCategories();
     getWordsList();
     Utilities.getAchievements();
-    openCategoryIfNeeded();
   }
 
   function manageSettings() {
@@ -52,11 +51,15 @@ angular.module('wordInAWord')
   }
    
   function getWordsList() {
+    $rootScope.totalComposingWordsCount = 0;
+
     WordDatabase.selectWords().then(function(res) {
         $scope.wordsList = [];
 
-        for (var i = 0; i < res.rows.length; i++)
+        for (var i = 0; i < res.rows.length; i++) {
           $scope.wordsList.push(res.rows.item(i));
+          $rootScope.totalComposingWordsCount += $scope.wordsList[i].totalComposingWords;
+        }
 
         getCategoriesToDisplayWithWordsList();
         $ionicLoading.hide();
@@ -86,17 +89,16 @@ angular.module('wordInAWord')
       if (!$scope.categories[i].isOpened) {
         $scope.openedCategoriesCount = i;
         $scope.closedCategoryId = $scope.categories[i].id;
+        $scope.closedCategoryName = $scope.categories[i].name;
         break;
-      }
-
-      var lastCategoryIndex = $scope.categories.length - 1;
-
-      if ($scope.categories[lastCategoryIndex].isOpened) {
-        $scope.openedCategoriesCount = lastCategoryIndex + 1;
+      } else {
+        $scope.openedCategoriesCount = i + 1;
+        $scope.closedCategoryId = 0;
       }
     }
 
     setComposingWordsCount();
+    openCategoryIfNeeded();
   }
 
   function getCoins() {
@@ -169,19 +171,29 @@ angular.module('wordInAWord')
     }
   }
 
-  function openCategoryByIdAndLoadDataAgain(id) {
+  function openCategory(id) {
     WordDatabase.openCategoryById(id).then(function(res) {
-        getCategories();
-        getWordsList();    
+        for (var i = 0; i < $scope.categories.length; i++) {
+          if ($scope.categories[i].id == $scope.closedCategoryId) {
+            $scope.categories[i].isOpened = 1;
+          }
+        }
+        getCategoriesToDisplayWithWordsList();
       }, function(err) {
         console.error(err);
     });
   }
 
   function openCategoryIfNeeded() {
-    if ($scope.remainingComposingWordsCountToOpenCategory <= 0) {
-        openCategoryByIdAndLoadDataAgain($scope.closedCategoryId);
+    if ($scope.remainingComposingWordsCountToOpenCategory <= 0 && $scope.closedCategoryId != 0) {
+        openCategory($scope.closedCategoryId);
         manageAhievements();
+        if ($scope.closedCategoryId != 2 && $scope.closedCategoryId != 10) {
+            if (window.cordova) {
+              Utilities.playSound('bonus');
+            }
+           Utilities.showOpenedCategoryPopup($scope.closedCategoryName);
+        }  
     } 
   }
 
@@ -230,7 +242,7 @@ angular.module('wordInAWord')
   }
 
   $scope.showHiddenAchievement = function() {
-      Utilities.showHiddenAchievementPopup('Ви - переможець! Всі можливі слова у грі складено! Дякуємо за Вашу наполегливість! Бажаємо успіхів!');
+      Utilities.showAllWordsOpenedPopup();
   }
 
   $scope.showConfirm = function() {
