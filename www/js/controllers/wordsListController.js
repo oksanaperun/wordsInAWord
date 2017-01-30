@@ -3,9 +3,8 @@ angular.module('wordInAWord')
 .controller('WordsListCtrl', function($ionicPlatform, $ionicLoading, $scope, $rootScope, $cordovaNativeAudio, WordDatabase, Utilities, AchievementsUtils) {
   if (window.cordova) {
     $ionicLoading.show({
-      template: 'Зачекайте...',
-      noBackdrop: true,
-      delay: 0
+      template: '<ion-spinner icon="bubbles"></ion-spinner>',
+      noBackdrop: true
     });
     document.addEventListener('deviceready', function() {
       loadAndManageData();
@@ -13,9 +12,8 @@ angular.module('wordInAWord')
     });
   } else {
     $ionicLoading.show({
-        template: 'Зачекайте...',
-        noBackdrop: true,
-        delay: 0
+        template: '<ion-spinner icon="bubbles"></ion-spinner>',
+        noBackdrop: true
     });
     $ionicPlatform.ready(function () {
       loadAndManageData();
@@ -45,6 +43,14 @@ angular.module('wordInAWord')
 
         for (var i = 0; i < res.rows.length; i++)
           $scope.categories.push(res.rows.item(i));
+
+        for (var i = 0; i < $scope.categories.length; i++) {
+          if ($scope.categories[i].isOpened === 0) {
+              $scope.firstClosedCategory = $scope.categories[i];
+              $scope.firstClosedCategory.index = i;
+              break;
+          }
+        }
       }, function(err) {
         console.error(err);
     });
@@ -62,15 +68,20 @@ angular.module('wordInAWord')
         }
 
         getCategoriesToDisplayWithWordsList();
+        setRemainingComposingWordsCount();
+        openCategoryIfNeeded();
+        
         $ionicLoading.hide();
       }, function(err) {
         console.error(err);
-    });
+    })
   }
 
   function getCategoriesToDisplayWithWordsList() {
     $scope.categoriesToDisplay = [];
     $rootScope.allOpenedWordsCount = 0;
+    $scope.openedCategoriesCount = 0;
+    $scope.openedCategoriesTotalComposingWordsCount = 0;
 
     for (var i = 0; i < $scope.categories.length; i++) {
       var categoryToDisplay = $scope.categories[i],
@@ -79,26 +90,34 @@ angular.module('wordInAWord')
       for (var j = 0; j < $scope.wordsList.length; j++) {    
         if ($scope.wordsList[j].categoryId == $scope.categories[i].id) {
           wordsList.push($scope.wordsList[j]);
+          $rootScope.totalComposingWordsCount += $scope.wordsList[j].totalComposingWords;
           $rootScope.allOpenedWordsCount += $scope.wordsList[j].openedComposingWords;
+
+          if ($scope.categories[i].isOpened) {
+            $scope.openedCategoriesTotalComposingWordsCount += $scope.wordsList[j].totalComposingWords;
+          }
         }    
+      }
+
+      if ($scope.categories[i].isOpened) {
+        $scope.openedCategoriesCount ++;
       }
 
       categoryToDisplay.wordsList = wordsList;
       $scope.categoriesToDisplay.push(categoryToDisplay);
+    }
+  }
 
-      if (!$scope.categories[i].isOpened) {
-        $scope.openedCategoriesCount = i;
-        $scope.closedCategoryId = $scope.categories[i].id;
-        $scope.closedCategoryName = $scope.categories[i].name;
+  function getFirstClosedCategory() {
+    if ($scope.categoriesToDisplay) {
+    for (var i = 0; i < $scope.categoriesToDisplay.length; i++) {
+      if ($scope.categoriesToDisplay[i].isOpened === 0) {
+        $scope.firstClosedCategory = $scope.categoriesToDisplay[i];
+        $scope.firstClosedCategory.index = i;
         break;
-      } else {
-        $scope.openedCategoriesCount = i + 1;
-        $scope.closedCategoryId = 0;
       }
     }
-
-    setComposingWordsCount();
-    openCategoryIfNeeded();
+    }
   }
 
   function getCoins() {
@@ -110,7 +129,7 @@ angular.module('wordInAWord')
   }
 
   $scope.expandCategory = function(index) {
-    $scope.categories[index].expanded = !$scope.categories[index].expanded;
+    $scope.categoriesToDisplay[index].expanded = !$scope.categoriesToDisplay[index].expanded;
   }
 
   $scope.toggleCategory = function(category) {
@@ -129,7 +148,7 @@ angular.module('wordInAWord')
 
   $scope.$on('$ionicView.enter', function() {
     updateOpenedComposingWordsCount();
-    setComposingWordsCount();
+    setRemainingComposingWordsCount();
     openCategoryIfNeeded();
   });
 
@@ -150,58 +169,44 @@ angular.module('wordInAWord')
     }
   }
 
-  function setComposingWordsCount() {
-    var totalComposingWordsCount = 0,
-      openedComposingWordsCount = 0,
-      composingWordsCountToOpenCategory = 0;
+  function setRemainingComposingWordsCount() {
+    var composingWordsCountToOpenCategory = 0;
 
-    if ($scope.categoriesToDisplay) {
-      for (var i = 0; i < $scope.categoriesToDisplay.length; i++) {
-        if ($scope.categoriesToDisplay[i].isOpened) {
-          for (var j = 0; j < $scope.categoriesToDisplay[i].wordsList.length; j++) {
-            totalComposingWordsCount += $scope.categoriesToDisplay[i].wordsList[j].totalComposingWords;
-            openedComposingWordsCount += $scope.categoriesToDisplay[i].wordsList[j].openedComposingWords;
-          }         
-        }
-      }
+    composingWordsCountToOpenCategory = Math.floor($scope.openedCategoriesTotalComposingWordsCount * 0.5);
 
-    composingWordsCountToOpenCategory = Math.floor(totalComposingWordsCount * 0.5);
-
-    $scope.remainingComposingWordsCountToOpenCategory = composingWordsCountToOpenCategory - openedComposingWordsCount;
-    }
+    $scope.remainingComposingWordsCountToOpenCategory = composingWordsCountToOpenCategory - $rootScope.allOpenedWordsCount;
   }
 
   function openCategory(id) {
     WordDatabase.openCategoryById(id).then(function(res) {
-        for (var i = 0; i < $scope.categories.length; i++) {
-          if ($scope.categories[i].id == $scope.closedCategoryId) {
-            $scope.categories[i].isOpened = 1;
-          }
-        }
+        $scope.categories[$scope.firstClosedCategory.index].isOpened = 1;
+
         getCategoriesToDisplayWithWordsList();
+        getFirstClosedCategory();
+        setRemainingComposingWordsCount();
       }, function(err) {
         console.error(err);
     });
   }
 
   function openCategoryIfNeeded() {
-    if ($scope.remainingComposingWordsCountToOpenCategory <= 0 && $scope.closedCategoryId != 0) {
-        openCategory($scope.closedCategoryId);
+    if ($scope.remainingComposingWordsCountToOpenCategory <= 0 && $scope.firstClosedCategory) {
+        openCategory($scope.firstClosedCategory.id);
         manageAhievements();
-        if ($scope.closedCategoryId != 2 && $scope.closedCategoryId != 10) {
+        if ($scope.firstClosedCategory.id != 2 && $scope.firstClosedCategory.id != 10) {
             if (window.cordova) {
               Utilities.playSound('bonus');
             }
-           Utilities.showOpenedCategoryPopup($scope.closedCategoryName);
+           Utilities.showOpenedCategoryPopup($scope.firstClosedCategory.name);
         }  
     } 
   }
 
   function manageAhievements() {
-    if ($scope.closedCategoryId == 2) {
+    if ($scope.firstClosedCategory.id == 2) {
         AchievementsUtils.manageAchievementByIndex(3);
     }
-    if ($scope.closedCategoryId == 10) {
+    if ($scope.firstClosedCategory.id == 10) {
         AchievementsUtils.manageAchievementByIndex(4);
     }
   }
@@ -227,6 +232,10 @@ angular.module('wordInAWord')
       }
 
       return wordText;
+  }
+
+  $scope.isWindowCordova = function() {
+    return window.cordova;
   }
 
   $scope.editData = function() {

@@ -29,6 +29,10 @@
     text-shadow: 1px 1px #ab7d58;
 }
 
+.categories-list-header {
+	background-color: #8bd9e3;
+}
+
 .category.item-stable {
 	background: url('../img/seaside/main_texture.jpg');
 	background-position: center top;
@@ -69,8 +73,12 @@
 	background-size: auto 100%;
 }
 
-.categories-list  {
+.categories-list .list {
 	background: linear-gradient(#b1e3ea, #ddd3b3, #b1e3ea);
+}
+
+.categories-stats {
+	background-color: #b1e3ea;
 }
 
 .categories-list p {
@@ -201,12 +209,15 @@ button.coins-button {
 }
 
 .popup button.button-positive, .popup button.button-positive.activated {
-    background-image: url(../img/seaside/secondary_texture.jpg);
-    background-size: 100% auto;
+/**//*    background-image: url(../img/seaside/secondary_texture.jpg);
+    background-size: 100% auto;*/
+    /*background-color: #f1d7aa;*/
+    background: linear-gradient(141deg, #f1d5a4 20%, #fff2d0 51%, #f1d5a4 75%);
 }
 
 .popup button.button-default {
-	background-color: #f1d8a2;
+	/*background-color: #fff3b4;*/
+	background: linear-gradient(141deg, #fff2d0 20%, #f1d5a4 51%, #fff2d0 75%);
 }
 
 .game-info p, .composing-word-info p,

@@ -1,10 +1,13 @@
 <ion-view view-title="СЛОВА ЗА КАТЕГОРІЯМИ">
-  <ion-content class="categories-list has-footer">
+  <ion-header-bar ng-if="categoriesToDisplay" class="categories-list-header header">
     <div class="border-decoration"></div>
-    <p><i class="icon ion-stats-bars"></i> Відкритих категорій: {{openedCategoriesCount}}; всього: {{categories.length}}</p>
+  </ion-header-bar>
 
-    <ion-list>
-    <div class="border-decoration"></div>
+  <ion-content class="categories-list has-footer has-header">
+    <p ng-if="categoriesToDisplay" class="categories-stats"><i class="icon ion-stats-bars"></i> Відкритих категорій: {{openedCategoriesCount}}; всього: {{categories.length}}</p>
+
+    <ion-list ng-if="categoriesToDisplay">
+        <div class="border-decoration"></div>
         <div ng-repeat="category in categoriesToDisplay">
           <ion-item class="item-stable category item-thumbnail-right"
                     ng-click="toggleCategory(category)"
@@ -15,7 +18,7 @@
             <i class="icon ion-android-lock" ng-show="!category.isOpened"></i>
             {{category.isOpened ? category.name : '? ? ? ? ?'}}
             </h1>
-            <p ng-show="!category.isOpened">Складіть ще <span>{{remainingComposingWordsCountToOpenCategory}}</span> {{getWordsCountTextByRemainingCount()}}, щоб відкрити категорію</p>
+            <p ng-show="category.id==firstClosedCategory.id">Складіть ще <span>{{remainingComposingWordsCountToOpenCategory}}</span> {{getWordsCountTextByRemainingCount()}}, щоб відкрити категорію</p>
           </ion-item>
           <div class="border-decoration"></div>
           <ion-item class="item-accordion category-word"
@@ -29,13 +32,13 @@
         </div>
       </ion-list>
 
-    <button ng-click="showAlert()">showAlert</button>
-    <button ng-click="showConfirm()">showConfirm</button>
-    <button ng-click="showHiddenAchievement()">showHiddenAch</button>
-    <button ng-click="editData()">Action {{tryCopyDB}}</button>
+    <button ng-if="!isWindowCordova()" ng-click="showAlert()">showAlert</button>
+    <button ng-if="!isWindowCordova()" ng-click="showConfirm()">showConfirm</button>
+    <button ng-if="!isWindowCordova()" ng-click="showHiddenAchievement()">showHiddenAch</button>
+    <button ng-if="!isWindowCordova()" ng-click="editData()">Action {{tryCopyDB}}</button>
   </ion-content>
 
-  <ion-footer-bar class="footer">
+  <ion-footer-bar ng-if="categoriesToDisplay" class="footer">
     <div class="border-decoration"></div>
     <div class="footer-controls">
       <div class="buttons">

@@ -22,6 +22,10 @@
     text-shadow: 1px 1px #0b812d;
 }
 
+.categories-list-header {
+	background-color: rgb(255, 254, 200);
+}
+
 .category.item-stable, .achievements {
 	background: url('../img/vintage/main_texture.jpg');
 	background-position: center top;
@@ -61,8 +65,12 @@
 	background-image: url('../img/vintage/border_decoration.jpg');
 }
 
-.categories-list  {
+.categories-list .list  {
 	background: linear-gradient(rgb(255, 253, 212), #fffee0, rgb(255, 253, 212));
+}
+
+.categories-stats {
+	background-color: rgb(255, 253, 212);
 }
 
 .categories-list p {
@@ -202,12 +210,15 @@ button.coins-button {
 }
 
 .popup button.button-positive, .popup button.button-positive.activated {
-    background-image: url(../img/vintage/main_texture.jpg);
-    background-size: 100% auto;
+/*    background-image: url(../img/vintage/main_texture.jpg);
+    background-size: 100% auto;*/
+    /*background-color: #73bf62;*/
+    background: linear-gradient(141deg, #4a963b 20%, #73bf62 51%, #4a963b 75%);
 }
 
 .popup button.button-default {
-	background-color: #f9f1ab;
+	/*background-color: #a1de8c;*/
+	 background: linear-gradient(141deg, #73bf62 20%, #4a963b 51%, #73bf62 75%);
 }
 
 .settings span, .settings .radio-icon, .settings h3 {

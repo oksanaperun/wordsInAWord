@@ -280,7 +280,7 @@ angular.module('wordInAWord.services', [])
       //var query = "create table user_settings(coins integer not null, sounds integer not null, theme text not null)"
       //var query = "insert into user_settings(coins, sounds, theme) values (0, 1, 'vintage')"
       //var query = "update user_settings set coins = 0"
-      //var query = "update composing_words set isOpened = 0, isDescriptionOpened = 0, isComposedByUser = 0 where id = 4";
+      //var query = "update composing_words set isOpened = 0, isDescriptionOpened = 0, isComposedByUser = 0";
       //var query = "update categories set isOpened = 0 where id = 2 or id = 3"
       //var query = "drop table user_settings"
       //var query = "create table achievements(id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE, name TEXT NOT NULL, description TEXT NOT NULL, isEarned INTEGER NOT NULL DEFAULT 0, reward INTEGER NOT NULL DEFAULT 0)"

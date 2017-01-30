@@ -22,6 +22,10 @@
     text-shadow: 1px 1px #184aad;
 }
 
+.categories-list-header {
+	background-color: rgb(166, 195, 249);
+}
+
 .category.item-stable {
 	background: url('../img/space/main_texture.jpg');
 	background-position: center top;
@@ -62,8 +66,12 @@
 	background-size: 100% auto;
 }
 
-.categories-list  {
+.categories-list .list {
 	background: linear-gradient(rgb(183, 203, 241), rgb(149, 185, 255), rgb(190, 208, 239));
+}
+
+.categories-stats {
+	background-color: rgb(183, 203, 241);
 }
 
 .categories-list p {
@@ -208,13 +216,15 @@ button.coins-button {
 }
 
 .popup button.button-positive, .popup button.button-positive.activated {
-    background-image: url(../img/space/border_decoration.jpg);
+/*    background-image: url(../img/space/border_decoration.jpg);
     background-size: auto 100%;
-    background-position: center;
+    background-position: center;*/
+    background: linear-gradient(141deg, #6b96dc 20%, #97bcf8 51%, #6b96dc 75%);
 }
 
 .popup button.button-default {
-	background-color: #8aacef;
+	/*background-color: #a2c1ff;*/
+	background: linear-gradient(141deg, #97bcf8 0%, #6b96dc 51%, #97bcf8 75%);
 }
 
 .settings span, .settings .radio-icon, .settings h3 {
