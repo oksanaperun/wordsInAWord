@@ -1,251 +1,251 @@
 .bar-stable.bar-header .button, .bar-stable.bar-header .title {
-	color: white;
+  color: white;
 }
 
 .bar-stable.bar-header {
-    border-bottom: 1px solid #0e204f;
+  border-bottom: 1px solid #0e204f;
 }
 
 .main-menu, .bar-stable.bar-header, .footer {
-	background-image: url('../img/space/secondary_texture.jpg');
-	background-size: 100% auto;
+  background-image: url('../img/space/secondary_texture.jpg');
+  background-size: 100% auto;
 }
 
 .main-menu .item {
-    border-color: #0e204f;
-    background: transparent;
+  border-color: #0e204f;
+  background: transparent;
 }
 
 .main-menu .item-content, .main-menu .item-content.activated {
-    background-color: rgba(180, 198, 247, 0.5);
-    color: #111;
-    text-shadow: 1px 1px #184aad;
+  background-color: rgba(180, 198, 247, 0.5);
+  color: #111;
+  text-shadow: 1px 1px #184aad;
 }
 
 .categories-list-header {
-	background-color: rgb(166, 195, 249);
+  background-color: rgb(166, 195, 249);
 }
 
 .category.item-stable {
-	background: url('../img/space/main_texture.jpg');
-	background-position: center top;
-    background-size: 100% auto;
+  background: url('../img/space/main_texture.jpg');
+  background-position: center top;
+  background-size: 100% auto;
 }
 
 .game-info::before, .main-content::before, .settings::before, .word-header::before,
 .main-menu .list::before {
-	content: "";
-	position: absolute;
-	height: 100%;
-	width: 100%;
-	top: 0;
-    left: 0;
-    z-index: -1;
+  content: "";
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: -1;
 }
 
 .word-header::before, .achievements {
-	background: url('../img/space/main_texture.jpg');
-	background-position: center top;
-    background-size: auto 100%;
+  background: url('../img/space/main_texture.jpg');
+  background-position: center top;
+  background-size: auto 100%;
 }
 
 .game-info::before, .main-content::before, .settings::before, .main-menu .list::before {
-    opacity: 0.4;
-    background: url('../img/space/decoration.jpg');
-	background-position: center top;
-	background-size: auto 100%;
+  opacity: 0.4;
+  background: url('../img/space/decoration.jpg');
+  background-position: center top;
+  background-size: auto 100%;
 }
 
 .main-menu .list::before {
-	background-size: 100% auto;
-	opacity: 0.7;
+  background-size: 100% auto;
+  opacity: 0.7;
 }
 
 .border-decoration {
-	background-image: url('../img/space/border_decoration.jpg');
-	background-size: 100% auto;
+  background-image: url('../img/space/border_decoration.jpg');
+  background-size: 100% auto;
 }
 
 .categories-list .list {
-	background: linear-gradient(rgb(183, 203, 241), rgb(149, 185, 255), rgb(190, 208, 239));
+  background: linear-gradient(rgb(183, 203, 241), rgb(149, 185, 255), rgb(190, 208, 239));
 }
 
 .categories-stats {
-	background-color: rgb(183, 203, 241);
+  background-color: rgb(183, 203, 241);
 }
 
 .categories-list p {
-	color: black;
+  color: black;
 }
 
 .category.item-stable {
-    color: black;
-    text-shadow: 1px 1px #184aad;
+  color: black;
+  text-shadow: 1px 1px #184aad;
 }
 
 .category .category-icon {
-	border: 2px solid #0c317a;
+  border: 2px solid #0c317a;
 }
 
 .category p, .opened-words-description p {
-	color: #0c317a;
-    text-shadow: -1px 0 #68929e, 0 1px #44a9c5, 1px 0 #44a9c5, 0 -1px #44a9c5;
+  color: #0c317a;
+  text-shadow: -1px 0 #68929e, 0 1px #44a9c5, 1px 0 #44a9c5, 0 -1px #44a9c5;
 }
 
 .category p span {
-	color: red;
+  color: red;
 }
 
 .category-word {
-	border-color: #0c317a;
+  border-color: #0c317a;
 }
 
 .category-word .item-content {
-    background-image: url('../img/space/secondary_texture.jpg');
-	background-size: 100% auto;
-	color: white;
-	text-shadow: 1px 1px #184aad;
+  background-image: url('../img/space/secondary_texture.jpg');
+  background-size: 100% auto;
+  color: white;
+  text-shadow: 1px 1px #184aad;
 }
 
 .category-word p {
-	color: #12b3f7;
-	font-weight: bold;
-	text-shadow: 1px 1px #184aad;
+  color: #12b3f7;
+  font-weight: bold;
+  text-shadow: 1px 1px #184aad;
 }
 
 button.word-name-button {
-	border-color: black;
-	background-image: url('../img/space/letter_decoration.jpg');
-	background-position: center top;
-    background-size: 100% auto;
-	color: black;
-    text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
+  border-color: black;
+  background-image: url('../img/space/letter_decoration.jpg');
+  background-position: center top;
+  background-size: 100% auto;
+  color: black;
+  text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
 }
 
 input.composed-word {
-	color: black !important;
-	border-color: black;
-    background-color: rgba(138, 209, 243, 0.5);
+  color: black !important;
+  border-color: black;
+  background-color: rgba(138, 209, 243, 0.5);
 }
 
 .clear-composed-word, .remove-letter-in-composed-word {
-	background-color: #fcf9ed;
+  background-color: #fcf9ed;
 }
 
 .composing-words {
-	background: linear-gradient(rgba(138, 209, 243, 0.5), #8cceef, rgba(138, 209, 243, 0.5));
+  background: linear-gradient(rgba(138, 209, 243, 0.5), #8cceef, rgba(138, 209, 243, 0.5));
 }
 
 .composing-word {
-	color: black;
+  color: black;
 }
 
 button.coins-button {
-	color: white;
+  color: white;
 }
 
 .composing-word-info h1 {
-	color: black;
+  color: black;
 }
 
 .composing-word-info button {
-    border-color: black;
-    color: black;
+  border-color: black;
+  color: black;
 }
 
-.game-info p, .composing-word-info p {	
-	color: black;
-    text-shadow: 1px 1px #184aad;
+.game-info p, .composing-word-info p {
+  color: black;
+  text-shadow: 1px 1px #184aad;
 }
 
 .prompt-button {
-	background-color: rgba(255, 246, 216, 0.5);
+  background-color: rgba(255, 246, 216, 0.5);
 }
 
 .open-word-button {
-	background-color: rgba(253, 81, 154, 0.5);
+  background-color: rgba(253, 81, 154, 0.5);
 }
 
 .achievements {
-	background-color: #DFCC90;
+  background-color: #DFCC90;
 
 }
 
 .achievements .item {
-	border-color: black;
+  border-color: black;
 }
 
 .achievements h2, .achievements h3 {
-	color: black;
-	text-shadow: 1px 1px #4690b9;
+  color: black;
+  text-shadow: 1px 1px #4690b9;
 }
 
 .progress {
-    border: 2px solid black;
+  border: 2px solid black;
 }
 
 .progress p {
-    color: #184aad;
+  color: #184aad;
 }
 
 .progress-bar {
-	border: 1px solid #184aad;
-	background-color: rgba(180, 198, 247, 0.5);
+  border: 1px solid #184aad;
+  background-color: rgba(180, 198, 247, 0.5);
 }
 
 .progress-indicator {
-	background-color: #063696;
+  background-color: #063696;
 }
 
 .popup-container .popup {
-	background-color: rgb(207, 223, 252);
+  background-color: rgb(207, 223, 252);
 }
 
 .popup-head h3 {
-	color: white;
+  color: white;
 }
 
 .popup-head {
-	background-image: url(../img/space/secondary_texture.jpg);
-	background-size: 100% auto;
-    background-position: center top;
+  background-image: url(../img/space/secondary_texture.jpg);
+  background-size: 100% auto;
+  background-position: center top;
 }
 
 .popup-body h4, h5 {
-	color: #0331d5;
+  color: #0331d5;
 }
 
 .popup button.button-positive, .popup button.button-positive.activated {
-/*    background-image: url(../img/space/border_decoration.jpg);
-    background-size: auto 100%;
-    background-position: center;*/
-    background: linear-gradient(141deg, #6b96dc 20%, #97bcf8 51%, #6b96dc 75%);
+  /*    background-image: url(../img/space/border_decoration.jpg);
+      background-size: auto 100%;
+      background-position: center;*/
+  background: linear-gradient(141deg, #6b96dc 20%, #97bcf8 51%, #6b96dc 75%);
 }
 
 .popup button.button-default {
-	/*background-color: #a2c1ff;*/
-	background: linear-gradient(141deg, #97bcf8 0%, #6b96dc 51%, #97bcf8 75%);
+  /*background-color: #a2c1ff;*/
+  background: linear-gradient(141deg, #97bcf8 0%, #6b96dc 51%, #97bcf8 75%);
 }
 
 .settings span, .settings .radio-icon, .settings h3 {
-    color: #111;
-    text-shadow: 1px 1px #184aad;
+  color: #111;
+  text-shadow: 1px 1px #184aad;
 }
 
 .settings .item {
-	border-color: #184aad;
+  border-color: #184aad;
 }
 
 .sounds-mode, .radio-content .item-content {
-	background-color: rgba(180, 198, 247, 0.5) !important;
+  background-color: rgba(180, 198, 247, 0.5) !important;
 }
 
 .toggle input:checked + .track {
-	border-color: #184aad !important;
-    background-color: #456cba !important;
+  border-color: #184aad !important;
+  background-color: #456cba !important;
 }
 
 .toggle .track {
-	background-color: rgba(93, 124, 188, 0.5);
-    border-color: #184aad;
+  background-color: rgba(93, 124, 188, 0.5);
+  border-color: #184aad;
 }

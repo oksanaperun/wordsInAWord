@@ -1,36 +1,37 @@
 <ion-view view-title="СЛОВО">
-<div class="not-enough-coins" ng-if="isNotEnoughCoins">Недостатньо монет</div>
+  <div class="not-enough-coins" ng-if="isNotEnoughCoins">Недостатньо монет</div>
 
-    <ion-content class="has-footer main-content">
-        <div class="composing-word-info">
-            <div class="border-decoration"></div>
-            <h1>{{composingWord.isOpened ? composingWord.name : displayNotOpenedComposingWord()}}</h1>
-            <button class="prompt-button" 
-                    ng-show="!composingWord.isDescriptionOpened"
-                    ng-click="openDescription()">
-                Підказати
-            </button>
-            <p class="button-info" ng-show="!composingWord.isDescriptionOpened">Підказка коштує {{promptPrice}} монет</p>
-            <p class="composing-word-description" ng-bind-html="displayDescription() | unsafe"></p>
-            <button class="open-word-button" 
-                    ng-show="!composingWord.isOpened"
-    		        ng-click="openComposedWord()">
-    	       Відкрити
-            </button>
-            <p class="button-info" ng-show="!composingWord.isOpened">Відкриття слова коштує {{composingWordPrice}} монет</p>
-        </div>
-    </ion-content>
+  <ion-content class="has-footer main-content">
+    <div class="composing-word-info">
+      <div class="border-decoration"></div>
+      <h1>{{composingWord.isOpened ? composingWord.name : displayNotOpenedComposingWord()}}</h1>
+      <button class="prompt-button"
+              ng-show="!composingWord.isDescriptionOpened"
+              ng-click="openDescription()">
+        Підказати
+      </button>
+      <p class="button-info" ng-show="!composingWord.isDescriptionOpened">Підказка коштує {{promptPrice}} монет</p>
 
-    <ion-footer-bar class="footer">
-        <div class="border-decoration"></div>
-        <div class="footer-controls">
-            <div class="buttons">
-            </div>
-            <h1 class="title"></h1>
-            <div class="buttons">
-                <button class="coins-button">{{coinsCount}}</button>
-                <img class="coins-image" src="img/gold_coins.png">
-            </div>
-        </div>
-    </ion-footer-bar>
+      <p class="composing-word-description" ng-bind-html="displayDescription() | unsafe"></p>
+      <button class="open-word-button"
+              ng-show="!composingWord.isOpened"
+              ng-click="openComposedWord()">
+        Відкрити
+      </button>
+      <p class="button-info" ng-show="!composingWord.isOpened">Відкриття слова коштує {{composingWordPrice}} монет</p>
+    </div>
+  </ion-content>
+
+  <ion-footer-bar class="footer">
+    <div class="border-decoration"></div>
+    <div class="footer-controls">
+      <div class="buttons">
+      </div>
+      <h1 class="title"></h1>
+      <div class="buttons">
+        <button class="coins-button">{{coinsCount}}</button>
+        <img class="coins-image" src="img/gold_coins.png">
+      </div>
+    </div>
+  </ion-footer-bar>
 </ion-view>

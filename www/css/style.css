@@ -1,286 +1,286 @@
 @font-face {
-    font-family: 'Andika';
-    src: url('../fonts/Andika-R.ttf') format('truetype');
-    font-weight: normal;
+  font-family: 'Andika';
+  src: url('../fonts/Andika-R.ttf') format('truetype');
+  font-weight: normal;
 }
 
 .main-menu .item-content, .categories-list, .category h1, button.coins-button,
-button.word-name-button, input.composed-word, .composing-words-list .list, 
+button.word-name-button, input.composed-word, .composing-words-list .list,
 .add-coins, .already-opened-word,
 .composing-word-info h1, .composing-word-info button, .composing-word-info p,
 .achievements h2, .achievements h3, .achievements p, .popup-container .popup,
 .settings span, .settings h3,
 .game-info p, .popup button {
-	font-family: 'Andika';
+  font-family: 'Andika';
 }
 
 .back-button > .back-text > .default-title, .back-button > .back-text > .previous-title {
-    display:none;
+  display: none;
 }
 
 .bar.bar-header .title {
-	left: 0px !important;
-	right: 0px !important;
-	text-align: center;
+  left: 0px !important;
+  right: 0px !important;
+  text-align: center;
 }
 
 .loading-container .loading {
-	padding: 0px;
-	padding-top: 70%;
-    border-radius: 0px;
-	width: 100%;
-    height: 100%;
+  padding: 0px;
+  padding-top: 70%;
+  border-radius: 0px;
+  width: 100%;
+  height: 100%;
 }
 
 .spinner {
-	fill: #fc6100;
+  fill: #fc6100;
 }
 
 .spinner svg {
-	width: 50px;
-  	height: 50px;
+  width: 50px;
+  height: 50px;
 }
 
 .game-info {
-	font-size: 16px;
+  font-size: 16px;
 }
 
 .categories-list-header {
-	top: 44px;
-	padding: 0px;
-	height: 20px;
+  top: 44px;
+  padding: 0px;
+  height: 20px;
 }
 
 .categories-list.has-header {
-	top: 64px;
+  top: 64px;
 }
 
 .categories-list .list {
-	padding-top: 0px;
+  padding-top: 0px;
 }
 
 .word-header {
-	margin-top: 44px;
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: center;
+  margin-top: 44px;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
 }
 
 .has-footer {
-    bottom: 65px;
+  bottom: 65px;
 }
 
 .footer {
-    display: flex;
-    flex-flow: row wrap;
-    padding: 0px;
-    height: 65px;
+  display: flex;
+  flex-flow: row wrap;
+  padding: 0px;
+  height: 65px;
 }
 
 .footer-controls {
-	padding: 5px;
+  padding: 5px;
 }
 
 .bar .footer-controls .buttons {
-	top: 25px;
+  top: 25px;
 }
 
 .main-menu .item-content {
-	font-size: 20px;
-	padding: 15px;
-	font-weight: bold;
+  font-size: 20px;
+  padding: 15px;
+  font-weight: bold;
 }
 
 .categories-list p.categories-stats {
-	margin-left: 0px;
+  margin-left: 0px;
 }
 
 .categories-list p {
-	margin-bottom: 0px;
-	margin-left: 10px;
-	text-align: center;
-	font-size: 16px;
+  margin-bottom: 0px;
+  margin-left: 10px;
+  text-align: center;
+  font-size: 16px;
 }
 
 .item-thumbnail-right {
-	min-height: 67px;
+  min-height: 67px;
 }
 
 .category-icon {
-	width: 60px !important;
-	height: 45px !important;
+  width: 60px !important;
+  height: 45px !important;
 }
 
 .category.item-stable {
-	padding: 0px;
-	font-weight: bold;
+  padding: 0px;
+  font-weight: bold;
 }
 
 .category h1 {
-	min-height: 67px;
-    margin-top: 0px;
-    margin-bottom: 0px;
-    padding-left: 8px;
-    font-weight: bold;
-    font-size: 32px;
-    line-height: 1.7em;
+  min-height: 67px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  padding-left: 8px;
+  font-weight: bold;
+  font-size: 32px;
+  line-height: 1.7em;
 }
 
 .category p {
-    font-size: 13px;
-    margin-left: 0px;
-    padding-bottom: 5px;
+  font-size: 13px;
+  margin-left: 0px;
+  padding-bottom: 5px;
 }
 
 .category p span {
-	font-size: 16px;
+  font-size: 16px;
 }
 
 .category-word {
-	transition: all ease-in 0.5s;
-	border-color: black;
+  transition: all ease-in 0.5s;
+  border-color: black;
 }
 
 .category-word.ng-hide {
-  	opacity: 0;
+  opacity: 0;
 }
 
 .category-word .item-content {
-    text-align: center;
-    padding: 10px;
-	font-size: 24px;
+  text-align: center;
+  padding: 10px;
+  font-size: 24px;
 }
 
 .category-word p {
-	font-size: 16px;
+  font-size: 16px;
 }
 
 .word-name-buttons-block {
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: center;
-    margin-top: 2px;
-    margin-left: 8px;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  margin-top: 2px;
+  margin-left: 8px;
 }
 
 button.word-name-button {
-	width: 60px;
-	height: 60px;
-	margin-right: 8px;
-	margin-bottom: 8px;
-	font-size: 50px;
-	padding-bottom: 15px;
-	border-radius: 10px;
-	line-height: 0.1em;
+  width: 60px;
+  height: 60px;
+  margin-right: 8px;
+  margin-bottom: 8px;
+  font-size: 50px;
+  padding-bottom: 15px;
+  border-radius: 10px;
+  line-height: 0.1em;
 }
 
 .word-name-button-disabled {
-	opacity: 0.5;
+  opacity: 0.5;
 }
 
 .composed-word-controls {
-	display: flex;
-    flex-flow: row wrap;
-    justify-content: space-around;
-    max-width: 400px;
-    padding: 0px 0px;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  max-width: 400px;
+  padding: 0px 0px;
 }
 
 .composed-word, .clear-composed-word, .remove-letter-in-composed-word {
-	height: 40px;
-	margin-bottom: 10px;
+  height: 40px;
+  margin-bottom: 10px;
 }
 
 input.composed-word {
-	border-radius: 10px;
-	font-size: 24px;
-	text-align: center;
-	max-width: 190px;
+  border-radius: 10px;
+  font-size: 24px;
+  text-align: center;
+  max-width: 190px;
 }
 
 .clear-composed-word, .remove-letter-in-composed-word, button.help-button {
-	width: 50px;
-	border-radius: 50px;
-	font-size: 24px;
+  width: 50px;
+  border-radius: 50px;
+  font-size: 24px;
 }
 
 button.clear-composed-word {
-	border-color: red;
-    color: #b30000;
+  border-color: red;
+  color: #b30000;
 }
 
 button.remove-letter-in-composed-word {
-	margin-right: 0px;
-    padding-right: 3px;
-    padding-left: 0px;
-    border-color: #ff6600;
-    color: #ff3300;	
+  margin-right: 0px;
+  padding-right: 3px;
+  padding-left: 0px;
+  border-color: #ff6600;
+  color: #ff3300;
 }
 
 .opened-words-description {
-	display: flex;
-    flex-flow: row wrap;
-    justify-content: center;
-    padding: 0px;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  padding: 0px;
 }
 
 .opened-words-description p {
-	margin: 0px;
-    font-size: 16px;
+  margin: 0px;
+  font-size: 16px;
 }
 
 .composing-words-list .list {
-	display: flex;
-	flex-flow: row wrap;
-	justify-content: center;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
 }
 
 .composing-word {
-	flex: 0 0 33%;
-    background-color: transparent;
-    border: none;
-    font-size: 16px;
-    text-align: center;
-    line-height: 1.7em;
+  flex: 0 0 33%;
+  background-color: transparent;
+  border: none;
+  font-size: 16px;
+  text-align: center;
+  line-height: 1.7em;
 }
 
 .composing-word a.activated {
-	background-color: transparent !important;
+  background-color: transparent !important;
 }
 
 .composing-word .item-content {
-	padding: 5px;
-	padding-right: 0px;
-	background-color: transparent;
+  padding: 5px;
+  padding-right: 0px;
+  background-color: transparent;
 }
 
 .add-coins span, .add-coins .opened-word {
-    color: #0ae10a;
-    text-shadow: 2px 1px #008000;
+  color: #0ae10a;
+  text-shadow: 2px 1px #008000;
 }
 
 .already-opened-word, .not-enough-coins {
-    color: orangered;
-    text-shadow: 1px 1px #7d450d;
+  color: orangered;
+  text-shadow: 1px 1px #7d450d;
 }
 
 .add-coins, .already-opened-word, .not-enough-coins {
-	position: absolute;
-    font-size: 28px;
-    text-align: center;
-    width: 100%;
+  position: absolute;
+  font-size: 28px;
+  text-align: center;
+  width: 100%;
 }
 
 .add-coins, .already-opened-word {
-    top: 60%; 
+  top: 60%;
 }
 
 .not-enough-coins {
-    top: 50%;
+  top: 50%;
 }
 
 .add-coins span {
-	vertical-align: text-top;
+  vertical-align: text-top;
 }
 
 .add-coins.ng-hide, .already-opened-word.ng-hide, .not-enough-coins.ng-hide {
@@ -288,300 +288,324 @@ button.remove-letter-in-composed-word {
 }
 
 .add-coins {
-	z-index: 1;
+  z-index: 1;
 }
 
 .already-opened-word {
-	z-index: 2;
+  z-index: 2;
 }
 
-.not-enough-coins{
-	z-index: 3;
+.not-enough-coins {
+  z-index: 3;
 }
 
 .coins-image {
-	width: 35px;
+  width: 35px;
 }
 
 button.coins-button {
-	background-color: transparent;
-	border: none;
-	padding: 0px 0px;
-	font-size: medium;
-	font-weight: bold;
-	vertical-align: top;	
+  background-color: transparent;
+  border: none;
+  padding: 0px 0px;
+  font-size: medium;
+  font-weight: bold;
+  vertical-align: top;
 }
 
 .border-decoration {
-	width: 100%;
-	height: 20px;
+  width: 100%;
+  height: 20px;
 }
 
 .composing-word-info h1, .composing-word-info button, .composing-word-info p {
-	margin-left: 10px;
+  margin-left: 10px;
 }
 
-.game-info p, .composing-word-info p {	
-	font-weight: bold;
-	margin-top: 15px;
+.game-info p, .composing-word-info p {
+  font-weight: bold;
+  margin-top: 15px;
 }
 
 .composing-word-info h1 {
-	margin-top: 10px;
+  margin-top: 10px;
 }
 
 .composing-word-info button {
-	border-radius: 10px;
-    font-size: 18px; 
-    margin-left: 10px;
-    margin-top: 15px;
-    font-weight: bold;
+  border-radius: 10px;
+  font-size: 18px;
+  margin-left: 10px;
+  margin-top: 15px;
+  font-weight: bold;
 }
 
 .button-info {
-	font-size: 16px;
+  font-size: 16px;
 }
 
 p.composing-word-description {
-	font-size: 16px;
-	white-space: pre-line;
+  font-size: 16px;
+  white-space: pre-line;
 }
 
 .prompt-button, .open-word-button {
-	width: 110px;
+  width: 110px;
 }
 
 @media (min-width: 320px) {
-	.category h1 {
-		font-size: 27px;
-	    line-height: 60px;
-	}
+  .category h1 {
+    font-size: 27px;
+    line-height: 60px;
+  }
 
-	.category p {
-		font-size: 14px;
-	}
+  .category p {
+    font-size: 14px;
+  }
 
-	.composing-word {
-		font-size: 16px;
-	}
+  .composing-word {
+    font-size: 16px;
+  }
 
-  	.opened-words-description p, p.composing-word-description, .composing-word-info button   {
-    	font-size: 18px;
-  	}
+  .opened-words-description p, p.composing-word-description, .composing-word-info button {
+    font-size: 18px;
+  }
 
-  	.progress p {
-  		font-size: 13px;
-  	}
+  .progress p {
+    font-size: 13px;
+  }
 }
 
 @media (min-width: 360px) {
-	.main-menu .item-content {
-		font-size: 22px;
-	}
+  .main-menu .item-content {
+    font-size: 22px;
+  }
 
-	.category h1 {
-		font-size: 31px;
-	}
+  .category h1 {
+    font-size: 31px;
+  }
 
-	.category p {
-		font-size: 15px;
-	}
+  .category p {
+    font-size: 15px;
+  }
 
-	.composing-word {
-    	font-size: 19px;
-  	}
+  .composing-word {
+    font-size: 19px;
+  }
 
-  	.opened-words-description p {
-    	font-size: 17px;
-	}
+  .opened-words-description p {
+    font-size: 17px;
+  }
 
-	.progress p {
-  		font-size: 16px;
-  	}
+  .progress p {
+    font-size: 16px;
+  }
 }
 
 @media (min-width: 400px) {
-    .category h1 {
-	font-size: 36px;
-	}
+  .category h1 {
+    font-size: 36px;
+  }
 
-	.category p {
-	font-size: 16px;
-	}
+  .category p {
+    font-size: 16px;
+  }
 
-	.category-icon {
-	width: 70px !important;
-	}
+  .category-icon {
+    width: 70px !important;
+  }
 
-   .composing-word {
+  .composing-word {
     font-size: 24px;
-   }
+  }
 
-    .opened-words-description p, .composing-word-info p {
+  .opened-words-description p, .composing-word-info p {
     font-size: 18px;
-	}
+  }
 
-	p.composing-word-description, .composing-word-info button {
-    font-size: 22px; 
-	}
+  p.composing-word-description, .composing-word-info button {
+    font-size: 22px;
+  }
 }
 
 @media (min-width: 430px) {
-    .category h1 {
-	font-size: 38px;
-	}
+  .category h1 {
+    font-size: 38px;
+  }
 
-	.category p {
-	font-size: 18px;
-	}
+  .category p {
+    font-size: 18px;
+  }
 
-  	.composing-word {
+  .composing-word {
     font-size: 26px;
-  	}
+  }
 
-  	.opened-words-description p {
+  .opened-words-description p {
     font-size: 19px;
-	}
+  }
 }
 
 .add-coins, .not-enough-coins {
-	-webkit-animation: moveUp linear 0.5;
-	animation: moveUp linear 0.5;
-    -webkit-animation-duration: 3s; 
-    animation-duration: 3s;
+  -webkit-animation: moveUp linear 0.5;
+  animation: moveUp linear 0.5;
+  -webkit-animation-duration: 3s;
+  animation-duration: 3s;
 }
 
 @-webkit-keyframes moveUp {
-    0% { -webkit-transform: translate3d(0, -20%, 0); opacity: 1; }
-    50% { -webkit-transform: translate3d(0, -50%, 0); opacity: 0.5; }
-    80% { -webkit-transform: translate3d(0, -80%, 0); opacity: 0.2; } 
-    100% { -webkit-transform: translate3d(0, -100%, 0); opacity: 0;} 
+  0% {
+    -webkit-transform: translate3d(0, -20%, 0);
+    opacity: 1;
+  }
+  50% {
+    -webkit-transform: translate3d(0, -50%, 0);
+    opacity: 0.5;
+  }
+  80% {
+    -webkit-transform: translate3d(0, -80%, 0);
+    opacity: 0.2;
+  }
+  100% {
+    -webkit-transform: translate3d(0, -100%, 0);
+    opacity: 0;
+  }
 }
 
 .already-opened-word {
-	-webkit-animation: moveDown linear 0.5;
-	animation: moveDown linear 0.5;
-    -webkit-animation-duration: 3s; 
-    animation-duration: 3s;
+  -webkit-animation: moveDown linear 0.5;
+  animation: moveDown linear 0.5;
+  -webkit-animation-duration: 3s;
+  animation-duration: 3s;
 }
 
 @-webkit-keyframes moveDown {
-    0% { -webkit-transform: translate3d(0, 20%, 0); opacity: 1; }
-    50% { -webkit-transform: translate3d(0, 50%, 0); opacity: 0.5; }
-    80% { -webkit-transform: translate3d(0, 80%, 0); opacity: 0.2; } 
-    100% { -webkit-transform: translate3d(0, 100%, 0); opacity: 0;} 
+  0% {
+    -webkit-transform: translate3d(0, 20%, 0);
+    opacity: 1;
+  }
+  50% {
+    -webkit-transform: translate3d(0, 50%, 0);
+    opacity: 0.5;
+  }
+  80% {
+    -webkit-transform: translate3d(0, 80%, 0);
+    opacity: 0.2;
+  }
+  100% {
+    -webkit-transform: translate3d(0, 100%, 0);
+    opacity: 0;
+  }
 }
 
 .achievements .item {
-	background: transparent;
+  background: transparent;
 }
 
 .achievements-header {
-	margin-top: 43px;
-    height: 20px;
-    padding: 0px;
+  margin-top: 43px;
+  height: 20px;
+  padding: 0px;
 }
 
 .achievements.has-header {
-	top: 63px;
+  top: 63px;
 }
 
 .achievements h2 {
-	font-weight: bold;
-	font-size: larger;
+  font-weight: bold;
+  font-size: larger;
 }
 
 .achievements h2, .achievements h3 {
-	white-space: pre-wrap;
+  white-space: pre-wrap;
 }
 
 .achievements h3 {
-	font-size: medium;
+  font-size: medium;
 }
 
 .progress {
-    display: flex;
-    justify-content: space-between;
-    border-radius: 15px;
-    padding: 3px;
+  display: flex;
+  justify-content: space-between;
+  border-radius: 15px;
+  padding: 3px;
 }
 
 .progress p {
-    font-weight: bold;
+  font-weight: bold;
 }
 
 .progress-bar {
-	width: 72%;
+  width: 72%;
 }
 
 .progress-bar, .progress-indicator {
-	border-radius: 10px;
+  border-radius: 10px;
 }
 
 .progress-indicator {
-	height: 20px;
+  height: 20px;
 }
 
 .popup-container .popup {
-	border-radius: 10px;
-	text-align: center;
+  border-radius: 10px;
+  text-align: center;
 }
 
 .popup-head {
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-    border-bottom: 1px solid black;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  border-bottom: 1px solid black;
 }
 
 .popup-body {
-	padding: 0px;
+  padding: 0px;
 }
 
 .popup-body .achievement-popup {
-	background-image: url(../img/fireworks.png);
-	background-size: 100% auto;
-	padding: 10px;
+  background-image: url(../img/fireworks.png);
+  background-size: 100% auto;
+  padding: 10px;
 }
 
 .popup-body h5 {
-	font-weight: bold;
+  font-weight: bold;
 }
 
 .popup-body p, h5 {
-	font-size: 16px;
+  font-size: 16px;
 }
 
 .popup-buttons {
-	padding-top: 0px;
+  padding-top: 0px;
 }
 
 .popup button.button-default, .popup button.button-positive, .popup button.button-positive.activated {
-	border-radius: 10px;
-    font-weight: bold;
-    font-size: 20px;
-    color: black;
-    border-color: black;
+  border-radius: 10px;
+  font-weight: bold;
+  font-size: 20px;
+  color: black;
+  border-color: black;
 }
 
 .popup-body .confirm-exit-popup h4 {
-	color: black;
+  color: black;
 }
 
 .settings span {
-	font-weight: bold;
-    font-size: large;
+  font-weight: bold;
+  font-size: large;
 }
 
 .settings h3 {
-	text-align: center;
-    font-weight: bold;
-    font-size: xx-large;
+  text-align: center;
+  font-weight: bold;
+  font-size: xx-large;
 }
 
 .item-radio {
-	background: transparent;
+  background: transparent;
 }
 
 .toggle input:checked + .track .handle, .toggle-small .toggle-calm input:checked + .track .handle {
-	background-color: #fff;
+  background-color: #fff;
 }

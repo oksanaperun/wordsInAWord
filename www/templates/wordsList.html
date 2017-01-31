@@ -4,33 +4,36 @@
   </ion-header-bar>
 
   <ion-content class="categories-list has-footer has-header">
-    <p ng-if="categoriesToDisplay" class="categories-stats"><i class="icon ion-stats-bars"></i> Відкритих категорій: {{openedCategoriesCount}}; всього: {{categories.length}}</p>
+    <p ng-if="categoriesToDisplay" class="categories-stats"><i class="icon ion-stats-bars"></i> Відкритих категорій:
+      {{openedCategoriesCount}}; всього: {{categories.length}}</p>
 
     <ion-list ng-if="categoriesToDisplay">
-        <div class="border-decoration"></div>
-        <div ng-repeat="category in categoriesToDisplay">
-          <ion-item class="item-stable category item-thumbnail-right"
-                    ng-click="toggleCategory(category)"
-                    ng-class="{active: isCategoryShown(category)}">
-            <img class="category-icon" ng-src="img/categories/{{category.id}}.jpg">
-            <h1>
-            <i class="icon" ng-class="isCategoryShown(category) ? 'ion-minus-round' : 'ion-plus-round'" ng-show="category.isOpened"></i>
+      <div class="border-decoration"></div>
+      <div ng-repeat="category in categoriesToDisplay">
+        <ion-item class="item-stable category item-thumbnail-right"
+                  ng-click="toggleCategory(category)"
+                  ng-class="{active: isCategoryShown(category)}">
+          <img class="category-icon" ng-src="img/categories/{{category.id}}.jpg">
+          <h1>
+            <i class="icon" ng-class="isCategoryShown(category) ? 'ion-minus-round' : 'ion-plus-round'"
+               ng-show="category.isOpened"></i>
             <i class="icon ion-android-lock" ng-show="!category.isOpened"></i>
             {{category.isOpened ? category.name : '? ? ? ? ?'}}
-            </h1>
-            <p ng-show="category.id==firstClosedCategory.id">Складіть ще <span>{{remainingComposingWordsCountToOpenCategory}}</span> {{getWordsCountTextByRemainingCount()}}, щоб відкрити категорію</p>
-          </ion-item>
-          <div class="border-decoration"></div>
-          <ion-item class="item-accordion category-word"
-                    href="#/app/wordslist/{{word.id}}"
-                    ng-repeat="word in category.wordsList"
-                    ng-show="isCategoryShown(category)">
-            {{word.name}}
-            <p>{{word.openedComposingWords}} з {{word.totalComposingWords}}</p>
-          </ion-item>
-          <div class="border-decoration" ng-show="isCategoryShown(category)"></div>
-        </div>
-      </ion-list>
+          </h1>
+          <p ng-show="category.id==firstClosedCategory.id">Складіть ще <span>{{remainingComposingWordsCountToOpenCategory}}</span>
+            {{getWordsCountTextByRemainingCount()}}, щоб відкрити категорію</p>
+        </ion-item>
+        <div class="border-decoration"></div>
+        <ion-item class="item-accordion category-word"
+                  href="#/app/wordslist/{{word.id}}"
+                  ng-repeat="word in category.wordsList"
+                  ng-show="isCategoryShown(category)">
+          {{word.name}}
+          <p>{{word.openedComposingWords}} з {{word.totalComposingWords}}</p>
+        </ion-item>
+        <div class="border-decoration" ng-show="isCategoryShown(category)"></div>
+      </div>
+    </ion-list>
 
     <button ng-if="!isWindowCordova()" ng-click="showAlert()">showAlert</button>
     <button ng-if="!isWindowCordova()" ng-click="showConfirm()">showConfirm</button>

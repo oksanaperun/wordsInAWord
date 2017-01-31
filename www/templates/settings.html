@@ -1,34 +1,34 @@
 <ion-view view-title="НАЛАШТУВАННЯ">
   <ion-content class="settings has-footer">
-  	<div class="border-decoration"></div>
+    <div class="border-decoration"></div>
     <ion-toggle class="sounds-mode"
-                ng-model="soundsMode" 
+                ng-model="soundsMode"
                 ng-checked="settings.sounds"
-                ng-true-value="1" 
+                ng-true-value="1"
                 ng-false-value="0"
-                ng-change="updateSounds(soundsMode)" 
+                ng-change="updateSounds(soundsMode)"
                 toggle-class="toggle-calm">
-                Звуки
+      Звуки
     </ion-toggle>
     <h3>Тема</h3>
     <ion-radio class="theme"
-              ng-repeat="theme in themes"
-              ng-model="selectedTheme" 
-              ng-value="theme.code"
-              ng-click="manageTheme(theme)" 
-              icon="ion-checkmark-round">
-        {{theme.name}}
+               ng-repeat="theme in themes"
+               ng-model="selectedTheme"
+               ng-value="theme.code"
+               ng-click="manageTheme(theme)"
+               icon="ion-checkmark-round">
+      {{theme.name}}
     </ion-radio>
   </ion-content>
 
-    <ion-footer-bar class="footer">
-        <div class="border-decoration"></div>
-        <div class="footer-controls">
-            <div class="buttons">
-            </div>
-            <h1 class="title"></h1>
-            <div class="buttons">
-            </div>
-        </div>
-    </ion-footer-bar>
+  <ion-footer-bar class="footer">
+    <div class="border-decoration"></div>
+    <div class="footer-controls">
+      <div class="buttons">
+      </div>
+      <h1 class="title"></h1>
+      <div class="buttons">
+      </div>
+    </div>
+  </ion-footer-bar>
 </ion-view>
