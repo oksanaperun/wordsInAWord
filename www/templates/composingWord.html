@@ -1,9 +1,10 @@
 <ion-view view-title="СЛОВО">
   <div class="not-enough-coins" ng-if="isNotEnoughCoins">Недостатньо монет</div>
+  <ion-header-bar class="border-decoration-header">
+    <div class="border-decoration"></div>
+  </ion-header-bar>
 
-  <ion-content class="has-footer main-content">
-    <div class="composing-word-info">
-      <div class="border-decoration"></div>
+  <ion-content class="composing-word-info has-header has-footer main-content">
       <h1>{{composingWord.isOpened ? composingWord.name : displayNotOpenedComposingWord()}}</h1>
       <button class="prompt-button"
               ng-show="!composingWord.isDescriptionOpened"
@@ -19,7 +20,6 @@
         Відкрити
       </button>
       <p class="button-info" ng-show="!composingWord.isOpened">Відкриття слова коштує {{composingWordPrice}} монет</p>
-    </div>
   </ion-content>
 
   <ion-footer-bar class="footer">

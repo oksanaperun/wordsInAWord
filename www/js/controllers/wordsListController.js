@@ -191,13 +191,11 @@ angular.module('wordInAWord')
         openCategory($scope.firstClosedCategory.id);
         manageAhievements();
 
-        if ($scope.firstClosedCategory.id != 2 && $scope.firstClosedCategory.id != 10) {
-          if (window.cordova) {
-            Utilities.playSound('bonus');
-          }
-
-          Utilities.showOpenedCategoryPopup($scope.firstClosedCategory.name);
+        if (window.cordova) {
+          Utilities.playSound('bonus');
         }
+
+        Utilities.showOpenedCategoryPopup($scope.firstClosedCategory.name);
       }
     }
 

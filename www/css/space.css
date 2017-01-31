@@ -13,12 +13,9 @@
 
 .main-menu .item {
   border-color: #0e204f;
-  background: transparent;
 }
 
 .main-menu .item-content, .main-menu .item-content.activated {
-  background-color: rgba(180, 198, 247, 0.5);
-  color: #111;
   text-shadow: 1px 1px #184aad;
 }
 
@@ -32,11 +29,10 @@
   background-size: 100% auto;
 }
 
-.game-info::before, .main-content::before, .settings::before, .word-header::before,
-.main-menu .list::before {
+.word-header::before {
   content: "";
   position: absolute;
-  height: 100%;
+  min-height: 100%;
   width: 100%;
   top: 0;
   left: 0;
@@ -49,16 +45,14 @@
   background-size: auto 100%;
 }
 
-.game-info::before, .main-content::before, .settings::before, .main-menu .list::before {
-  opacity: 0.4;
+.game-info, .main-content, .settings, .main-menu .list {
   background: url('../img/space/decoration.jpg');
   background-position: center top;
   background-size: auto 100%;
 }
 
-.main-menu .list::before {
+.main-menu .list {
   background-size: 100% auto;
-  opacity: 0.7;
 }
 
 .border-decoration {
@@ -92,10 +86,6 @@
   text-shadow: -1px 0 #68929e, 0 1px #44a9c5, 1px 0 #44a9c5, 0 -1px #44a9c5;
 }
 
-.category p span {
-  color: red;
-}
-
 .category-word {
   border-color: #0c317a;
 }
@@ -109,7 +99,6 @@
 
 .category-word p {
   color: #12b3f7;
-  font-weight: bold;
   text-shadow: 1px 1px #184aad;
 }
 
@@ -118,39 +107,24 @@ button.word-name-button {
   background-image: url('../img/space/letter_decoration.jpg');
   background-position: center top;
   background-size: 100% auto;
-  color: black;
   text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
 }
 
 input.composed-word {
-  color: black !important;
   border-color: black;
   background-color: rgba(138, 209, 243, 0.5);
 }
 
 .clear-composed-word, .remove-letter-in-composed-word {
-  background-color: #fcf9ed;
+  background-color: rgba(255, 255, 255, 0.4);
 }
 
 .composing-words {
   background: linear-gradient(rgba(138, 209, 243, 0.5), #8cceef, rgba(138, 209, 243, 0.5));
 }
 
-.composing-word {
-  color: black;
-}
-
 button.coins-button {
   color: white;
-}
-
-.composing-word-info h1 {
-  color: black;
-}
-
-.composing-word-info button {
-  border-color: black;
-  color: black;
 }
 
 .game-info p, .composing-word-info p {
@@ -168,11 +142,6 @@ button.coins-button {
 
 .achievements {
   background-color: #DFCC90;
-
-}
-
-.achievements .item {
-  border-color: black;
 }
 
 .achievements h2, .achievements h3 {
@@ -216,14 +185,10 @@ button.coins-button {
 }
 
 .popup button.button-positive, .popup button.button-positive.activated {
-  /*    background-image: url(../img/space/border_decoration.jpg);
-      background-size: auto 100%;
-      background-position: center;*/
   background: linear-gradient(141deg, #6b96dc 20%, #97bcf8 51%, #6b96dc 75%);
 }
 
 .popup button.button-default {
-  /*background-color: #a2c1ff;*/
   background: linear-gradient(141deg, #97bcf8 0%, #6b96dc 51%, #97bcf8 75%);
 }
 

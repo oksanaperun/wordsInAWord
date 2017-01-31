@@ -13,12 +13,9 @@
 
 .main-menu .item {
   border-color: #0b812d;
-  background: transparent;
 }
 
 .main-menu .item-content, .main-menu .item-content.activated {
-  background-color: rgba(166, 230, 143, 0.5);
-  color: #111;
   text-shadow: 1px 1px #0b812d;
 }
 
@@ -32,8 +29,7 @@
   background-size: 100% auto;
 }
 
-.game-info::before, .main-content::before, .settings::before, .word-header::before,
-.main-menu .list::before {
+.word-header::before {
   content: "";
   position: absolute;
   height: 100%;
@@ -49,16 +45,14 @@
   background-size: 100% auto;
 }
 
-.game-info::before, .main-content::before, .settings::before, .main-menu .list::before {
-  opacity: 0.4;
+.game-info, .main-content, .settings, .main-menu .list {
   background: url('../img/vintage/decoration.jpg');
   background-position: center top;
   background-size: auto 100%;
 }
 
-.main-menu .list::before {
+.main-menu .list {
   background-size: 100% auto;
-  opacity: 0.7;
 }
 
 .border-decoration {
@@ -70,7 +64,7 @@
 }
 
 .categories-stats {
-  background-color: rgb(255, 253, 212);
+  background-color: rgb(255, 247, 202);
 }
 
 .categories-list p {
@@ -91,10 +85,6 @@
   text-shadow: -1px 0 #73c35d, 0 1px #cfdc80, 1px 0 #cfdc80, 0 -1px #cfdc80;
 }
 
-.category p span {
-  color: red;
-}
-
 .category-word {
   border-color: #13702e;
 }
@@ -108,7 +98,6 @@
 
 .category-word p {
   color: black;
-  font-weight: bold;
   text-shadow: 1px 1px #13702e;
 }
 
@@ -117,44 +106,29 @@ button.word-name-button {
   background-image: url('../img/vintage/letter_decoration.jpg');
   background-position: center top;
   background-size: 100% auto;
-  color: black;
   text-shadow: -1px 0 #73c35d, 0 1px #cfdc80, 1px 0 #cfdc80, 0 -1px #cfdc80;
 }
 
 input.composed-word {
-  color: black !important;
   border-color: black;
   background-color: rgba(167, 186, 107, 0.5);
 }
 
 .clear-composed-word, .remove-letter-in-composed-word {
-  background-color: #fcf9ed;
+  background-color: #fffedf;
 }
 
 .composing-words {
   background: linear-gradient(rgba(167, 186, 107, 0.5), #faf1c3, rgba(167, 186, 107, 0.5));
 }
 
-.composing-word {
-  color: black;
-}
-
 button.coins-button {
   color: white;
 }
 
-.composing-word-info h1 {
-  color: black;
-}
-
-.composing-word-info button {
-  border-color: black;
-  color: black;
-}
-
 .game-info p, .composing-word-info p {
   color: black;
-  text-shadow: 1px 1px #cfdc80;
+  text-shadow: 1px 1px #0b812d;
 }
 
 .prompt-button {
@@ -168,10 +142,6 @@ button.coins-button {
 .achievements {
   background-color: #DFCC90;
 
-}
-
-.achievements .item {
-  border-color: black;
 }
 
 .progress {
@@ -188,7 +158,7 @@ button.coins-button {
 }
 
 .progress-indicator {
-  background-color: #3a7a2a
+  background-color: #3a7a2a;
 }
 
 .popup-container .popup {
@@ -210,14 +180,10 @@ button.coins-button {
 }
 
 .popup button.button-positive, .popup button.button-positive.activated {
-  /*    background-image: url(../img/vintage/main_texture.jpg);
-      background-size: 100% auto;*/
-  /*background-color: #73bf62;*/
   background: linear-gradient(141deg, #4a963b 20%, #73bf62 51%, #4a963b 75%);
 }
 
 .popup button.button-default {
-  /*background-color: #a1de8c;*/
   background: linear-gradient(141deg, #73bf62 20%, #4a963b 51%, #73bf62 75%);
 }
 

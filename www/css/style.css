@@ -43,6 +43,19 @@ button.word-name-button, input.composed-word, .composing-words-list .list,
 
 .game-info {
   font-size: 16px;
+  text-align: justify;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.game-info ul {
+  list-style-type: disc;
+  padding-left: 15px;
+}
+
+.game-info ul p {
+  margin-bottom: 0px;
+  margin-top: 0px;
 }
 
 .categories-list-header {
@@ -51,8 +64,18 @@ button.word-name-button, input.composed-word, .composing-words-list .list,
   height: 20px;
 }
 
-.categories-list.has-header {
+.border-decoration-header {
+  margin-top: 44px;
+  height: 20px;
+  padding: 0px;
+}
+
+.has-header {
   top: 64px;
+}
+
+.main-menu.has-header {
+  top: 44px;
 }
 
 .categories-list .list {
@@ -85,10 +108,19 @@ button.word-name-button, input.composed-word, .composing-words-list .list,
   top: 25px;
 }
 
+.main-menu .item {
+  background: transparent;
+}
+
 .main-menu .item-content {
   font-size: 20px;
   padding: 15px;
   font-weight: bold;
+}
+
+.main-menu .item-content, .main-menu .item-content.activated {
+  background-color: transparent;
+  color: #111;
 }
 
 .categories-list p.categories-stats {
@@ -134,6 +166,7 @@ button.word-name-button, input.composed-word, .composing-words-list .list,
 
 .category p span {
   font-size: 16px;
+  color: red;
 }
 
 .category-word {
@@ -153,6 +186,7 @@ button.word-name-button, input.composed-word, .composing-words-list .list,
 
 .category-word p {
   font-size: 16px;
+  font-weight: bold;
 }
 
 .word-name-buttons-block {
@@ -172,6 +206,7 @@ button.word-name-button {
   padding-bottom: 15px;
   border-radius: 10px;
   line-height: 0.1em;
+  color: black;
 }
 
 .word-name-button-disabled {
@@ -192,10 +227,11 @@ button.word-name-button {
 }
 
 input.composed-word {
+  max-width: 190px;
   border-radius: 10px;
   font-size: 24px;
   text-align: center;
-  max-width: 190px;
+  color: black !important;
 }
 
 .clear-composed-word, .remove-letter-in-composed-word, button.help-button {
@@ -242,6 +278,7 @@ button.remove-letter-in-composed-word {
   font-size: 16px;
   text-align: center;
   line-height: 1.7em;
+  color: black;
 }
 
 .composing-word a.activated {
@@ -321,6 +358,15 @@ button.coins-button {
   margin-left: 10px;
 }
 
+.composing-word-info h1 {
+  color: black;
+}
+
+.composing-word-info button {
+  border-color: black;
+  color: black;
+}
+
 .game-info p, .composing-word-info p {
   font-weight: bold;
   margin-top: 15px;
@@ -344,7 +390,9 @@ button.coins-button {
 
 p.composing-word-description {
   font-size: 16px;
+  padding-right: 10px;
   white-space: pre-line;
+  text-align: justify;
 }
 
 .prompt-button, .open-word-button {
@@ -498,16 +546,7 @@ p.composing-word-description {
 
 .achievements .item {
   background: transparent;
-}
-
-.achievements-header {
-  margin-top: 43px;
-  height: 20px;
-  padding: 0px;
-}
-
-.achievements.has-header {
-  top: 63px;
+  border-color: black;
 }
 
 .achievements h2 {
