@@ -46,10 +46,10 @@ button.word-name-button {
 .bar-stable.bar-header {
   border-bottom: 1px solid #0b812d;
 }
-.bar-stable.bar-header, .main-menu {
+
+.main-menu {
   border-right: 1px solid #0b812d;
 }
-
 .main-menu .item {
   border-color: #0b812d;
 }

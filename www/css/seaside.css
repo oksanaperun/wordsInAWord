@@ -52,10 +52,10 @@ button.word-name-button {
 .bar-stable.bar-header {
   border-bottom: 1px solid #795104;
 }
-.bar-stable.bar-header, .main-menu {
+
+.main-menu {
   border-right: 1px solid #795104;
 }
-
 .main-menu .item-content, .main-menu .item-content.activated,
 .game-info p, .composing-word-info p,
 .settings span, .settings h3, .settings .radio-icon {
