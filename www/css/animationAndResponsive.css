@@ -1,0 +1,127 @@
+.add-coins, .not-enough-coins {
+  -webkit-animation: moveUp linear 0.5;
+  animation: moveUp linear 0.5;
+  -webkit-animation-duration: 3s;
+  animation-duration: 3s;
+}
+
+@-webkit-keyframes moveUp {
+  0% {
+    -webkit-transform: translate3d(0, -20%, 0);
+    opacity: 1;
+  }
+  50% {
+    -webkit-transform: translate3d(0, -50%, 0);
+    opacity: 0.5;
+  }
+  80% {
+    -webkit-transform: translate3d(0, -80%, 0);
+    opacity: 0.2;
+  }
+  100% {
+    -webkit-transform: translate3d(0, -100%, 0);
+    opacity: 0;
+  }
+}
+
+.already-opened-word {
+  -webkit-animation: moveDown linear 0.5;
+  animation: moveDown linear 0.5;
+  -webkit-animation-duration: 3s;
+  animation-duration: 3s;
+}
+
+@-webkit-keyframes moveDown {
+  0% {
+    -webkit-transform: translate3d(0, 20%, 0);
+    opacity: 1;
+  }
+  50% {
+    -webkit-transform: translate3d(0, 50%, 0);
+    opacity: 0.5;
+  }
+  80% {
+    -webkit-transform: translate3d(0, 80%, 0);
+    opacity: 0.2;
+  }
+  100% {
+    -webkit-transform: translate3d(0, 100%, 0);
+    opacity: 0;
+  }
+}
+
+@media (min-width: 320px) {
+  .category h1 {
+    font-size: 27px;
+    line-height: 60px;
+  }
+  .category p {
+    font-size: 14px;
+  }
+  .composing-word {
+    font-size: 16px;
+  }
+  .opened-words-description p, p.composing-word-description, .composing-word-info button {
+    font-size: 18px;
+  }
+  .progress p {
+    font-size: 13px;
+  }
+}
+
+@media (min-width: 360px) {
+  .main-menu .item-content {
+    font-size: 22px;
+  }
+  .category h1 {
+    font-size: 31px;
+  }
+  .category p {
+    font-size: 15px;
+  }
+  .composing-word {
+    font-size: 19px;
+  }
+  .opened-words-description p {
+    font-size: 17px;
+  }
+  .progress p {
+    font-size: 16px;
+  }
+}
+
+@media (min-width: 400px) {
+  .category h1 {
+    font-size: 36px;
+  }
+  .category p {
+    font-size: 16px;
+  }
+  .category-icon {
+    width: 70px !important;
+  }
+  .composing-word {
+    font-size: 24px;
+  }
+  .opened-words-description p, .composing-word-info p {
+    font-size: 18px;
+  }
+  p.composing-word-description, .composing-word-info button {
+    font-size: 22px;
+  }
+}
+
+@media (min-width: 430px) {
+  .category h1 {
+    font-size: 38px;
+  }
+  .category p {
+    font-size: 18px;
+  }
+  .composing-word {
+    font-size: 26px;
+  }
+  .opened-words-description p {
+    font-size: 19px;
+  }
+}

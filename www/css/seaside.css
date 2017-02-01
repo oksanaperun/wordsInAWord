@@ -49,9 +49,11 @@ button.word-name-button {
 .settings span, .settings h3, .settings .radio-icon {
   color: black;
 }
-
 .bar-stable.bar-header {
   border-bottom: 1px solid #795104;
+}
+.bar-stable.bar-header, .main-menu {
+  border-right: 1px solid #795104;
 }
 
 .main-menu .item-content, .main-menu .item-content.activated,
@@ -59,7 +61,6 @@ button.word-name-button {
 .settings span, .settings h3, .settings .radio-icon {
   text-shadow: 1px 1px #ab7d58;
 }
-
 .main-menu .item, .category-word {
   border-color: #795104;
 }
@@ -67,27 +68,21 @@ button.word-name-button {
 .category-word .item-content, .category.item-stable {
   text-shadow: 1px 1px #795104;
 }
-
 .category-word .item-content {
   color: white;
 }
-
 .categories-list-header {
   background-color: #8bd9e3;
 }
-
 .categories-list .list {
   background: linear-gradient(#b1e3ea, #ddd3b3, #b1e3ea);
 }
-
 .categories-stats {
   background-color: #b1e3ea;
 }
-
 .category .category-icon {
   border: 2px solid #795104;
 }
-
 .category p, .opened-words-description p, button.word-name-button {
   text-shadow: -1px 0 #c07865, 0 1px #c98b36, 1px 0 #c98b36, 0 -1px #c98b36;
 }
@@ -95,16 +90,13 @@ button.word-name-button {
 button.word-name-button {
   border-color: #cd9f5d;
 }
-
 input.composed-word {
   border-color: #b2a485;
   background-color: rgba(131, 222, 255, 0.5);
 }
-
 .clear-composed-word, .remove-letter-in-composed-word {
   background-color: rgba(255, 255, 255, 0.4);
 }
-
 .composing-words {
   background: linear-gradient(rgba(244, 227, 179, 0.2), rgb(244, 232, 199), rgba(229, 217, 182, 0.2));
 }
@@ -112,7 +104,6 @@ input.composed-word {
 .prompt-button {
   background-color: rgba(237, 224, 171, 0.5);
 }
-
 .open-word-button {
   background-color: rgba(179, 89, 208, 0.5);
 }
@@ -120,55 +111,51 @@ input.composed-word {
 .achievements {
   background-color: #74cee8;
 }
-
 .progress {
   border: 2px solid black;
 }
-
 .progress p {
   color: #5a220f;
 }
-
 .progress-bar, .settings .item {
   border: 1px solid #5a220f;
 }
-
 .progress-bar {
   background-color: rgba(234, 209, 148, 0.5);
 }
-
 .progress-indicator {
   background-color: #5a220f;
-}
-
-.popup-container .popup {
-  background-color: rgb(255, 254, 224);
-}
-
-.popup-body h4, h5 {
-  color: #ff3300;
-}
-
-.popup button.button-positive, .popup button.button-positive.activated {
-  background: linear-gradient(141deg, #f1d5a4 20%, #fff2d0 51%, #f1d5a4 75%);
-}
-
-.popup button.button-default {
-  background: linear-gradient(141deg, #fff2d0 20%, #f1d5a4 51%, #fff2d0 75%);
 }
 
 .sounds-mode, .radio-content .item-content {
   background-color: rgba(234, 209, 148, 0.5) !important;
 }
-
 .toggle input:checked + .track, .toggle .track {
   border-color: #68312c !important;
 }
-
 .toggle input:checked + .track {
   background-color: #99463c !important;
 }
-
 .toggle .track {
   background-color: rgba(217, 157, 149, 0.5);
+}
+
+.popup-container .popup {
+  background-color: rgb(255, 254, 224);
+}
+.popup-container .popup,
+.popup button.button-positive, .popup button.button-positive.activated, .popup button.button-default {
+  border: 1px solid #795104;
+}
+.popup-head {
+  border-bottom: 1px solid #795104;
+}
+.popup-body h4, h5 {
+  color: #ff3300;
+}
+.popup button.button-positive, .popup button.button-positive.activated {
+  background: linear-gradient(141deg, #f1d5a4 20%, #fff2d0 51%, #f1d5a4 75%);
+}
+.popup button.button-default {
+  background: linear-gradient(141deg, #fff2d0 20%, #f1d5a4 51%, #fff2d0 75%);
 }

@@ -1,29 +1,29 @@
-.bar-stable.bar-header .button, .bar-stable.bar-header .title {
-  color: white;
+.border-decoration {
+  background-image: url('../img/vintage/border_decoration.jpg');
 }
 
-.bar-stable.bar-header {
-  border-bottom: 1px solid #0b812d;
+button.word-name-button {
+  background-image: url('../img/vintage/letter_decoration.jpg');
+  background-position: center top;
+  background-size: 100% auto;
 }
 
-.main-menu, .bar-stable.bar-header, .footer {
+.game-info, .main-content, .settings, .main-menu .list {
+  background: url('../img/vintage/decoration.jpg');
+  background-position: center top;
+  background-size: auto 100%;
+}
+
+.main-menu .list {
+  background-size: 100% auto;
+}
+
+.main-menu, .bar-stable.bar-header, .footer, .category-word .item-content, .popup-head {
   background-image: url('../img/vintage/secondary_texture.jpg');
   background-size: 100% auto;
 }
 
-.main-menu .item {
-  border-color: #0b812d;
-}
-
-.main-menu .item-content, .main-menu .item-content.activated {
-  text-shadow: 1px 1px #0b812d;
-}
-
-.categories-list-header {
-  background-color: rgb(255, 254, 200);
-}
-
-.category.item-stable, .achievements {
+.category.item-stable, .achievements, .word-header::before {
   background: url('../img/vintage/main_texture.jpg');
   background-position: center top;
   background-size: 100% auto;
@@ -39,173 +39,117 @@
   z-index: -1;
 }
 
-.word-header::before {
-  background: url('../img/vintage/main_texture.jpg');
-  background-position: center top;
-  background-size: 100% auto;
+.bar-stable.bar-header .button, .bar-stable.bar-header .title,
+.category-word .item-content, button.coins-button, .popup-head h3 {
+  color: white;
+}
+.bar-stable.bar-header {
+  border-bottom: 1px solid #0b812d;
+}
+.bar-stable.bar-header, .main-menu {
+  border-right: 1px solid #0b812d;
 }
 
-.game-info, .main-content, .settings, .main-menu .list {
-  background: url('../img/vintage/decoration.jpg');
-  background-position: center top;
-  background-size: auto 100%;
+.main-menu .item {
+  border-color: #0b812d;
 }
-
-.main-menu .list {
-  background-size: 100% auto;
-}
-
-.border-decoration {
-  background-image: url('../img/vintage/border_decoration.jpg');
+.main-menu .item-content, .main-menu .item-content.activated, .game-info p, .composing-word-info p,
+.settings span, .settings .radio-icon, .settings h3 {
+  text-shadow: 1px 1px #0b812d;
 }
 
 .categories-list .list {
   background: linear-gradient(rgb(255, 253, 212), #fffee0, rgb(255, 253, 212));
 }
-
 .categories-stats {
   background-color: rgb(255, 247, 202);
 }
-
-.categories-list p {
+.categories-list p, .category.item-stable, .category-word p, .game-info p, .composing-word-info p,
+.settings span, .settings .radio-icon, .settings h3 {
   color: black;
 }
-
-.category.item-stable {
-  color: black;
+.category.item-stable, .category-word .item-content, .category-word p {
   text-shadow: 1px 1px #13702e;
 }
-
 .category .category-icon {
   border: 2px solid #13702e;
 }
-
-.category p, .opened-words-description p {
-  color: #2C6302;
+.category p, .opened-words-description p, button.word-name-button {
   text-shadow: -1px 0 #73c35d, 0 1px #cfdc80, 1px 0 #cfdc80, 0 -1px #cfdc80;
 }
-
+.category p, .opened-words-description p {
+  color: #2C6302;
+}
 .category-word {
   border-color: #13702e;
 }
 
-.category-word .item-content {
-  background-image: url('../img/vintage/secondary_texture.jpg');
-  background-size: 100% auto;
-  color: white;
-  text-shadow: 1px 1px #13702e;
-}
-
-.category-word p {
-  color: black;
-  text-shadow: 1px 1px #13702e;
-}
-
-button.word-name-button {
+button.word-name-button, input.composed-word {
   border-color: black;
-  background-image: url('../img/vintage/letter_decoration.jpg');
-  background-position: center top;
-  background-size: 100% auto;
-  text-shadow: -1px 0 #73c35d, 0 1px #cfdc80, 1px 0 #cfdc80, 0 -1px #cfdc80;
 }
-
 input.composed-word {
-  border-color: black;
   background-color: rgba(167, 186, 107, 0.5);
 }
-
 .clear-composed-word, .remove-letter-in-composed-word {
   background-color: #fffedf;
 }
-
 .composing-words {
   background: linear-gradient(rgba(167, 186, 107, 0.5), #faf1c3, rgba(167, 186, 107, 0.5));
-}
-
-button.coins-button {
-  color: white;
-}
-
-.game-info p, .composing-word-info p {
-  color: black;
-  text-shadow: 1px 1px #0b812d;
 }
 
 .prompt-button {
   background-color: rgba(237, 224, 171, 0.5);
 }
-
 .open-word-button {
   background-color: rgba(36, 150, 5, 0.5);
 }
 
 .achievements {
   background-color: #DFCC90;
-
 }
-
 .progress {
   border: 2px solid black;
 }
-
 .progress p {
   color: #3a7a2a;
 }
-
 .progress-bar {
   border: 1px solid #3a7a2a;
   background-color: rgba(132, 210, 103, 0.5);
 }
-
 .progress-indicator {
   background-color: #3a7a2a;
-}
-
-.popup-container .popup {
-  background-color: rgb(255, 254, 224);
-}
-
-.popup-head h3 {
-  color: white;
-}
-
-.popup-head {
-  background-image: url(../img/vintage/secondary_texture.jpg);
-  background-size: 100% auto;
-  background-position: center top;
-}
-
-.popup-body h4, h5 {
-  color: #ff3300;
-}
-
-.popup button.button-positive, .popup button.button-positive.activated {
-  background: linear-gradient(141deg, #4a963b 20%, #73bf62 51%, #4a963b 75%);
-}
-
-.popup button.button-default {
-  background: linear-gradient(141deg, #73bf62 20%, #4a963b 51%, #73bf62 75%);
-}
-
-.settings span, .settings .radio-icon, .settings h3 {
-  color: #111;
-  text-shadow: 1px 1px #0b812d;
-}
-
-.settings .item {
-  border-color: #3a7a2a;
 }
 
 .sounds-mode, .radio-content .item-content {
   background-color: rgba(166, 230, 143, 0.5) !important;
 }
-
-.toggle input:checked + .track {
+.settings .item, .toggle input:checked + .track, .toggle .track {
   border-color: #3a7a2a !important;
+}
+.toggle input:checked + .track {
   background-color: #41892f !important;
 }
-
 .toggle .track {
   background-color: rgba(58, 122, 42, 0.5);
-  border-color: #41892f;
+}
+
+.popup-container .popup {
+  background-color: rgb(255, 254, 224);
+}
+.popup-container .popup,
+.popup button.button-positive, .popup button.button-positive.activated, .popup button.button-default {
+  border: 1px solid #13702e;
+}
+.popup-head {
+  border-bottom: 1px solid #13702e;
+}
+.popup-body h4, h5 {
+  color: #ff3300;
+}
+.popup button.button-positive, .popup button.button-positive.activated {
+  background: linear-gradient(141deg, #4a963b 20%, #73bf62 51%, #4a963b 75%);
+}
+.popup button.button-default {
+  background: linear-gradient(141deg, #73bf62 20%, #4a963b 51%, #73bf62 75%);
 }
