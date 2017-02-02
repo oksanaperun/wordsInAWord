@@ -98,7 +98,7 @@ input.composed-word {
   background-color: rgba(255, 255, 255, 0.4);
 }
 .composing-words {
-  background: linear-gradient(rgba(244, 227, 179, 0.2), rgb(244, 232, 199), rgba(229, 217, 182, 0.2));
+  background: linear-gradient(rgba(244, 227, 179, 0.1), rgb(248, 238, 220), rgba(229, 217, 182, 0.2));
 }
 
 .prompt-button {

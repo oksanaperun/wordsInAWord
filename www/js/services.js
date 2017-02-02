@@ -133,7 +133,7 @@ angular.module('wordInAWord.services', [])
   .factory('AchievementsUtils', function ($rootScope, $window, Utilities) {
     return {
       manageAchievementByIndex: function (index) {
-        if (window.cordova) {
+        if (window.cordova && $rootScope.settings.sounds) {
           Utilities.playSound('bonus');
         }
 
@@ -148,7 +148,7 @@ angular.module('wordInAWord.services', [])
 
     return {
       initDatabase: function () {
-        console.log('Connecting to DB');
+        //console.log('Connecting to DB');
         if (window.cordova) {
           $rootScope.db = window.sqlitePlugin.openDatabase({
             name: "wordsInAWord.db",
@@ -161,7 +161,7 @@ angular.module('wordInAWord.services', [])
       },
       selectCategories: function () {
         var query = "SELECT id, name, isOpened FROM categories";
-        console.log('select categories');
+        //console.log('select categories');
         return $cordovaSQLite.execute($rootScope.db, query);
       },
       selectCategoryInfoById: function (id) {
@@ -173,12 +173,12 @@ angular.module('wordInAWord.services', [])
           "LEFT JOIN words as W ON CW.wordId = W.id " +
           "LEFT JOIN categories as C ON W.categoryId = C.id " +
           "WHERE C.id = ?) openedComposingWordsCount";
-        console.log('select category info');
+        //console.log('select category info');
         return $cordovaSQLite.execute($rootScope.db, query, [id, id]);
       },
       openCategoryById: function (id) {
         var query = "UPDATE categories SET isOpened = 1 WHERE id = ?";
-        console.log('open category');
+        //console.log('open category');
         return $cordovaSQLite.execute($rootScope.db, query, [id]);
       },
       selectWords: function () {
@@ -186,74 +186,75 @@ angular.module('wordInAWord.services', [])
           "(SELECT COUNT(id) FROM composing_words WHERE wordId = W.id) totalComposingWords, " +
           "(SELECT COUNT(case isOpened when 1 then 1 else null end) FROM composing_words WHERE wordId = W.id) openedComposingWords " +
           "FROM words as W";
-        console.log('select words');
+        //console.log('select words');
         return $cordovaSQLite.execute($rootScope.db, query);
       },
       selectWordDataById: function (id) {
         var query = "SELECT id, name, categoryId FROM words WHERE id = ?";
-        console.log('select word data');
+        //console.log('select word data');
         return $cordovaSQLite.execute($rootScope.db, query, [id]);
       },
       selectComposingWords: function (wordId) {
         var query = "SELECT id, name, isOpened FROM composing_words WHERE wordId = ?";
-        console.log('select composing words');
+        //console.log('select composing words');
         return $cordovaSQLite.execute($rootScope.db, query, [wordId]);
       },
       selectUniqueOpenedComposingWordsCount: function () {
         var query = "SELECT COUNT(DISTINCT name) count FROM composing_words WHERE isComposedByUser = 1";
-        console.log('select unique composing words count opened by user');
+        //console.log('select unique composing words count opened by user');
         return $cordovaSQLite.execute($rootScope.db, query);
       },
       openComposingWordById: function (id, isComposedByUser) {
         var query = "UPDATE composing_words SET isOpened = 1, isDescriptionOpened = 1, isComposedByUser = ? WHERE id=?";
-        console.log('open composing word');
+        //console.log('open composing word');
         return $cordovaSQLite.execute($rootScope.db, query, [isComposedByUser, id]);
       },
       openComposingWordDescriptionById: function (id) {
         var query = "UPDATE composing_words SET isDescriptionOpened = 1 WHERE id = ?";
-        console.log('open composing word description');
+        //console.log('open composing word description');
         return $cordovaSQLite.execute($rootScope.db, query, [id]);
       },
       selectComposingWordDataById: function (id) {
         var query = "SELECT CW.id, CW.name, CW.isOpened, CW.isDescriptionOpened, WD.description " +
           "FROM composing_words CW LEFT JOIN words_descriptions WD ON CW.name = WD.name " +
           "WHERE CW.id = ?";
-        console.log('select composing word data');
+        //console.log('select composing word data');
         return $cordovaSQLite.execute($rootScope.db, query, [id]);
       },
       selectCoins: function () {
         var query = "SELECT coins FROM user_settings";
-        console.log('select coins');
+        //console.log('select coins');
         return $cordovaSQLite.execute($rootScope.db, query);
       },
       updateCoins: function (value) {
         var query = "UPDATE user_settings SET coins = ?";
-        console.log('update coins with value ' + value);
+        //console.log('update coins with value ' + value);
         return $cordovaSQLite.execute($rootScope.db, query, [value]);
       },
       selectAchievements: function () {
         var query = "SELECT * FROM achievements";
-        console.log('select achievements');
+        //console.log('select achievements');
         return $cordovaSQLite.execute($rootScope.db, query);
       },
       openAchievementByIndex: function (index) {
         var query = "UPDATE achievements SET isEarned = 1 WHERE id = ?";
-        console.log('open achievement');
+        //console.log('open achievement');
         return $cordovaSQLite.execute($rootScope.db, query, [index + 1]);
       },
       selectSettings: function () {
         var query = "SELECT sounds, theme FROM user_settings";
-        console.log('select user_settings');
+        //console.log('select user_settings');
         return $cordovaSQLite.execute($rootScope.db, query);
       },
       updateSounds: function (isSoundsOn) {
         var query = "UPDATE user_settings SET sounds = ?";
-        console.log('update user_settings sounds');
+        //console.log('update user_settings sounds');
+        isSoundsOn = isSoundsOn ? 1 : 0;
         return $cordovaSQLite.execute($rootScope.db, query, [isSoundsOn]);
       },
       updateTheme: function (theme) {
         var query = "UPDATE user_settings SET theme = ?";
-        console.log('update user_settings theme');
+        //console.log('update user_settings theme');
         return $cordovaSQLite.execute($rootScope.db, query, [theme]);
       },
       editData: function () {
@@ -284,7 +285,7 @@ angular.module('wordInAWord.services', [])
         //var query = "insert into achievements(name, description, reward) values ('Першовідкривач', 'Відкрито першу категорію', 400), ('На півшляху', 'Відкрито половину категорій слів', 700), ('Маестро категорії', 'Відкрито всі слова з однієї категорії, в тому числі за монети', 1000)"
         //var query = "insert into achievements(name, description, reward) values ('500 слів', 'Складено 500 унікальних слів (не враховуються відкриті слова за монети)', 1000)"
         //var query = "update achievements set isEarned = 0";
-        console.log('updating data');
+        //console.log('updating data');
         return $cordovaSQLite.execute($rootScope.db, query);
       }
     }

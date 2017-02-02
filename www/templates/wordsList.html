@@ -34,11 +34,6 @@
         <div class="border-decoration" ng-show="isCategoryShown(category)"></div>
       </div>
     </ion-list>
-
-    <button ng-if="!isWindowCordova()" ng-click="showAlert()">showAlert</button>
-    <button ng-if="!isWindowCordova()" ng-click="showConfirm()">showConfirm</button>
-    <button ng-if="!isWindowCordova()" ng-click="showHiddenAchievement()">showHiddenAch</button>
-    <button ng-if="!isWindowCordova()" ng-click="editData()">Action {{tryCopyDB}}</button>
   </ion-content>
 
   <ion-footer-bar ng-if="categoriesToDisplay" class="footer">

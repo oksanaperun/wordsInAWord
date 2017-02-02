@@ -9,6 +9,7 @@ angular.module('wordInAWord')
       code: 'seaside', name: 'Пляж'
     }];
     $scope.selectedTheme = $rootScope.settings.theme;
+    $scope.soundsMode = $rootScope.settings.sounds;
 
     $scope.manageTheme = function (theme) {
       Utilities.changeTheme(theme.code);
@@ -17,6 +18,7 @@ angular.module('wordInAWord')
 
     $scope.updateSounds = function (isSoundsOn) {
       WordDatabase.updateSounds(isSoundsOn).then(function (res) {
+        $scope.soundsMode = isSoundsOn;
         $rootScope.settings.sounds = isSoundsOn;
       }, function (err) {
         console.error(err);

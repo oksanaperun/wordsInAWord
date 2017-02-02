@@ -42,7 +42,7 @@ angular.module('wordInAWord')
 
     $scope.openComposedWord = function () {
       if (isEnoughCoinsForOpeningWord()) {
-        if (window.cordova) {
+        if (window.cordova && $rootScope.settings.sounds) {
           Utilities.playSound('purchase');
         }
 
@@ -62,7 +62,7 @@ angular.module('wordInAWord')
           console.error(err);
         });
       } else {
-        if (window.cordova) {
+        if (window.cordova && $rootScope.settings.sounds) {
           Utilities.playSound('error');
         }
 
@@ -85,7 +85,7 @@ angular.module('wordInAWord')
       }
 
       if ($rootScope.totalComposingWordsCount == $rootScope.allOpenedWordsCount) {
-        if (window.cordova) {
+        if (window.cordova && $rootScope.settings.sounds) {
           Utilities.playSound('bonus');
         }
 
@@ -95,7 +95,7 @@ angular.module('wordInAWord')
 
     $scope.openDescription = function () {
       if (isEnoughCoinsForPrompt()) {
-        if (window.cordova) {
+        if (window.cordova && $rootScope.settings.sounds) {
           Utilities.playSound('purchase');
         }
 
@@ -106,7 +106,7 @@ angular.module('wordInAWord')
           console.error(err);
         });
       } else {
-        if (window.cordova) {
+        if (window.cordova && $rootScope.settings.sounds) {
           Utilities.playSound('error');
         }
 

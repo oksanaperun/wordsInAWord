@@ -6,7 +6,7 @@ angular.module('wordInAWord')
       noBackdrop: true
     });
 
-    if (window.cordova) {
+    if (window.cordova && $rootScope.settings && $rootScope.settings.sounds) {
       document.addEventListener('deviceready', function () {
         loadAndManageData();
         $cordovaNativeAudio.preloadSimple('bonus', 'sounds/bonus.wav');
@@ -28,6 +28,10 @@ angular.module('wordInAWord')
     function manageSettings() {
       WordDatabase.selectSettings().then(function (res) {
         $rootScope.settings = res.rows.item(0);
+        if ($rootScope.settings.sounds)
+          $rootScope.settings.sounds = true;
+        else $rootScope.settings.sounds = false;
+
         Utilities.changeTheme($rootScope.settings.theme);
       }, function (err) {
         console.error(err);
@@ -191,7 +195,7 @@ angular.module('wordInAWord')
         openCategory($scope.firstClosedCategory.id);
         manageAhievements();
 
-        if (window.cordova) {
+        if (window.cordova && $rootScope.settings.sounds) {
           Utilities.playSound('bonus');
         }
 
@@ -231,11 +235,7 @@ angular.module('wordInAWord')
       return wordText;
     };
 
-    $scope.isWindowCordova = function () {
-      return window.cordova;
-    };
-
-    $scope.editData = function () {
+/*    $scope.editData = function () {
       WordDatabase.editData().then(function (res) {
         console.log('Data updated');
       }, function (err) {
@@ -253,5 +253,5 @@ angular.module('wordInAWord')
 
     $scope.showConfirm = function () {
       Utilities.showConfirmExitPopup();
-    }
+    }*/
   });
