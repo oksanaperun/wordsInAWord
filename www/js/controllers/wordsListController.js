@@ -18,11 +18,15 @@ angular.module('wordInAWord')
     }
 
     function loadAndManageData() {
-      manageSettings();
-      getCoins();
-      getCategories();
-      getWordsList();
-      Utilities.getAchievements();
+      Utilities.firstDataUpdate().then(function (res) {
+        manageSettings();
+        getCoins();
+        getCategories();
+        getWordsList();
+        Utilities.getAchievements();
+      }, function (err) {
+        console.error(err);
+      });
     }
 
     function manageSettings() {

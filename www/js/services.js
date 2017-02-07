@@ -126,6 +126,37 @@ angular.module('wordInAWord.services', [])
 
         confirmLeavePopup.then(function (res) {
         });
+      },
+      firstDataUpdate: function () {
+        return new Promise(function(resolve, reject) {
+          // 114 - id of redundant composing word 'нива'
+          WordDatabase.selectComposingWordDataById(114).then(function (res) {
+            if (res.rows.length === 1) {
+              var newComposingWords = "('омар', 58), ('волос', 78), ('лати', 16), ('лати', 51), ('абак', 5), ('абак', 20), ('абак', 38), ('саке', 17), ('саке', 60), ('саке', 71), ('саке', 100)",
+              composingWordsIdsToDelete = [114, 2406, 2504, 3601, 4030],
+              newWordsDescriptions = "('волос', '1. Те саме, що волосина 2. Те саме, що волосся 3. Шерсть тварин, а також волосини з гриви та хвоста коней; використовується для різних виробів і технічних потреб 4. Волокна деяких тропічних і субтропічних рослин 5. Опух з наривом під нігтем пальця 6. Тонкий, як волосинка, водяний черв’як'), " +
+               "('лати', 'Металеве спорядження стародавнього воїна, яке захищало від холодної, а пізніше і від вогнепальної зброї'), " +
+              "('абак', 'Те саме, що абака (1. Плита (звичайно квадратна), що становить верхню частину капітелі колони 2. Лічильна дошка у давніх греків та римлян)'), " +
+              "('саке', 'Японська рисова горілка')",
+              word1 = 'арак',
+              word1NewDescription = 'Поширений на сході міцний спиртний напій, що виготовляється із соку пальми, рису, ячменю, пшениці та ін.',
+              word2 = 'арат',
+              word2NewDescription = 'У Монголії – селянин, що займається кочовим тваринництвом';
+
+              Promise.all([WordDatabase.insertComposingWords(newComposingWords),
+                WordDatabase.deleteComposingWordsByIds(composingWordsIdsToDelete),
+                WordDatabase.insertWordsDescriptions(newWordsDescriptions),
+                WordDatabase.updateWordDescription(word1, word1NewDescription),
+                WordDatabase.updateWordDescription(word2, word2NewDescription)]).then(function (res) {
+                  resolve();
+              }, function (err) {
+                reject(err);
+              });
+            } else resolve();
+          }, function (err) {
+            reject(err);
+          });
+        });
       }
     };
   })
@@ -220,6 +251,33 @@ angular.module('wordInAWord.services', [])
           "WHERE CW.id = ?";
         //console.log('select composing word data');
         return $cordovaSQLite.execute($rootScope.db, query, [id]);
+      },
+      insertComposingWords: function(data) {
+        var query = "INSERT INTO composing_words (name, wordId) VALUES " + data;
+        //console.log('insert composing words');
+        return $cordovaSQLite.execute($rootScope.db, query);
+      },
+      deleteComposingWordsByIds: function(ids) {
+        var idsList = '(' + ids[0];
+
+        for (var i = 1; i < ids.length; i++)
+          idsList += ', ' + ids[i];
+
+        idsList += ')';
+
+        var query = "DELETE FROM composing_words WHERE id IN " + idsList;
+        //console.log('delete composing words');
+        return $cordovaSQLite.execute($rootScope.db, query);
+      },
+      insertWordsDescriptions: function(data) {
+        var query = "INSERT INTO words_descriptions (name, description) VALUES " + data;
+        //console.log('insert words descriptions');
+        return $cordovaSQLite.execute($rootScope.db, query);
+      },
+      updateWordDescription: function(name, newDescription) {
+        var query = "UPDATE words_descriptions SET description = ? WHERE name = ?";
+        //console.log('update word description');
+        return $cordovaSQLite.execute($rootScope.db, query, [newDescription, name]);
       },
       selectCoins: function () {
         var query = "SELECT coins FROM user_settings";
