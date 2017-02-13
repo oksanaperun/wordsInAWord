@@ -39,7 +39,7 @@ button.word-name-button, input.composed-word, .composing-words-list .list,
 }
 
 .has-header {
-  top: 65px;
+  top: 64px;
 }
 
 .border-decoration-header {
@@ -159,7 +159,7 @@ button.word-name-button {
   height: 60px;
   margin-right: 8px;
   margin-bottom: 8px;
-  font-size: 50px;
+  font-size: 55px;
   padding-bottom: 15px;
   border-radius: 10px;
   line-height: 0.1em;

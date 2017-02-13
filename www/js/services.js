@@ -100,7 +100,7 @@ angular.module('wordInAWord.services', [])
 
         for (var i = 0; i < styleElements.length; i++) {
           if (styleElements[i].title == 'theme') {
-            console.log('Change theme');
+            //console.log('Change theme');
             styleElements[i].href = 'css/' + theme + '.css';
           }
         }
@@ -129,9 +129,9 @@ angular.module('wordInAWord.services', [])
       },
       firstDataUpdate: function () {
         return new Promise(function(resolve, reject) {
-          // 114 - id of redundant composing word 'нива'
-          WordDatabase.selectComposingWordDataById(114).then(function (res) {
-            if (res.rows.length === 1) {
+          //'волос'- new word description
+          WordDatabase.selectWordDescriptionByName('волос').then(function (res) {
+            if (res.rows.length === 0) {
               var newComposingWords = "('омар', 58), ('волос', 78), ('лати', 16), ('лати', 51), ('абак', 5), ('абак', 20), ('абак', 38), ('саке', 17), ('саке', 60), ('саке', 71), ('саке', 100)",
               composingWordsIdsToDelete = [114, 2406, 2504, 3601, 4030],
               newWordsDescriptions = "('волос', '1. Те саме, що волосина 2. Те саме, що волосся 3. Шерсть тварин, а також волосини з гриви та хвоста коней; використовується для різних виробів і технічних потреб 4. Волокна деяких тропічних і субтропічних рослин 5. Опух з наривом під нігтем пальця 6. Тонкий, як волосинка, водяний черв’як'), " +
@@ -148,6 +148,30 @@ angular.module('wordInAWord.services', [])
                 WordDatabase.insertWordsDescriptions(newWordsDescriptions),
                 WordDatabase.updateWordDescription(word1, word1NewDescription),
                 WordDatabase.updateWordDescription(word2, word2NewDescription)]).then(function (res) {
+                  resolve();
+              }, function (err) {
+                reject(err);
+              });
+            } else resolve();
+          }, function (err) {
+            reject(err);
+          });
+        });
+      },
+      secondDataUpdate: function () {
+        return new Promise(function(resolve, reject) {
+          //'твід' - new word description
+          WordDatabase.selectWordDescriptionByName('твід').then(function (res) {
+            if (res.rows.length === 0) {
+              var newComposingWords = "('саке', 95), ('дан', 13), ('дан', 26), ('дан', 36), ('твід', 14), ('біт', 5), ('біт', 14), ('біт', 85), ('біт', 90), ('біт', 95), ('ара', 9), ('ара', 19), ('ара', 23), ('ара', 25), ('ара', 26), ('ара', 32), ('ара', 40), ('ара', 49), ('ара', 56), ('ара', 59), ('ара', 68), ('ара', 72), ('ара', 76), ('ара', 92), ('ара', 97), ('ара', 98)",
+              newWordsDescriptions = "('твід', 'Шерстяна тканина полотняного переплетення для верхнього одягу'), " +
+               "('біт', '1. Мінімальна одиниця виміру кількості інформації та об’єму пам’яті комп’ютера (дорівнює одній комірці або одному двійковому знаку типу «так-ні») 2. Одиниця ємності пам’яті, яка відповідає одному двійковому розряду 3. Чіткий ритм в музиці || Ритм (про роботу серця) 4. Те саме, що біт-музика'), " +
+              "('ара', 'Група довгохвостих папуг')";
+
+              Promise.all([WordDatabase.insertComposingWords(newComposingWords),
+                WordDatabase.insertWordsDescriptions(newWordsDescriptions),
+                WordDatabase.updateComposingWordName('тетрарх ', 'тетрарх'),
+                WordDatabase.updateNameInWordDescription('тетрарх ', 'тетрарх')]).then(function (res) {
                   resolve();
               }, function (err) {
                 reject(err);
@@ -254,8 +278,13 @@ angular.module('wordInAWord.services', [])
       },
       insertComposingWords: function(data) {
         var query = "INSERT INTO composing_words (name, wordId) VALUES " + data;
-        //console.log('insert composing words');
+        //console.log('insert composing words ' + data);
         return $cordovaSQLite.execute($rootScope.db, query);
+      },
+      updateComposingWordName: function(oldName, newName) {
+        var query = "UPDATE composing_words SET name = ? WHERE name = ?";
+        //console.log('update composing word with old name ' + oldName);
+        return $cordovaSQLite.execute($rootScope.db, query, [newName, oldName]);
       },
       deleteComposingWordsByIds: function(ids) {
         var idsList = '(' + ids[0];
@@ -269,10 +298,20 @@ angular.module('wordInAWord.services', [])
         //console.log('delete composing words');
         return $cordovaSQLite.execute($rootScope.db, query);
       },
+      selectWordDescriptionByName: function(name) {
+        var query = "SELECT * FROM words_descriptions WHERE name = ?";
+        //console.log('select word description by name ' + name);
+        return $cordovaSQLite.execute($rootScope.db, query, [name]);
+      },
       insertWordsDescriptions: function(data) {
         var query = "INSERT INTO words_descriptions (name, description) VALUES " + data;
-        //console.log('insert words descriptions');
+        //console.log('insert words descriptions ' + data);
         return $cordovaSQLite.execute($rootScope.db, query);
+      },
+      updateNameInWordDescription: function(oldName, newName) {
+        var query = "UPDATE words_descriptions SET name = ? WHERE name = ?";
+        //console.log('update name in word description with old name ' + oldName);
+        return $cordovaSQLite.execute($rootScope.db, query, [newName, oldName]);
       },
       updateWordDescription: function(name, newDescription) {
         var query = "UPDATE words_descriptions SET description = ? WHERE name = ?";

@@ -18,7 +18,7 @@ angular.module('wordInAWord')
     }
 
     function loadAndManageData() {
-      Utilities.firstDataUpdate().then(function (res) {
+      dataUpdate().then(function (res) {
         manageSettings();
         getCoins();
         getCategories();
@@ -26,6 +26,22 @@ angular.module('wordInAWord')
         Utilities.getAchievements();
       }, function (err) {
         console.error(err);
+      });
+    }
+
+    function dataUpdate() {
+      return new Promise(function(resolve, reject) {
+        Promise.all([
+            Utilities.firstDataUpdate(),
+            Utilities.secondDataUpdate()
+          ])
+          .then(function (res) {
+            resolve();
+          }, function (err) {
+            reject(err);
+        });
+      }, function (err) {
+        reject(err);
       });
     }
 

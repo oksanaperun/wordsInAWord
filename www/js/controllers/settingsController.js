@@ -1,13 +1,17 @@
 angular.module('wordInAWord')
 
   .controller('SettingsCtrl', function ($ionicPlatform, $scope, $rootScope, WordDatabase, Utilities) {
-    $scope.themes = [{
-      code: 'vintage', name: 'Вінтаж'
-    }, {
-      code: 'space', name: 'Космос'
-    }, {
-      code: 'seaside', name: 'Пляж'
-    }];
+    $scope.themes = [
+      {
+        code: 'flowers', name: 'Весняні квіти'
+      }, {
+        code: 'vintage', name: 'Вінтаж'
+      }, {
+        code: 'space', name: 'Космос'
+      }, {
+        code: 'seaside', name: 'Пляж'
+      }
+    ];
     $scope.selectedTheme = $rootScope.settings.theme;
     $scope.soundsMode = $rootScope.settings.sounds;
 

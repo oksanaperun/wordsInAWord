@@ -55,7 +55,7 @@ button.word-name-button {
 .main-menu {
   border-right: 1px solid #0e204f;
 }
-.main-menu .item {
+.main-menu .item, .category.item-stable, .category.item-stable.active {
   border-color: #0e204f;
 }
 .main-menu .item-content, .main-menu .item-content.activated, .category.item-stable, 

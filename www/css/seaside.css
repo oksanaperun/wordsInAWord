@@ -61,7 +61,7 @@ button.word-name-button {
 .settings span, .settings h3, .settings .radio-icon {
   text-shadow: 1px 1px #ab7d58;
 }
-.main-menu .item, .category-word {
+.main-menu .item, .category-word, .category.item-stable, .category.item-stable.active {
   border-color: #795104;
 }
 
