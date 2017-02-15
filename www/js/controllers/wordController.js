@@ -17,6 +17,7 @@ angular.module('wordInAWord')
     function getWordData() {
       WordDatabase.selectWordDataById($stateParams.wordId).then(function (res) {
         $scope.word = res.rows.item(0);
+        $scope.word.name = $scope.word.name.replace('-', '');
         getComposingWords();
         getCategoryInfo();
       }, function (err) {
