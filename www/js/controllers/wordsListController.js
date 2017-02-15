@@ -80,14 +80,11 @@ angular.module('wordInAWord')
     }
 
     function getWordsList() {
-      $rootScope.totalComposingWordsCount = 0;
-
       WordDatabase.selectWords().then(function (res) {
         $scope.wordsList = [];
 
         for (var i = 0; i < res.rows.length; i++) {
           $scope.wordsList.push(res.rows.item(i));
-          $rootScope.totalComposingWordsCount += $scope.wordsList[i].totalComposingWords;
         }
 
         getCategoriesToDisplayWithWordsList();
@@ -102,6 +99,7 @@ angular.module('wordInAWord')
 
     function getCategoriesToDisplayWithWordsList() {
       $scope.categoriesToDisplay = [];
+      $rootScope.totalComposingWordsCount = 0;
       $rootScope.allOpenedWordsCount = 0;
       $scope.openedCategoriesCount = 0;
       $scope.openedCategoriesTotalComposingWordsCount = 0;
