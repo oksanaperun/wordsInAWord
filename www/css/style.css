@@ -48,7 +48,7 @@ button.word-name-button, input.composed-word, .composing-words-list .list,
   padding: 0px;
 }
 .border-decoration {
-  width: 100%;
+  width: 100vh;
   height: 20px;
 }
 
@@ -120,6 +120,9 @@ button.word-name-button, input.composed-word, .composing-words-list .list,
   font-size: 13px;
   margin-left: 0px;
   padding-bottom: 5px;
+  margin-top: -15px;
+  padding-left: 8px;
+  text-align: left;
 }
 .category p span {
   font-size: 16px;

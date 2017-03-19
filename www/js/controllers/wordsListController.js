@@ -108,11 +108,16 @@ angular.module('wordInAWord')
         var categoryToDisplay = $scope.categories[i],
           wordsList = [];
 
+        categoryToDisplay.totalComposingWordsCount = 0;
+        categoryToDisplay.openedComposingWordsCount = 0;
+
         for (var j = 0; j < $scope.wordsList.length; j++) {
           if ($scope.wordsList[j].categoryId == $scope.categories[i].id) {
             wordsList.push($scope.wordsList[j]);
             $rootScope.totalComposingWordsCount += $scope.wordsList[j].totalComposingWords;
+            categoryToDisplay.totalComposingWordsCount += $scope.wordsList[j].totalComposingWords;
             $rootScope.allOpenedWordsCount += $scope.wordsList[j].openedComposingWords;
+            categoryToDisplay.openedComposingWordsCount += $scope.wordsList[j].openedComposingWords;
 
             if ($scope.categories[i].isOpened) {
               $scope.openedCategoriesTotalComposingWordsCount += $scope.wordsList[j].totalComposingWords;
@@ -181,7 +186,9 @@ angular.module('wordInAWord')
           if ($scope.categoriesToDisplay[i].id == updatedCount.categoryId) {
             for (var j = 0; j < $scope.categoriesToDisplay[i].wordsList.length; j++) {
               if ($scope.categoriesToDisplay[i].wordsList[j].id == updatedCount.wordId) {
+                $scope.categoriesToDisplay[i].openedComposingWordsCount -= $scope.categoriesToDisplay[i].wordsList[j].openedComposingWords;
                 $scope.categoriesToDisplay[i].wordsList[j].openedComposingWords = updatedCount.count;
+                $scope.categoriesToDisplay[i].openedComposingWordsCount += updatedCount.count;
                 break;
               }
             }
