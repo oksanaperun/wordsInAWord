@@ -14,12 +14,25 @@ angular.module('wordInAWord')
       }
     });
 
+    $scope.windowWidth = $window.innerWidth;
+    $scope.windowHeight = $window.innerHeight;
+    $scope.letterWidth = $scope.windowHeight < 600 ? 58 : 68;
+    $scope.composedWordControlsWidth = $scope.windowHeight < 600 ? 285 : 305;
+    $scope.composingWordWidth = Math.floor($scope.windowWidth / 3);
+
     function getWordData() {
       WordDatabase.selectWordDataById($stateParams.wordId).then(function (res) {
         $scope.word = res.rows.item(0);
         $scope.word.name = $scope.word.name.replace('-', '');
+
+        var calculatedLettersCountInARow = Math.floor($scope.windowWidth / $scope.letterWidth);
+
+        $scope.lettersCountInARow = calculatedLettersCountInARow > 8 ? 8 : calculatedLettersCountInARow;
+        $scope.chunkedLetters = chunk($scope.word.name.split(''), $scope.lettersCountInARow);
+
         getComposingWords();
         getCategoryInfo();
+        setSize();
       }, function (err) {
         console.error(err);
       });
@@ -40,6 +53,7 @@ angular.module('wordInAWord')
         }
 
         sortArrayByNameLength($scope.word.composingWords, 'asc');
+        $scope.chunkedComposingWords = chunk($scope.word.composingWords, 3);
       }, function (err) {
         console.error(err);
       });
@@ -78,9 +92,9 @@ angular.module('wordInAWord')
       return document.getElementsByClassName('word-name-button');
     }
 
-    $scope.disableWordNameButton = function (index) {
+    $scope.disableWordNameButton = function (index, rowIndex) {
       var buttons = getAllWordNameButtons(),
-        clickedButton = buttons[index];
+        clickedButton = buttons[index + rowIndex * $scope.lettersCountInARow];
 
       clickedButton.setAttribute('disabled', 'disabled');
       clickedButton.classList.add('word-name-button-disabled');
@@ -299,22 +313,26 @@ angular.module('wordInAWord')
       }
     }
 
-    $scope.getComposingWordsHeight = function () {
-      if ($scope.word && $scope.word.composingWords) {
-        var lettersCount = $scope.word.name.length,
-          letterWidth = 68,
-          composedWordControlsHeight = 50,
-          composedWordCountHeight = 40,
-          menuHeight = 45 + 20, // border decoration under menu has height 20
+    function setSize() {
+        var composedWordControlsHeight = 50,
+          composedWordCountHeight = 15,
+          menuHeight = 43 + 20*2, // border decoration under menu has height 20
           footerHeight = 65,
-          viewHeight = $window.innerHeight,
-          viewWidth = $window.innerWidth,
-          lettersCountInARow = Math.floor(viewWidth / letterWidth),
-          lettersFullRowCount = Math.floor(lettersCount / lettersCountInARow),
-          isAdditionalLettersRow = lettersCount % lettersCountInARow > 0 ? 1 : 0,
-          lettersBlockHeight = (lettersFullRowCount + isAdditionalLettersRow) * letterWidth;
+          lettersCount = $scope.word.name.length,
+          lettersFullRowCount = Math.floor(lettersCount / $scope.lettersCountInARow),
+          isAdditionalLettersRow = lettersCount % $scope.lettersCountInARow > 0 ? 1 : 0,
+          lettersRowsCount = lettersFullRowCount + isAdditionalLettersRow;
 
-        return viewHeight - menuHeight - lettersBlockHeight - composedWordControlsHeight - composedWordCountHeight - footerHeight;
+        $scope.lettersBlockHeight = lettersRowsCount * $scope.letterWidth;
+        $scope.composingWordsListHeight = $scope.windowHeight - 8 - menuHeight - $scope.lettersBlockHeight - composedWordControlsHeight - composedWordCountHeight - footerHeight;
+    }
+
+    function chunk(arr, size) {
+      var newArr = [];
+
+      for (var i = 0; i < arr.length; i += size) {
+        newArr.push(arr.slice(i, i + size));
       }
-    };
+      return newArr;
+    }
   });

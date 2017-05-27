@@ -18,31 +18,42 @@ angular.module('wordInAWord')
     }
 
     function loadAndManageData() {
-      dataUpdate().then(function (res) {
-        manageSettings();
-        getCoins();
-        getCategories();
-        getWordsList();
-        Utilities.getAchievements();
+      //'волос'- new word description
+      WordDatabase.selectWordDescriptionByName('волос').then(function (res) {
+        //console.log('First data update is started');
+        if (res.rows.length === 0) {
+          Utilities.firstDataUpdate();
+          secondUpdateAndLoadData();
+        } else {
+          secondUpdateAndLoadData();
+        }
       }, function (err) {
         console.error(err);
       });
     }
 
-    function dataUpdate() {
-      return new Promise(function(resolve, reject) {
-        Promise.all([
-            Utilities.firstDataUpdate(),
-            Utilities.secondDataUpdate()
-          ])
-          .then(function (res) {
-            resolve();
-          }, function (err) {
-            reject(err);
-        });
+    function secondUpdateAndLoadData() {
+      //'твід' - new word description
+      WordDatabase.selectWordDescriptionByName('твід').then(function (res) {
+        //console.log('Second data update is started');
+        if (res.rows.length === 0) {
+          Utilities.secondDataUpdate();
+          loadData();
+        } else {
+          loadData();
+        }      
       }, function (err) {
-        reject(err);
+        console.error(err);
       });
+    }
+
+    function loadData() {
+      //console.log('Load data');
+      manageSettings();
+      getCoins();
+      getCategories();
+      getWordsList();
+      Utilities.getAchievements();
     }
 
     function manageSettings() {

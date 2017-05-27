@@ -7,46 +7,62 @@
 
 @-webkit-keyframes moveUp {
   0% {
-    -webkit-transform: translate3d(0, -20%, 0);
+    -webkit-transform: translateY(-20%);
     opacity: 1;
   }
   50% {
-    -webkit-transform: translate3d(0, -50%, 0);
+    -webkit-transform: translateY(-50%);
     opacity: 0.5;
   }
   80% {
-    -webkit-transform: translate3d(0, -80%, 0);
+    -webkit-transform: translateY(-80%);
     opacity: 0.2;
   }
   100% {
-    -webkit-transform: translate3d(0, -100%, 0);
+    -webkit-transform: translateY(-100%);
     opacity: 0;
   }
 }
 
 .already-opened-word {
   -webkit-animation: moveDown linear 0.5;
-  animation: moveDown linear 0.5;
   -webkit-animation-duration: 3s;
+  animation: moveDown linear 0.5;
   animation-duration: 3s;
 }
 
 @-webkit-keyframes moveDown {
   0% {
-    -webkit-transform: translate3d(0, 20%, 0);
+    -webkit-transform: translateY(20%);
     opacity: 1;
   }
   50% {
-    -webkit-transform: translate3d(0, 50%, 0);
+    -webkit-transform: translateY(50%);
     opacity: 0.5;
   }
   80% {
-    -webkit-transform: translate3d(0, 80%, 0);
+    -webkit-transform: translateY(80%);
     opacity: 0.2;
   }
   100% {
-    -webkit-transform: translate3d(0, 100%, 0);
+    -webkit-transform: translateY(100%);
     opacity: 0;
+  }
+}
+
+@media (min-height: 600px) {
+  button.word-name-button {
+    font-size: 55px;
+    width: 60px;
+    height: 60px;
+    padding-bottom: 22px;
+  }
+  .clear-composed-word, .remove-letter-in-composed-word, button.help-button {
+    width: 70px;
+    border-radius: 70px;
+  }
+  input.composed-word {
+    width: 200px;
   }
 }
 
@@ -56,13 +72,16 @@
     line-height: 60px;
   }
   .category p {
-    font-size: 14px;
+    font-size: 13px;
   }
   .composing-word {
     font-size: 16px;
   }
   .opened-words-description p, p.composing-word-description, .composing-word-info button {
     font-size: 18px;
+  }
+  .achievements h3 {
+    font-size: medium;
   }
   .progress p {
     font-size: 13px;
@@ -100,6 +119,9 @@
   .category-icon {
     width: 70px !important;
   }
+  button.word-name-button {
+    font-size: 60px;
+  }
   .composing-word {
     font-size: 24px;
   }
@@ -117,6 +139,10 @@
   }
   .category p {
     font-size: 18px;
+  }
+  .clear-composed-word, .remove-letter-in-composed-word, button.help-button {
+    width: 80px;
+    border-radius: 80px;
   }
   .composing-word {
     font-size: 26px;

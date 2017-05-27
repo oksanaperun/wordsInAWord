@@ -75,6 +75,7 @@ button.word-name-button {
   background-color: #8bd9e3;
 }
 .categories-list .list {
+  background: -webkit-linear-gradient(#b1e3ea, #ddd3b3, #b1e3ea);
   background: linear-gradient(#b1e3ea, #ddd3b3, #b1e3ea);
 }
 .categories-stats {
@@ -98,7 +99,11 @@ input.composed-word {
   background-color: rgba(255, 255, 255, 0.4);
 }
 .composing-words {
+  background: -webkit-linear-gradient(rgba(244, 227, 179, 0.1), rgb(248, 238, 220), rgba(229, 217, 182, 0.2));
   background: linear-gradient(rgba(244, 227, 179, 0.1), rgb(248, 238, 220), rgba(229, 217, 182, 0.2));
+}
+.composing-word {
+  color: black !important;
 }
 
 .prompt-button {
@@ -154,8 +159,10 @@ input.composed-word {
   color: #ff3300;
 }
 .popup button.button-positive, .popup button.button-positive.activated {
+  background: -webkit-linear-gradient(141deg, #f1d5a4 20%, #fff2d0 51%, #f1d5a4 75%);
   background: linear-gradient(141deg, #f1d5a4 20%, #fff2d0 51%, #f1d5a4 75%);
 }
 .popup button.button-default {
+  background: -webkit-linear-gradient(141deg, #fff2d0 20%, #f1d5a4 51%, #fff2d0 75%);
   background: linear-gradient(141deg, #fff2d0 20%, #f1d5a4 51%, #fff2d0 75%);
 }

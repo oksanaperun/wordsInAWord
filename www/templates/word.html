@@ -9,20 +9,27 @@
   </div>
   <div class="word-header">
     <div class="border-decoration"></div>
-    <div class="row word-name-buttons-block">
-      <div ng-repeat="letter in word.name track by $index">
-        <button class="word-name-button word-name-button-default"
-                ng-click="addSelectedLetter(letter); disableWordNameButton($index)">
-          {{letter}}
-        </button>
-      </div>
-    </div>
-    <div class="row composed-word-controls">
+      <ion-list class="word-name-buttons-block" 
+                style="height: {{lettersBlockHeight}}px">
+        <ion-item class="row letters-row"
+                  style="width: {{rows.length * letterWidth}}px" 
+                  ng-repeat="rows in chunkedLetters">
+          <button class="word-name-button"
+                  ng-repeat="letter in rows track by $index" 
+                  ng-click="addSelectedLetter(letter); disableWordNameButton($index, $parent.$index)">
+            {{letter}}
+          </button>
+        </ion-item>
+      </ion-list>
+    <div class="row composed-word-controls"
+        style="width: {{composedWordControlsWidth}}px">
       <button class="clear-composed-word"
               ng-click="clearComposedWord(); enableAllWordNameButtons()">
         <i class="icon ion-android-delete"></i>
       </button>
-      <input class="composed-word" ng-model="composedWord" disabled="disabled">
+      <input class="composed-word"
+             disabled="disabled"
+             ng-model="composedWord" >
       <button class="remove-letter-in-composed-word"
               ng-click="removeLastLetter()">
         <i class="icon ion-backspace"></i>
@@ -34,12 +41,19 @@
     <div class="border-decoration"></div>
   </div>
 
-  <ion-scroll class="composing-words" direction="y" style="height: {{getComposingWordsHeight()}}px">
+  <ion-scroll class="composing-words" 
+              direction="y" 
+              style="height: {{composingWordsListHeight}}px">
     <ion-list class="composing-words-list">
-      <ion-item class="composing-word"
+      <ion-item class="row composing-words-row"
+                style="width: {{rows.length * composingWordWidth}}px;"  
+                ng-repeat="rows in chunkedComposingWords">
+        <ion-item class="composing-word"
+                style="width: {{composingWordWidth}}px;"
                 href="#/app/wordslist/{{word.id}}/{{composingWord.id}}"
-                ng-repeat="composingWord in word.composingWords track by $index">
-        {{composingWord.isOpened ? composingWord.name : displayNotOpenedWord(composingWord.name.length)}}
+                ng-repeat="composingWord in rows">
+          {{composingWord.isOpened ? composingWord.name : displayNotOpenedWord(composingWord.name.length)}}
+        </ion-item>
       </ion-item>
     </ion-list>
   </ion-scroll>

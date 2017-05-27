@@ -128,58 +128,59 @@ angular.module('wordInAWord.services', [])
         });
       },
       firstDataUpdate: function () {
-        return new Promise(function(resolve, reject) {
-          //'волос'- new word description
-          WordDatabase.selectWordDescriptionByName('волос').then(function (res) {
-            if (res.rows.length === 0) {
-              var newComposingWords = "('омар', 58), ('волос', 78), ('лати', 16), ('лати', 51), ('абак', 5), ('абак', 20), ('абак', 38), ('саке', 17), ('саке', 60), ('саке', 71), ('саке', 100)",
-              composingWordsIdsToDelete = [114, 2406, 2504, 3601, 4030],
-              newWordsDescriptions = "('волос', '1. Те саме, що волосина 2. Те саме, що волосся 3. Шерсть тварин, а також волосини з гриви та хвоста коней; використовується для різних виробів і технічних потреб 4. Волокна деяких тропічних і субтропічних рослин 5. Опух з наривом під нігтем пальця 6. Тонкий, як волосинка, водяний черв’як'), " +
-               "('лати', 'Металеве спорядження стародавнього воїна, яке захищало від холодної, а пізніше і від вогнепальної зброї'), " +
+        var newComposingWords = "('омар', 58), ('волос', 78), ('лати', 16), ('лати', 51), ('абак', 5), ('абак', 20), ('абак', 38), ('саке', 17), ('саке', 60), ('саке', 71), ('саке', 100)",
+            composingWordsIdsToDelete = [114, 2406, 2504, 3601, 4030],
+            newWordsDescriptions = "('волос', '1. Те саме, що волосина 2. Те саме, що волосся 3. Шерсть тварин, а також волосини з гриви та хвоста коней; використовується для різних виробів і технічних потреб 4. Волокна деяких тропічних і субтропічних рослин 5. Опух з наривом під нігтем пальця 6. Тонкий, як волосинка, водяний черв’як'), " +
+              "('лати', 'Металеве спорядження стародавнього воїна, яке захищало від холодної, а пізніше і від вогнепальної зброї'), " +
               "('абак', 'Те саме, що абака (1. Плита (звичайно квадратна), що становить верхню частину капітелі колони 2. Лічильна дошка у давніх греків та римлян)'), " +
               "('саке', 'Японська рисова горілка')",
-              word1 = 'арак',
-              word1NewDescription = 'Поширений на сході міцний спиртний напій, що виготовляється із соку пальми, рису, ячменю, пшениці та ін.',
-              word2 = 'арат',
-              word2NewDescription = 'У Монголії – селянин, що займається кочовим тваринництвом';
+            word1 = 'арак',
+            word1NewDescription = 'Поширений на сході міцний спиртний напій, що виготовляється із соку пальми, рису, ячменю, пшениці та ін.',
+            word2 = 'арат',
+            word2NewDescription = 'У Монголії – селянин, що займається кочовим тваринництвом';
 
-              Promise.all([WordDatabase.insertComposingWords(newComposingWords),
-                WordDatabase.deleteComposingWordsByIds(composingWordsIdsToDelete),
-                WordDatabase.insertWordsDescriptions(newWordsDescriptions),
-                WordDatabase.updateWordDescription(word1, word1NewDescription),
-                WordDatabase.updateWordDescription(word2, word2NewDescription)]).then(function (res) {
-                  resolve();
+        WordDatabase.insertComposingWords(newComposingWords).then(function () {
+          WordDatabase.deleteComposingWordsByIds(composingWordsIdsToDelete).then(function () {
+            WordDatabase.insertWordsDescriptions(newWordsDescriptions).then(function () {
+              WordDatabase.updateWordDescription(word1, word1NewDescription).then(function () {
+                WordDatabase.updateWordDescription(word2, word2NewDescription).then(function () {
+                }, function (err) {
+                  console.error(err);
+                });
               }, function (err) {
-                reject(err);
+                console.error(err);
               });
-            } else resolve();
+            }, function (err) {
+              console.error(err);
+            });
           }, function (err) {
-            reject(err);
+            console.error(err);
           });
+        }, function (err) {
+          console.error(err);
         });
       },
       secondDataUpdate: function () {
-        return new Promise(function(resolve, reject) {
-          //'твід' - new word description
-          WordDatabase.selectWordDescriptionByName('твід').then(function (res) {
-            if (res.rows.length === 0) {
-              var newComposingWords = "('саке', 95), ('дан', 13), ('дан', 26), ('дан', 36), ('твід', 14), ('біт', 5), ('біт', 14), ('біт', 85), ('біт', 90), ('біт', 95), ('ара', 9), ('ара', 19), ('ара', 23), ('ара', 25), ('ара', 26), ('ара', 32), ('ара', 40), ('ара', 49), ('ара', 56), ('ара', 59), ('ара', 68), ('ара', 72), ('ара', 76), ('ара', 92), ('ара', 97), ('ара', 98)",
-              newWordsDescriptions = "('твід', 'Шерстяна тканина полотняного переплетення для верхнього одягу'), " +
-               "('біт', '1. Мінімальна одиниця виміру кількості інформації та об’єму пам’яті комп’ютера (дорівнює одній комірці або одному двійковому знаку типу «так-ні») 2. Одиниця ємності пам’яті, яка відповідає одному двійковому розряду 3. Чіткий ритм в музиці || Ритм (про роботу серця) 4. Те саме, що біт-музика'), " +
+        var newComposingWords = "('саке', 95), ('дан', 13), ('дан', 26), ('дан', 36), ('твід', 14), ('біт', 5), ('біт', 14), ('біт', 85), ('біт', 90), ('біт', 95), ('ара', 9), ('ара', 19), ('ара', 23), ('ара', 25), ('ара', 26), ('ара', 32), ('ара', 40), ('ара', 49), ('ара', 56), ('ара', 59), ('ара', 68), ('ара', 72), ('ара', 76), ('ара', 92), ('ара', 97), ('ара', 98)",
+            newWordsDescriptions = "('твід', 'Шерстяна тканина полотняного переплетення для верхнього одягу'), " +
+              "('біт', '1. Мінімальна одиниця виміру кількості інформації та об’єму пам’яті комп’ютера (дорівнює одній комірці або одному двійковому знаку типу «так-ні») 2. Одиниця ємності пам’яті, яка відповідає одному двійковому розряду 3. Чіткий ритм в музиці || Ритм (про роботу серця) 4. Те саме, що біт-музика'), " +
               "('ара', 'Група довгохвостих папуг')";
 
-              Promise.all([WordDatabase.insertComposingWords(newComposingWords),
-                WordDatabase.insertWordsDescriptions(newWordsDescriptions),
-                WordDatabase.updateComposingWordName('тетрарх ', 'тетрарх'),
-                WordDatabase.updateNameInWordDescription('тетрарх ', 'тетрарх')]).then(function (res) {
-                  resolve();
+        WordDatabase.insertComposingWords(newComposingWords).then(function () {
+          WordDatabase.insertWordsDescriptions(newWordsDescriptions).then(function () {
+            WordDatabase.updateComposingWordName('тетрарх ', 'тетрарх').then(function () {
+              WordDatabase.updateNameInWordDescription('тетрарх ', 'тетрарх').then(function () {
               }, function (err) {
-                reject(err);
+                console.error(err);
               });
-            } else resolve();
+            }, function (err) {
+              console.error(err);
+            });
           }, function (err) {
-            reject(err);
+            console.error(err);
           });
+        }, function (err) {
+          console.error(err);
         });
       }
     };
@@ -382,7 +383,11 @@ angular.module('wordInAWord.services', [])
         //var query = "insert into achievements(name, description, reward) values ('Першовідкривач', 'Відкрито першу категорію', 400), ('На півшляху', 'Відкрито половину категорій слів', 700), ('Маестро категорії', 'Відкрито всі слова з однієї категорії, в тому числі за монети', 1000)"
         //var query = "insert into achievements(name, description, reward) values ('500 слів', 'Складено 500 унікальних слів (не враховуються відкриті слова за монети)', 1000)"
         //var query = "update achievements set isEarned = 0";
-        //console.log('updating data');
+
+        //var query = "delete from composing_words where id > 464";
+        //var query = "delete from words_descriptions where id > 59";
+        //var query = "select count(id) from composing_words where name = 'ара'";
+        console.log('updating data');
         return $cordovaSQLite.execute($rootScope.db, query);
       }
     }
