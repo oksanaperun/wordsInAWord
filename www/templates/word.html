@@ -12,7 +12,7 @@
       <ion-list class="word-name-buttons-block" 
                 style="height: {{lettersBlockHeight}}px">
         <ion-item class="row letters-row"
-                  style="width: {{rows.length * letterWidth}}px" 
+                  style="width: {{rows.length * letterWidth}}px; height: {{letterWidth}}px;" 
                   ng-repeat="rows in chunkedLetters">
           <button class="word-name-button"
                   ng-repeat="letter in rows track by $index" 

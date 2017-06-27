@@ -314,17 +314,20 @@ angular.module('wordInAWord')
     }
 
     function setSize() {
-        var composedWordControlsHeight = 50,
+        var borderDecorationHeight = 20,
+          marginTop = 4,
+          composedWordControlsHeight = 50,
           composedWordCountHeight = 15,
-          menuHeight = 43 + 20*2, // border decoration under menu has height 20
+          menuHeight = 44, 
           footerHeight = 65,
           lettersCount = $scope.word.name.length,
           lettersFullRowCount = Math.floor(lettersCount / $scope.lettersCountInARow),
           isAdditionalLettersRow = lettersCount % $scope.lettersCountInARow > 0 ? 1 : 0,
-          lettersRowsCount = lettersFullRowCount + isAdditionalLettersRow;
+          lettersRowsCount = lettersFullRowCount + isAdditionalLettersRow,
+          headerBlockHeigth = borderDecorationHeight * 2 + marginTop + lettersRowsCount * $scope.letterWidth + composedWordControlsHeight + composedWordCountHeight;
 
         $scope.lettersBlockHeight = lettersRowsCount * $scope.letterWidth;
-        $scope.composingWordsListHeight = $scope.windowHeight - 8 - menuHeight - $scope.lettersBlockHeight - composedWordControlsHeight - composedWordCountHeight - footerHeight;
+        $scope.composingWordsListHeight = $scope.windowHeight - menuHeight - headerBlockHeigth - footerHeight;
     }
 
     function chunk(arr, size) {

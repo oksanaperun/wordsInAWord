@@ -6,10 +6,14 @@ angular.module('wordInAWord')
       noBackdrop: true
     });
 
-    if (window.cordova && $rootScope.settings && $rootScope.settings.sounds) {
+    if ($ionicPlatform.is('android')) {
       document.addEventListener('deviceready', function () {
+        WordDatabase.initDatabase();
         loadAndManageData();
-        $cordovaNativeAudio.preloadSimple('bonus', 'sounds/bonus.wav');
+
+        if ($rootScope.settings && $rootScope.settings.sounds) {
+          $cordovaNativeAudio.preloadSimple('bonus', 'sounds/bonus.wav');
+        }
       });
     } else {
       $ionicPlatform.ready(function () {
@@ -231,7 +235,7 @@ angular.module('wordInAWord')
         openCategory($scope.firstClosedCategory.id);
         manageAhievements();
 
-        if (window.cordova && $rootScope.settings.sounds) {
+        if ($ionicPlatform.is('android') && $rootScope.settings.sounds) {
           Utilities.playSound('bonus');
         }
 

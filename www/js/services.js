@@ -200,12 +200,12 @@ angular.module('wordInAWord.services', [])
     };
   })
 
-  .factory('WordDatabase', function ($cordovaSQLite, $rootScope) {
+  .factory('WordDatabase', function ($cordovaSQLite, $rootScope, $ionicPlatform) {
 
     return {
       initDatabase: function () {
         //console.log('Connecting to DB');
-        if (window.cordova) {
+        if ($ionicPlatform.is('android')) {
           $rootScope.db = window.sqlitePlugin.openDatabase({
             name: "wordsInAWord.db",
             location: 'default',

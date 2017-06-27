@@ -6,7 +6,7 @@
 // 'starter.controllers' is found in controllers.js
 angular.module('wordInAWord', ['ionic', 'wordInAWord.controllers', 'wordInAWord.services', 'ngCordova'])
 
-.run(function($ionicPlatform, $ionicHistory, $cordovaSQLite, $rootScope, WordDatabase, Utilities) {
+.run(function($ionicPlatform, $ionicHistory, WordDatabase, Utilities) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -32,7 +32,7 @@ angular.module('wordInAWord', ['ionic', 'wordInAWord.controllers', 'wordInAWord.
   }, 1000);   
 })
 
-.config(function($stateProvider, $urlRouterProvider) {
+.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
   $stateProvider
 
     .state('app', {
@@ -102,6 +102,8 @@ angular.module('wordInAWord', ['ionic', 'wordInAWord.controllers', 'wordInAWord.
   })
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/app/wordslist');
+
+  $ionicConfigProvider.scrolling.jsScrolling(false);
 })
 
 .filter('unsafe', function($sce) {
