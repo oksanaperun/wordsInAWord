@@ -78,7 +78,7 @@
     font-size: 16px;
   }
   .opened-words-description p, p.composing-word-description, .composing-word-info button {
-    font-size: 18px;
+    font-size: 17px;
   }
   .achievements h3 {
     font-size: medium;
@@ -100,9 +100,6 @@
   }
   .composing-word {
     font-size: 19px;
-  }
-  .opened-words-description p {
-    font-size: 17px;
   }
   .progress p {
     font-size: 16px;

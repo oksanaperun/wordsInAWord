@@ -202,6 +202,8 @@ button.remove-letter-in-composed-word {
 }
 
 .opened-words-description {
+  height: 20px;
+  white-space: nowrap;
   padding: 0px;
 }
 .opened-words-description p {
