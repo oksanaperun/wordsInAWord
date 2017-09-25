@@ -1,6 +1,6 @@
 angular.module('wordInAWord')
 
-  .controller('SettingsCtrl', function ($ionicPlatform, $scope, $rootScope, WordDatabase, Utilities) {
+  .controller('SettingsCtrl', function ($ionicPlatform, $scope, $rootScope, DB, Utils) {
     $scope.themes = [
       {
         code: 'flowers', name: 'Весняні квіти'
@@ -16,12 +16,12 @@ angular.module('wordInAWord')
     $scope.soundsMode = $rootScope.settings.sounds;
 
     $scope.manageTheme = function (theme) {
-      Utilities.changeTheme(theme.code);
+      Utils.changeTheme(theme.code);
       updateTheme(theme.code);
     };
 
     $scope.updateSounds = function (isSoundsOn) {
-      WordDatabase.updateSounds(isSoundsOn).then(function (res) {
+      DB.updateSounds(isSoundsOn).then(function (res) {
         $scope.soundsMode = isSoundsOn;
         $rootScope.settings.sounds = isSoundsOn;
       }, function (err) {
@@ -30,7 +30,7 @@ angular.module('wordInAWord')
     };
 
     function updateTheme(themeCode) {
-      WordDatabase.updateTheme(themeCode).then(function (res) {
+      DB.updateTheme(themeCode).then(function (res) {
         $rootScope.settings.theme = themeCode;
       }, function (err) {
         console.error(err);

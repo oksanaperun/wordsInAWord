@@ -4,8 +4,10 @@
   </ion-header-bar>
 
   <ion-content class="categories-list has-footer has-header">
-    <p ng-if="categoriesToDisplay" class="categories-stats"><i class="icon ion-stats-bars"></i> Відкритих категорій:
-      {{openedCategoriesCount}}; всього: {{categories.length}}</p>
+    <p ng-if="categoriesToDisplay" class="categories-stats">
+      <i class="icon ion-stats-bars"></i> 
+      Відкрито категорій {{openedCategoriesCount}}/{{categories.length}}
+    </p>
 
     <ion-list ng-if="categoriesToDisplay">
       <div class="border-decoration"></div>

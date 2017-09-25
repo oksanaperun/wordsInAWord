@@ -1,6 +1,6 @@
 angular.module('wordInAWord')
 
-  .controller('WordsListCtrl', function ($ionicPlatform, $ionicLoading, $scope, $rootScope, $cordovaNativeAudio, WordDatabase, Utilities, AchievementsUtils) {
+  .controller('WordsListCtrl', function ($ionicPlatform, $ionicLoading, $scope, $rootScope, $cordovaNativeAudio, DB, Data, Utils, Achv) {
     $ionicLoading.show({
       template: '<ion-spinner icon="bubbles"></ion-spinner>',
       noBackdrop: true
@@ -8,7 +8,7 @@ angular.module('wordInAWord')
 
     if ($ionicPlatform.is('android')) {
       document.addEventListener('deviceready', function () {
-        WordDatabase.initDatabase();
+        DB.initDatabase();
         loadAndManageData();
 
         if ($rootScope.settings && $rootScope.settings.sounds) {
@@ -23,10 +23,10 @@ angular.module('wordInAWord')
 
     function loadAndManageData() {
       //'волос'- new word description
-      WordDatabase.selectWordDescriptionByName('волос').then(function (res) {
+      DB.selectWordDescriptionByName('волос').then(function (res) {
         //console.log('First data update is started');
         if (res.rows.length === 0) {
-          Utilities.firstDataUpdate();
+          Data.firstDataUpdate();
           secondUpdateAndLoadData();
         } else {
           secondUpdateAndLoadData();
@@ -38,10 +38,25 @@ angular.module('wordInAWord')
 
     function secondUpdateAndLoadData() {
       //'твід' - new word description
-      WordDatabase.selectWordDescriptionByName('твід').then(function (res) {
+      DB.selectWordDescriptionByName('твід').then(function (res) {
         //console.log('Second data update is started');
         if (res.rows.length === 0) {
-          Utilities.secondDataUpdate();
+          Data.secondDataUpdate();
+          thirdUpdateAndLoadData();
+        } else {
+          thirdUpdateAndLoadData();
+        }      
+      }, function (err) {
+        console.error(err);
+      });
+    }
+
+    function thirdUpdateAndLoadData() {
+      //'мураха' - new word description
+      DB.selectWordDescriptionByName('мураха').then(function (res) {
+        //console.log('Third data update is started');
+        if (res.rows.length === 0) {
+          Data.thirdDataUpdate();
           loadData();
         } else {
           loadData();
@@ -57,24 +72,24 @@ angular.module('wordInAWord')
       getCoins();
       getCategories();
       getWordsList();
-      Utilities.getAchievements();
+      Utils.getAchievements();
     }
 
     function manageSettings() {
-      WordDatabase.selectSettings().then(function (res) {
+      DB.selectSettings().then(function (res) {
         $rootScope.settings = res.rows.item(0);
         if ($rootScope.settings.sounds)
           $rootScope.settings.sounds = true;
         else $rootScope.settings.sounds = false;
 
-        Utilities.changeTheme($rootScope.settings.theme);
+        Utils.changeTheme($rootScope.settings.theme);
       }, function (err) {
         console.error(err);
       });
     }
 
     function getCategories() {
-      WordDatabase.selectCategories().then(function (res) {
+      DB.selectCategories().then(function (res) {
         $scope.categories = [];
 
         var i;
@@ -95,7 +110,7 @@ angular.module('wordInAWord')
     }
 
     function getWordsList() {
-      WordDatabase.selectWords().then(function (res) {
+      DB.selectWords().then(function (res) {
         $scope.wordsList = [];
 
         for (var i = 0; i < res.rows.length; i++) {
@@ -162,7 +177,7 @@ angular.module('wordInAWord')
     }
 
     function getCoins() {
-      WordDatabase.selectCoins().then(function (res) {
+      DB.selectCoins().then(function (res) {
         $rootScope.coinsCount = res.rows.item(0).coins;
       }, function (err) {
         console.error(err);
@@ -194,7 +209,7 @@ angular.module('wordInAWord')
     });
 
     function updateOpenedComposingWordsCount() {
-      var updatedCount = Utilities.getOpenedComposingWordsCount();
+      var updatedCount = Utils.getOpenedComposingWordsCount();
 
       if ($scope.categoriesToDisplay) {
         for (var i = 0; i < $scope.categoriesToDisplay.length; i++) {
@@ -219,7 +234,7 @@ angular.module('wordInAWord')
     }
 
     function openCategory(id) {
-      WordDatabase.openCategoryById(id).then(function (res) {
+      DB.openCategoryById(id).then(function (res) {
         $scope.categories[$scope.firstClosedCategory.index].isOpened = 1;
 
         getCategoriesToDisplayWithWordsList();
@@ -236,19 +251,19 @@ angular.module('wordInAWord')
         manageAhievements();
 
         if ($ionicPlatform.is('android') && $rootScope.settings.sounds) {
-          Utilities.playSound('bonus');
+          Utils.playSound('bonus');
         }
 
-        Utilities.showOpenedCategoryPopup($scope.firstClosedCategory.name);
+        Utils.showOpenedCategoryPopup($scope.firstClosedCategory.name);
       }
     }
 
     function manageAhievements() {
       if ($scope.firstClosedCategory.id == 2) {
-        AchievementsUtils.manageAchievementByIndex(3);
+        Achv.manageAchievementByIndex(3);
       }
       if ($scope.firstClosedCategory.id == 10) {
-        AchievementsUtils.manageAchievementByIndex(4);
+        Achv.manageAchievementByIndex(4);
       }
     }
 
@@ -276,7 +291,7 @@ angular.module('wordInAWord')
     };
 
 /*    $scope.editData = function () {
-      WordDatabase.editData().then(function (res) {
+      DB.editData().then(function (res) {
         console.log('Data updated');
       }, function (err) {
         console.error(err);
@@ -284,14 +299,14 @@ angular.module('wordInAWord')
     };
 
     $scope.showAlert = function () {
-      Utilities.showAchievementPopupByIndex(0);
+      Utils.showAchievementPopupByIndex(0);
     };
 
     $scope.showHiddenAchievement = function () {
-      Utilities.showAllWordsOpenedPopup();
+      Utils.showAllWordsOpenedPopup();
     };
 
     $scope.showConfirm = function () {
-      Utilities.showConfirmExitPopup();
+      Utils.showConfirmExitPopup();
     }*/
   });

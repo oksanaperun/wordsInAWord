@@ -1,13 +1,13 @@
 angular.module('wordInAWord')
 
-  .controller('AchievementsCtrl', function ($ionicPlatform, $scope, $rootScope, WordDatabase, Utilities) {
+  .controller('AchievementsCtrl', function ($ionicPlatform, $scope, $rootScope, DB, Utils) {
     $ionicPlatform.ready(function () {
-      Utilities.getAchievements();
+      Utils.getAchievements();
       getUniqueOpenedComposingWordsCount();
     });
 
     function getUniqueOpenedComposingWordsCount() {
-      WordDatabase.selectUniqueOpenedComposingWordsCount().then(function (res) {
+      DB.selectUniqueOpenedComposingWordsCount().then(function (res) {
         $scope.uniqueOpenedComposingWords = res.rows.item(0);
       }, function (err) {
         console.error(err);
